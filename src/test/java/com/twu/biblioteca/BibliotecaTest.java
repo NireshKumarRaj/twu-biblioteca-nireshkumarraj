@@ -47,6 +47,6 @@ public class BibliotecaTest {
     public void testIfLibraryListIsDisplayedWhenStartIsInvoked(){
         bibliotecaApp.start();
 
-        assertTrue(outContent.toString().contains("Pragmatic Programmer"));
+        assertTrue(outContent.toString().contains("Pragmatic Programmer\nExtreme Programming\nAgile Programming"));
     }
 }
