@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,7 +18,8 @@ class LibraryTest {
 
         library.view();
 
-        assertEquals("Pragmatic Programmer", outContent.toString().trim());
+        assertEquals("Pragmatic Programmer\nExtreme Programming\nAgile Programming", outContent.toString().trim());
         System.setOut(originalOut);
     }
+
 }
