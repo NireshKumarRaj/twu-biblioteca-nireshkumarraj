@@ -8,6 +8,9 @@ public class BibliotecaApp {
 
     public void start() {
         displayWelcomeMessage();
+
+        Library library = new Library();
+        library.view();
     }
 
     public void displayWelcomeMessage() {

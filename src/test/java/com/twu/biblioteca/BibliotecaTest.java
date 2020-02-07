@@ -37,9 +37,16 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void testIfWelcomeMessageIsCalledWhenStartInvoked(){
+    public void testIfWelcomeMessageIsDisplayedWhenStartIsInvoked(){
         bibliotecaApp.start();
 
         assertTrue(outContent.toString().contains("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
+    }
+
+    @Test
+    public void testIfLibraryListIsDisplayedWhenStartIsInvoked(){
+        bibliotecaApp.start();
+
+        assertTrue(outContent.toString().contains("Pragmatic Programmer"));
     }
 }
