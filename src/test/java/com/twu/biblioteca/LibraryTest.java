@@ -17,7 +17,12 @@ class LibraryTest {
 
         library.view();
 
-        assertEquals("Pragmatic Programmer\nExtreme Programming\nAgile Programming", outContent.toString().trim());
+        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
+        String out2 = "Extreme Programming | Kent Beck | 1998";
+        String out3 = "Agile | Andy | 1998";
+
+        String expected = out1 + "\n" + out2 + "\n" + out3;
+        assertEquals(expected, outContent.toString().trim());
         System.setOut(originalOut);
     }
 
