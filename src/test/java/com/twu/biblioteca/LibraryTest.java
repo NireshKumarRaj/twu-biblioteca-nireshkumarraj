@@ -7,19 +7,17 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-public class BibliotecaTest {
-
+class LibraryTest {
     @Test
-    public void testShouldCheckIfWelcomeMessageIsPrinted() {
-        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+    void testShouldCheckIfOneBookIsViewed() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outContent));
+        Library library = new Library();
 
-        bibliotecaApp.start();
+        library.view();
 
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", outContent.toString().trim());
+        assertEquals("Pragmatic Programmer", outContent.toString().trim());
         System.setOut(originalOut);
     }
 }
