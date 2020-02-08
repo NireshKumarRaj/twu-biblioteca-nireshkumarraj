@@ -133,7 +133,7 @@ class InputTest {
 
     @Test
     void checkIfUserIsAbleToSelectReturnABook() {
-        String data = "3\n4";
+        String data = "3\nPragmatic Programmer\n4";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
         Input input = new Input(library, menu);
@@ -143,4 +143,24 @@ class InputTest {
         String dataFromOut = outContent.toString().replaceAll("Enter input: ", "").trim();
         assertEquals("Enter name of the book you want to return:", dataFromOut);
     }
+
+    @Test
+    void checkIfUserIsAbleToReturnABook() {
+        String data = "3\nPragmatic Programmer\n4";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
+        Input input = new Input(library, menu);
+        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
+        String out2 = "Extreme Programming | Kent Beck | 1998";
+        String out3 = "Agile | Andy | 1998";
+        String expected = out1 + "\n" + out2 + "\n" + out3;
+
+        library.checkout("Pragmatic Programmer");
+        input.get();
+        library.view();
+
+        String dataFromOut = outContent.toString().replaceAll("Enter name of the book you want to return:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
+        assertEquals(expected, dataFromOut);
+    }
+
 }
