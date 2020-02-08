@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class BibliotecaApp {
@@ -19,7 +18,7 @@ public class BibliotecaApp {
         List<Book> books = Arrays.asList(book1, book2, book3);
         Library library = new Library(books);
 
-        Menu menu = new Menu(List.of("List Books", "Checkout", "Quit"));
+        Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
         menu.display();
 
         Input input = new Input(library, menu);
