@@ -22,30 +22,32 @@ public class Library {
     }
 
     public void checkout(String bookName) {
-        Book toFindBook = new Book(bookName);
-        boolean isFound = false;
-        for (Book book : books) {
-            if (toFindBook.equals(book)) {
-                checkOutList.add(book);
-                System.out.println("Thank you! Enjoy the book");
-                isFound = true;
-                break;
-            }
+        Book book = getBook(books, bookName);
+        if (book == null) {
+            System.out.println("Sorry, that book is not available");
+        } else {
+            checkOutList.add(book);
+            System.out.println("Thank you! Enjoy the book");
         }
-        if (!isFound) System.out.println("Sorry, that book is not available");
     }
 
     public void returnBook(String bookName) {
-        boolean isFound = false;
+        Book book = getBook(checkOutList, bookName);
+        if (book == null) {
+            System.out.println("That is not a valid book to return.");
+        } else {
+            checkOutList.remove(book);
+            System.out.println("Thank you for returning the book");
+        }
+    }
+
+    private Book getBook(List<Book> bookList, String bookName) {
         Book toFindBook = new Book(bookName);
-        for (Book book : checkOutList) {
+        for (Book book : bookList) {
             if (toFindBook.equals(book)) {
-                checkOutList.remove(book);
-                System.out.println("Thank you for returning the book");
-                isFound = true;
-                break;
+                return book;
             }
         }
-        if (!isFound) System.out.println("That is not a valid book to return.");
+        return null;
     }
 }
