@@ -34,4 +34,12 @@ class BookTest {
 
         assertEquals("Pragmatic Programmer | Andy Hunt | 1999",outContent.toString().trim());
     }
+
+    @Test
+    void testShouldCheckIfTwoBooksAreEqual() {
+        Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
+        Book book2 = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
+
+        assertEquals(book1, book2);
+    }
 }
