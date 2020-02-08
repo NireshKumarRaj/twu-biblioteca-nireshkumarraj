@@ -4,7 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +17,7 @@ public class BibliotecaTest {
     private PrintStream originalOut;
     private BibliotecaApp bibliotecaApp;
     private ByteArrayOutputStream outContent;
+    private InputStream originalIn;
 
     @BeforeEach
     void setUp() {
@@ -22,11 +25,14 @@ public class BibliotecaTest {
         outContent = new ByteArrayOutputStream();
         originalOut = System.out;
         System.setOut(new PrintStream(outContent));
+        originalIn = System.in;
+        System.setIn(new ByteArrayInputStream("1".getBytes()));
     }
 
     @AfterEach
     void afterEach() {
         System.setOut(originalOut);
+        System.setIn(originalIn);
     }
 
     @Test

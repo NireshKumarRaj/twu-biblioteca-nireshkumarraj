@@ -51,6 +51,8 @@ class InputTest {
 
         input.get();
 
-        assertEquals(expected, outContent.toString().trim());
+        String dataFromOut = outContent.toString().trim().replace("Enter input: \n","");
+
+        assertEquals(expected, dataFromOut);
     }
 }

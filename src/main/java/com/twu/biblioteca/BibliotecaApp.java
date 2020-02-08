@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BibliotecaApp {
@@ -17,7 +18,13 @@ public class BibliotecaApp {
         Book book3 = new Book("Agile", "Andy", 1998);
         List<Book> books = Arrays.asList(book1, book2, book3);
         Library library = new Library(books);
-        library.view();
+
+        Menu menu = new Menu(Collections.singletonList("List Books"));
+        menu.display();
+
+        Input input = new Input(library);
+        input.get();
+
     }
 
     public void displayWelcomeMessage() {
