@@ -12,6 +12,9 @@ public class Menu {
 
     public void display() {
         int menuItemNumber = 1;
-        for (String menuItem : menuList) System.out.println(menuItemNumber + ". " + menuItem);
+        for (String menuItem : menuList) {
+            System.out.println(menuItemNumber + ". " + menuItem);
+            menuItemNumber++;
+        }
     }
 }

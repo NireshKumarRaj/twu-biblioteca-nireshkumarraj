@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,5 +37,14 @@ class MenuTest {
         menu.display();
 
         assertEquals("1. List Books", outContent.toString().trim());
+    }
+
+    @Test
+    void testIfMenuWithMultipleItemsIsDisplayedInCommandLine() {
+        Menu menu = new Menu(Arrays.asList("List Books", "Quit"));
+
+        menu.display();
+
+        assertEquals("1. List Books\n2. Quit", outContent.toString().trim());
     }
 }
