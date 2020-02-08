@@ -37,13 +37,16 @@ public class Library {
     }
 
     public void returnBook(String bookName) {
+        boolean isFound = false;
         Book toFindBook = new Book(bookName);
         for (Book book: checkOutList){
             if (toFindBook.equals(book)){
                 checkOutList.remove(book);
                 System.out.println("Thank you for returning the book");
+                isFound = true;
                 break;
             }
         }
+        if (!isFound) System.out.println("That is not a valid book to return.");
     }
 }

@@ -76,7 +76,7 @@ class LibraryTest {
     }
 
     @Test
-    void testIfUserIsAbleToReturnABook(){
+    void testIfUserIsAbleToReturnABook() {
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
         String out2 = "Extreme Programming | Kent Beck | 1998";
         String out3 = "Agile | Andy | 1998";
@@ -86,7 +86,7 @@ class LibraryTest {
         library.returnBook("Pragmatic Programmer");
         library.view();
 
-        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim().replaceAll("Thank you for returning the book","").trim());
+        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim().replaceAll("Thank you for returning the book", "").trim());
     }
 
     @Test
@@ -96,6 +96,16 @@ class LibraryTest {
         library.returnBook("Pragmatic Programmer");
 
         String expected = "Thank you for returning the book";
-        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book","").trim());
+        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+    }
+
+    @Test
+    void testIfUserIsNotifiedWhenReturnedBookDoesNotBelongToTheLibrary() {
+        String expected = "That is not a valid book to return.";
+
+        library.checkout("Pragmatic Programmer");
+        library.returnBook("Pragmata Programmer");
+
+        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
     }
 }
