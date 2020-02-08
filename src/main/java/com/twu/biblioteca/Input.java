@@ -34,6 +34,7 @@ public class Input {
                     }
                 }
             }
+            menu.display();
             inputFromUser = getMenuOption(scanner);
         }
         scanner.close();
