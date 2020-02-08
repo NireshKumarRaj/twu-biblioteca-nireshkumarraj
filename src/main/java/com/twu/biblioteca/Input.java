@@ -6,6 +6,9 @@ public class Input {
 
     private Library library;
     private Menu menu;
+    private final int VIEW_BOOKS_CHOICE = 1;
+    private final int CHECKOUT_BOOKS_CHOICE = 2;
+    private final int RETURN_BOOKS_CHOICE = 3;
 
     public Input(Library library, Menu menu) {
         this.library = library;
@@ -16,16 +19,20 @@ public class Input {
         Scanner scanner = new Scanner(System.in);
         int inputFromUser = getMenuOption(scanner);
         while (!menu.isQuit(inputFromUser)) {
-            if (inputFromUser == 1) {
+            if (inputFromUser == VIEW_BOOKS_CHOICE) {
                 library.view();
-            } else if (inputFromUser == 2) {
-                String bookName = getBookName(scanner, "Enter Book Name: ");
-                library.checkout(bookName.trim());
-            } else if (inputFromUser == 3) {
-                String bookName = getBookName(scanner, "Enter name of the book you want to return: ");
-                library.returnBook(bookName);
             } else {
-                System.out.println("Please select a valid option!");
+                if (inputFromUser == CHECKOUT_BOOKS_CHOICE) {
+                    String bookName = getBookName(scanner, "Enter Book Name: ");
+                    library.checkout(bookName.trim());
+                } else {
+                    if (inputFromUser == RETURN_BOOKS_CHOICE) {
+                        String bookName = getBookName(scanner, "Enter name of the book you want to return: ");
+                        library.returnBook(bookName);
+                    } else {
+                        System.out.println("Please select a valid option!");
+                    }
+                }
             }
             inputFromUser = getMenuOption(scanner);
         }

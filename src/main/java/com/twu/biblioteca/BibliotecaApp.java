@@ -5,6 +5,8 @@ import java.util.List;
 
 public class BibliotecaApp {
 
+    private final String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+
     public static void main(String[] args) {
         new BibliotecaApp().start();
     }
@@ -27,6 +29,6 @@ public class BibliotecaApp {
     }
 
     public void displayWelcomeMessage() {
-        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
+        System.out.println(WELCOME_MESSAGE);
     }
 }
