@@ -29,7 +29,7 @@ class LibraryTest {
     }
 
     @AfterEach
-    void reset(){
+    void reset() {
         System.setOut(originalOut);
     }
 
@@ -54,6 +54,15 @@ class LibraryTest {
         library.checkout("Pragmatic Programmer");
         library.view();
 
+        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+    }
+
+    @Test
+    void testIfUserIsNotifiedUponSuccessFullBookCheckout() {
+
+        library.checkout("Pragmatic Programmer");
+
+        String expected = "Thank you! Enjoy the book";
         assertEquals(expected, outContent.toString().trim());
     }
 }

@@ -27,6 +27,7 @@ public class Library {
         for (Book book: books){
             if (toFindBook.equals(book)){
                 checkOutList.add(book);
+                System.out.println("Thank you! Enjoy the book");
                 break;
             }
         }

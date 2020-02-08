@@ -110,7 +110,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replaceAll("Enter input: ", "").trim();
+        String dataFromOut = outContent.toString().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
         assertEquals("Enter Book Name:", dataFromOut);
     }
 
@@ -128,7 +128,7 @@ class InputTest {
         input.get();
         library.view();
 
-        String dataFromOut = outContent.toString().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").trim();
+        String dataFromOut = outContent.toString().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
         assertEquals(expected, dataFromOut);
     }
 }
