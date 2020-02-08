@@ -26,6 +26,7 @@ public class Input {
                 library.checkout(bookName.trim());
             } else if(inputFromUser == 3){
                 System.out.println("Enter name of the book you want to return: ");
+
             }else {
                 System.out.println("Please select a valid option!");
             }

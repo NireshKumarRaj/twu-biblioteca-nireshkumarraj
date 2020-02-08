@@ -74,4 +74,18 @@ class LibraryTest {
         String expected = "Sorry, that book is not available";
         assertEquals(expected, outContent.toString().trim());
     }
+
+    @Test
+    void testIfUserIsAbleToReturnABook(){
+        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
+        String out2 = "Extreme Programming | Kent Beck | 1998";
+        String out3 = "Agile | Andy | 1998";
+        String expected = out1 + "\n" + out2 + "\n" + out3;
+
+        library.checkout("Pragmatic Programmer");
+        library.returnBook("Pragmatic Programmer");
+        library.view();
+
+        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+    }
 }

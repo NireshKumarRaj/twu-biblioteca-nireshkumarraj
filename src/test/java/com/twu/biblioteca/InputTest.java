@@ -114,7 +114,6 @@ class InputTest {
         assertEquals("Enter Book Name:", dataFromOut);
     }
 
-
     @Test
     void checkIfUserIsAbleToSelectCheckOutABook() {
         String data = "2\nPragmatic Programmer\n3";
@@ -131,7 +130,6 @@ class InputTest {
         String dataFromOut = outContent.toString().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
         assertEquals(expected, dataFromOut);
     }
-
 
     @Test
     void checkIfUserIsAbleToSelectReturnABook() {

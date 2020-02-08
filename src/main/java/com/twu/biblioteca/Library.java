@@ -35,4 +35,14 @@ public class Library {
         }
         if (!isFound)System.out.println("Sorry, that book is not available");
     }
+
+    public void returnBook(String bookName) {
+        Book toFindBook = new Book(bookName);
+        for (Book book: checkOutList){
+            if (toFindBook.equals(book)){
+                checkOutList.remove(book);
+                break;
+            }
+        }
+    }
 }
