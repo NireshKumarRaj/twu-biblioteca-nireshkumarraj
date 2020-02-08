@@ -15,6 +15,17 @@ public class Input {
         this.menu = menu;
     }
 
+    private String getBookName(Scanner scanner, String message) {
+        System.out.println(message);
+        scanner.nextLine();
+        return scanner.nextLine();
+    }
+
+    private int getMenuOption(Scanner scanner) {
+        System.out.println("Enter input: ");
+        return scanner.nextInt();
+    }
+
     public void get() {
         Scanner scanner = new Scanner(System.in);
         int inputFromUser = getMenuOption(scanner);
@@ -38,16 +49,5 @@ public class Input {
             inputFromUser = getMenuOption(scanner);
         }
         scanner.close();
-    }
-
-    private String getBookName(Scanner scanner, String message) {
-        System.out.println(message);
-        scanner.nextLine();
-        return scanner.nextLine();
-    }
-
-    private int getMenuOption(Scanner scanner) {
-        System.out.println("Enter input: ");
-        return scanner.nextInt();
     }
 }

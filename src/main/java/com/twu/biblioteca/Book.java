@@ -7,6 +7,8 @@ public class Book {
     private final String name;
     private final String author;
     private final int yearPublished;
+    private final int YEAR_UNKNOWN = -1;
+    private final String AUTHOR_UNKNOWN = "Unknown";
 
     public Book(String name, String author, int yearPublished) {
         this.name = name;
@@ -16,8 +18,9 @@ public class Book {
 
     public Book(String name) {
         this.name = name;
-        this.author = "Unknown";
-        this.yearPublished = -1;
+
+        this.author = AUTHOR_UNKNOWN;
+        this.yearPublished = YEAR_UNKNOWN;
     }
 
     public void viewInfo() {
