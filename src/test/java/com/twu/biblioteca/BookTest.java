@@ -42,4 +42,12 @@ class BookTest {
 
         assertEquals(book1, book2);
     }
+
+    @Test
+    void testShouldCheckIfTwoBooksAreEqualByName() {
+        Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
+        Book book2 = new Book("Pragmatic Programmer");
+
+        assertEquals(book1, book2);
+    }
 }

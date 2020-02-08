@@ -14,6 +14,12 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
+    public Book(String name) {
+        this.name = name;
+        this.author = "Unknown";
+        this.yearPublished = -1;
+    }
+
     public void viewInfo() {
         System.out.println(name + " | " + author + " | " + yearPublished);
     }
