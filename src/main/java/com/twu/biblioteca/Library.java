@@ -7,10 +7,6 @@ public class Library {
 
     private List<Book> books;
     private List<Book> checkOutList;
-    private final String BOOK_NOT_AVAILABLE_MESSAGE = "Sorry, that book is not available";
-    private final String CHECKOUT_SUCCESS_MESSAGE = "Thank you! Enjoy the book";
-    private final String BOOK_INVALID_MESSAGE = "That is not a valid book to return.";
-    private final String BOOK_RETURN_SUCCESS_MESSAGE = "Thank you for returning the book";
 
     Library(List<Book> books) {
         this.books = books;
@@ -36,6 +32,8 @@ public class Library {
     }
 
     public void checkout(String bookName) {
+        final String BOOK_NOT_AVAILABLE_MESSAGE = "Sorry, that book is not available";
+        final String CHECKOUT_SUCCESS_MESSAGE = "Thank you! Enjoy the book";
         Book book = getBook(books, bookName);
         if (book == null) {
             System.out.println(BOOK_NOT_AVAILABLE_MESSAGE);
@@ -46,6 +44,8 @@ public class Library {
     }
 
     public void returnBook(String bookName) {
+        String BOOK_INVALID_MESSAGE = "That is not a valid book to return.";
+        String BOOK_RETURN_SUCCESS_MESSAGE = "Thank you for returning the book";
         Book book = getBook(checkOutList, bookName);
         if (book == null) {
             System.out.println(BOOK_INVALID_MESSAGE);

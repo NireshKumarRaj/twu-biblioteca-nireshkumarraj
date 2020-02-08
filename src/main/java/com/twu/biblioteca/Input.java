@@ -4,12 +4,13 @@ import java.util.Scanner;
 
 public class Input {
 
-    private Library library;
-    private Menu menu;
     private final int VIEW_BOOKS_CHOICE = 1;
     private final int CHECKOUT_BOOKS_CHOICE = 2;
     private final int RETURN_BOOKS_CHOICE = 3;
     private final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
+
+    private Library library;
+    private Menu menu;
 
     public Input(Library library, Menu menu) {
         this.library = library;
@@ -31,7 +32,7 @@ public class Input {
         Scanner scanner = new Scanner(System.in);
         int inputFromUser = getMenuOption(scanner);
         while (!menu.isQuit(inputFromUser)) {
-            switch (inputFromUser){
+            switch (inputFromUser) {
                 case VIEW_BOOKS_CHOICE:
                     library.view();
                     break;
