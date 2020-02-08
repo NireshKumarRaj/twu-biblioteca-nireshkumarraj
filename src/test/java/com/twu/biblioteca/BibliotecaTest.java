@@ -26,7 +26,7 @@ public class BibliotecaTest {
         originalOut = System.out;
         System.setOut(new PrintStream(outContent));
         originalIn = System.in;
-        System.setIn(new ByteArrayInputStream("1\n2".getBytes()));
+        System.setIn(new ByteArrayInputStream("1\n3".getBytes()));
     }
 
     @AfterEach
@@ -52,7 +52,7 @@ public class BibliotecaTest {
     @Test
     public void testIfLibraryListIsDisplayedWhenStartIsInvoked(){
         InputStream inputStream = System.in;
-        System.setIn(new ByteArrayInputStream("1\n2".getBytes()));
+        System.setIn(new ByteArrayInputStream("1\n3".getBytes()));
         bibliotecaApp.start();
 
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";

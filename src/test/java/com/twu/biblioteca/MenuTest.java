@@ -45,4 +45,13 @@ class MenuTest {
 
         assertEquals("1. List Books\n2. Quit", outContent.toString().trim());
     }
+
+    @Test
+    void testIfMenuWithCheckoutOptionIsDisplayedInCommandLine() {
+        Menu menu = new Menu(Arrays.asList("List Books", "Checkout", "Quit"));
+
+        menu.display();
+
+        assertEquals("1. List Books\n2. Checkout\n3. Quit", outContent.toString().trim());
+    }
 }

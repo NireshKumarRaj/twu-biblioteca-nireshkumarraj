@@ -100,4 +100,17 @@ class InputTest {
         String dataFromOut = outContent.toString();
         assertEquals("Enter input: \n"+expected+"\nEnter input: \n"+expected+"\nEnter input: \n", dataFromOut);
     }
+
+    @Test
+    void checkIfUserIsAbleToSelectCheckOutOptionAndProceed() {
+        String data = "2\nPragmatic Programmer\n3";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Menu menu = new Menu(List.of("List Books", "Checkout", "Quit"));
+        Input input = new Input(library, menu);
+
+        input.get();
+
+        String dataFromOut = outContent.toString().replaceAll("Enter input: ","").trim();
+        assertEquals("Enter Book Name:", dataFromOut);
+    }
 }

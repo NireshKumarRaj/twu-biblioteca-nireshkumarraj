@@ -16,9 +16,13 @@ public class Input {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter input: ");
         int inputFromUser = scanner.nextInt();
-        while(!menu.isQuit(inputFromUser)) {
+        while (!menu.isQuit(inputFromUser)) {
             if (inputFromUser == 1) {
                 library.view();
+            } else if (inputFromUser == 2) {
+                System.out.println("Enter Book Name: ");
+                scanner.nextLine();
+                String bookName = scanner.nextLine();
             } else {
                 System.out.println("Please select a valid option!");
             }

@@ -19,7 +19,7 @@ public class BibliotecaApp {
         List<Book> books = Arrays.asList(book1, book2, book3);
         Library library = new Library(books);
 
-        Menu menu = new Menu(List.of("List Books", "Quit"));
+        Menu menu = new Menu(List.of("List Books", "Checkout", "Quit"));
         menu.display();
 
         Input input = new Input(library, menu);
