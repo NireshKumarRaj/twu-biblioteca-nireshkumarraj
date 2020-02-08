@@ -43,7 +43,7 @@ class InputTest {
 
     @Test
     void checkIfUserInputIsReceived() {
-        String data = "1";
+        String data = "1\n2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Input input = new Input(library, new Menu(List.of("List Books", "Quit")));
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
@@ -60,7 +60,7 @@ class InputTest {
 
     @Test
     void checkIfUserEntersInvalidOption() {
-        String data = "6";
+        String data = "6\n2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Input input = new Input(library, new Menu(List.of("List Books", "Quit")));
 
@@ -82,5 +82,22 @@ class InputTest {
 
         String dataFromOut = outContent.toString().replace("Enter input:","").trim();
         assertEquals("", dataFromOut);
+    }
+
+    @Test
+    void checkIfUserIsAbleToContinueUntilQuitIsChosen() {
+        String data = "1\n1\n2";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Menu menu = new Menu(List.of("List Books", "Quit"));
+        Input input = new Input(library, menu);
+        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
+        String out2 = "Extreme Programming | Kent Beck | 1998";
+        String out3 = "Agile | Andy | 1998";
+        String expected = out1 + "\n" + out2 + "\n" + out3;
+
+        input.get();
+
+        String dataFromOut = outContent.toString();
+        assertEquals("Enter input: \n"+expected+"\nEnter input: \n"+expected+"\nEnter input: \n", dataFromOut);
     }
 }
