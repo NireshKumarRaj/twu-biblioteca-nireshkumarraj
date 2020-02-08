@@ -86,6 +86,16 @@ class LibraryTest {
         library.returnBook("Pragmatic Programmer");
         library.view();
 
-        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim().replaceAll("Thank you for returning the book","").trim());
+    }
+
+    @Test
+    void testIfUserIsNotifiedUponSuccessFullBookReturn() {
+        library.checkout("Pragmatic Programmer");
+
+        library.returnBook("Pragmatic Programmer");
+
+        String expected = "Thank you for returning the book";
+        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book","").trim());
     }
 }

@@ -159,7 +159,11 @@ class InputTest {
         input.get();
         library.view();
 
-        String dataFromOut = outContent.toString().replaceAll("Enter name of the book you want to return:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
+        String dataFromOut = outContent.toString()
+                .replaceAll("Enter name of the book you want to return:", "").trim()
+                .replaceAll("Enter input: ", "")
+                .replaceAll("Thank you! Enjoy the book", "")
+                .replaceAll("Thank you for returning the book", "").trim();
         assertEquals(expected, dataFromOut);
     }
 

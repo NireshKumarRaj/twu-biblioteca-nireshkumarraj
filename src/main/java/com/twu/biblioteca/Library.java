@@ -41,6 +41,7 @@ public class Library {
         for (Book book: checkOutList){
             if (toFindBook.equals(book)){
                 checkOutList.remove(book);
+                System.out.println("Thank you for returning the book");
                 break;
             }
         }
