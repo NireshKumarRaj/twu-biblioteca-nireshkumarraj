@@ -19,15 +19,20 @@ class InputTest {
     private InputStream originalIn;
     private PrintStream originalOut;
     private ByteArrayOutputStream outContent;
+    private Library library;
 
     @BeforeEach
     void setUp() {
-        String data = "1";
         originalIn = System.in;
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
         outContent = new ByteArrayOutputStream();
         originalOut = System.out;
         System.setOut(new PrintStream(outContent));
+
+        Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
+        Book book2 = new Book("Extreme Programming", "Kent Beck", 1998);
+        Book book3 = new Book("Agile", "Andy", 1998);
+        List<Book> books = Arrays.asList(book1, book2, book3);
+        library = new Library(books);
     }
 
     @AfterEach
@@ -38,11 +43,8 @@ class InputTest {
 
     @Test
     void checkIfUserInputIsReceived() {
-        Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
-        Book book2 = new Book("Extreme Programming", "Kent Beck", 1998);
-        Book book3 = new Book("Agile", "Andy", 1998);
-        List<Book> books = Arrays.asList(book1, book2, book3);
-        Library library = new Library(books);
+        String data = "1";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
         Input input = new Input(library);
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
         String out2 = "Extreme Programming | Kent Beck | 1998";
@@ -53,6 +55,19 @@ class InputTest {
 
         String dataFromOut = outContent.toString().trim().replace("Enter input: \n","");
 
+        assertEquals(expected, dataFromOut);
+    }
+
+    @Test
+    void checkIfUserEntersInvalidOption() {
+        String data = "6";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Input input = new Input(library);
+
+        input.get();
+
+        String dataFromOut = outContent.toString().trim().replace("Enter input: \n","");
+        String expected = "Please select a valid option!";
         assertEquals(expected, dataFromOut);
     }
 }

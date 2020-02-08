@@ -13,9 +13,12 @@ public class Input {
     public void get() {
         System.out.println("Enter input: ");
         Scanner scanner = new Scanner(System.in);
-        scanner.nextInt();
+        int inputFromUser = scanner.nextInt();
+        if (inputFromUser == 1) {
+            library.view();
+        } else {
+            System.out.println("Please select a valid option!");
+        }
         scanner.close();
-
-        library.view();
     }
 }
