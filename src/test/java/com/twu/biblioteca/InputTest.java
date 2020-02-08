@@ -131,4 +131,18 @@ class InputTest {
         String dataFromOut = outContent.toString().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
         assertEquals(expected, dataFromOut);
     }
+
+
+    @Test
+    void checkIfUserIsAbleToSelectReturnABook() {
+        String data = "3\n4";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
+        Input input = new Input(library, menu);
+
+        input.get();
+
+        String dataFromOut = outContent.toString().replaceAll("Enter input: ", "").trim();
+        assertEquals("Enter name of the book you want to return:", dataFromOut);
+    }
 }
