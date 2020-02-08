@@ -51,6 +51,8 @@ public class BibliotecaTest {
 
     @Test
     public void testIfLibraryListIsDisplayedWhenStartIsInvoked(){
+        InputStream inputStream = System.in;
+        System.setIn(new ByteArrayInputStream("1".getBytes()));
         bibliotecaApp.start();
 
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
@@ -59,5 +61,6 @@ public class BibliotecaTest {
 
         String expected = out1 + "\n" + out2 + "\n" + out3;
         assertTrue(outContent.toString().contains(expected));
+        System.setIn(inputStream);
     }
 }

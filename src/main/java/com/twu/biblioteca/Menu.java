@@ -18,5 +18,7 @@ public class Menu {
         }
     }
 
-
+    public boolean isQuit(int input) {
+        return input == menuList.size();
+    }
 }

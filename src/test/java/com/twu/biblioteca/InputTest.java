@@ -45,7 +45,7 @@ class InputTest {
     void checkIfUserInputIsReceived() {
         String data = "1";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Input input = new Input(library);
+        Input input = new Input(library, new Menu(List.of("List Books", "Quit")));
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
         String out2 = "Extreme Programming | Kent Beck | 1998";
         String out3 = "Agile | Andy | 1998";
@@ -53,7 +53,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().trim().replace("Enter input: \n","");
+        String dataFromOut = outContent.toString().replace("Enter input:","").trim();
 
         assertEquals(expected, dataFromOut);
     }
@@ -62,12 +62,25 @@ class InputTest {
     void checkIfUserEntersInvalidOption() {
         String data = "6";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Input input = new Input(library);
+        Input input = new Input(library, new Menu(List.of("List Books", "Quit")));
 
         input.get();
 
-        String dataFromOut = outContent.toString().trim().replace("Enter input: \n","");
+        String dataFromOut = outContent.toString().replace("Enter input:","").trim();
         String expected = "Please select a valid option!";
         assertEquals(expected, dataFromOut);
+    }
+
+    @Test
+    void checkIfUserIsAbleToQuit() {
+        String data = "2";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Menu menu = new Menu(List.of("List Books", "Quit"));
+        Input input = new Input(library, menu);
+
+        input.get();
+
+        String dataFromOut = outContent.toString().replace("Enter input:","").trim();
+        assertEquals("", dataFromOut);
     }
 }
