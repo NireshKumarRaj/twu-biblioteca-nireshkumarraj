@@ -23,6 +23,7 @@ public class Input {
                 System.out.println("Enter Book Name: ");
                 scanner.nextLine();
                 String bookName = scanner.nextLine();
+                library.checkout(bookName.trim());
             } else {
                 System.out.println("Please select a valid option!");
             }

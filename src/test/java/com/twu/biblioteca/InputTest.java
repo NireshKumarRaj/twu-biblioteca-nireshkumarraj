@@ -53,7 +53,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replace("Enter input:","").trim();
+        String dataFromOut = outContent.toString().replace("Enter input:", "").trim();
 
         assertEquals(expected, dataFromOut);
     }
@@ -66,7 +66,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replace("Enter input:","").trim();
+        String dataFromOut = outContent.toString().replace("Enter input:", "").trim();
         String expected = "Please select a valid option!";
         assertEquals(expected, dataFromOut);
     }
@@ -80,7 +80,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replace("Enter input:","").trim();
+        String dataFromOut = outContent.toString().replace("Enter input:", "").trim();
         assertEquals("", dataFromOut);
     }
 
@@ -98,7 +98,7 @@ class InputTest {
         input.get();
 
         String dataFromOut = outContent.toString();
-        assertEquals("Enter input: \n"+expected+"\nEnter input: \n"+expected+"\nEnter input: \n", dataFromOut);
+        assertEquals("Enter input: \n" + expected + "\nEnter input: \n" + expected + "\nEnter input: \n", dataFromOut);
     }
 
     @Test
@@ -110,7 +110,25 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replaceAll("Enter input: ","").trim();
+        String dataFromOut = outContent.toString().replaceAll("Enter input: ", "").trim();
         assertEquals("Enter Book Name:", dataFromOut);
+    }
+
+
+    @Test
+    void checkIfUserIsAbleToSelectCheckOutABook() {
+        String data = "2\nPragmatic Programmer\n3";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Menu menu = new Menu(List.of("List Books", "Checkout", "Quit"));
+        Input input = new Input(library, menu);
+        String out2 = "Extreme Programming | Kent Beck | 1998";
+        String out3 = "Agile | Andy | 1998";
+        String expected = out2 + "\n" + out3;
+
+        input.get();
+        library.view();
+
+        String dataFromOut = outContent.toString().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").trim();
+        assertEquals(expected, dataFromOut);
     }
 }
