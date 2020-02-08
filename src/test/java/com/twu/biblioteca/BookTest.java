@@ -32,7 +32,7 @@ class BookTest {
 
         book.viewInfo();
 
-        assertEquals("Pragmatic Programmer | Andy Hunt | 1999",outContent.toString().trim());
+        assertEquals("Pragmatic Programmer | Andy Hunt | 1999", outContent.toString().trim());
     }
 
     @Test

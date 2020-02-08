@@ -14,28 +14,32 @@ public class Input {
 
     public void get() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter input: ");
-        int inputFromUser = scanner.nextInt();
+        int inputFromUser = getMenuOption(scanner);
         while (!menu.isQuit(inputFromUser)) {
             if (inputFromUser == 1) {
                 library.view();
             } else if (inputFromUser == 2) {
-                System.out.println("Enter Book Name: ");
-                scanner.nextLine();
-                String bookName = scanner.nextLine();
+                String bookName = getBookName(scanner, "Enter Book Name: ");
                 library.checkout(bookName.trim());
-            } else if(inputFromUser == 3){
-                System.out.println("Enter name of the book you want to return: ");
-                scanner.nextLine();
-                String bookName = scanner.nextLine();
+            } else if (inputFromUser == 3) {
+                String bookName = getBookName(scanner, "Enter name of the book you want to return: ");
                 library.returnBook(bookName);
-            }else {
+            } else {
                 System.out.println("Please select a valid option!");
             }
-            System.out.println("Enter input: ");
-            inputFromUser = scanner.nextInt();
+            inputFromUser = getMenuOption(scanner);
         }
-
         scanner.close();
+    }
+
+    private String getBookName(Scanner scanner, String message) {
+        System.out.println(message);
+        scanner.nextLine();
+        return scanner.nextLine();
+    }
+
+    private int getMenuOption(Scanner scanner) {
+        System.out.println("Enter input: ");
+        return scanner.nextInt();
     }
 }

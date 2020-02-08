@@ -43,14 +43,14 @@ public class BibliotecaTest {
     }
 
     @Test
-    public void testIfWelcomeMessageIsDisplayedWhenStartIsInvoked(){
+    public void testIfWelcomeMessageIsDisplayedWhenStartIsInvoked() {
         bibliotecaApp.start();
 
         assertTrue(outContent.toString().contains("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
     }
 
     @Test
-    public void testIfLibraryListIsDisplayedWhenStartIsInvoked(){
+    public void testIfLibraryListIsDisplayedWhenStartIsInvoked() {
         InputStream inputStream = System.in;
         System.setIn(new ByteArrayInputStream("1\n4".getBytes()));
         bibliotecaApp.start();
