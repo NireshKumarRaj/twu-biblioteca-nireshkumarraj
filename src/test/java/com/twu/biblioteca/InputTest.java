@@ -53,7 +53,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replace("Enter input:", "").trim();
+        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit","").trim().replace("Enter input:", "").trim();
 
         assertEquals(expected, dataFromOut);
     }
@@ -66,7 +66,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replace("Enter input:", "").trim();
+        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit","").trim().replace("Enter input:", "").trim();
         String expected = "Please select a valid option!";
         assertEquals(expected, dataFromOut);
     }
@@ -80,7 +80,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replace("Enter input:", "").trim();
+        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit","").trim().replace("Enter input:", "").trim();
         assertEquals("", dataFromOut);
     }
 
@@ -97,8 +97,8 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString();
-        assertEquals("Enter input: \n" + expected + "\nEnter input: \n" + expected + "\nEnter input: \n", dataFromOut);
+        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit\n","").trim().replaceAll("Enter input: \n","").trim().replaceAll("Enter input:","").trim();
+        assertEquals((expected +  "\n" + expected), dataFromOut);
     }
 
     @Test
@@ -110,7 +110,7 @@ class InputTest {
 
         input.get();
 
-        String dataFromOut = outContent.toString().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
+        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Checkout\n3. Quit\n","").trim().replaceAll("Enter input:", "").replaceAll("Thank you! Enjoy the book", "").trim();
         assertEquals("Enter Book Name:", dataFromOut);
     }
 
@@ -127,7 +127,7 @@ class InputTest {
         input.get();
         library.view();
 
-        String dataFromOut = outContent.toString().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
+        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Checkout\n3. Quit","").trim().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
         assertEquals(expected, dataFromOut);
     }
 
@@ -146,7 +146,7 @@ class InputTest {
         input.get();
         library.view();
 
-        String dataFromOut = outContent.toString()
+        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Checkout\n3. Return Book\n4. Quit","").trim()
                 .replaceAll("Enter name of the book you want to return:", "").trim()
                 .replaceAll("Enter input: ", "")
                 .replaceAll("Thank you! Enjoy the book", "")
