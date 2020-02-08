@@ -9,6 +9,7 @@ public class Input {
     private final int VIEW_BOOKS_CHOICE = 1;
     private final int CHECKOUT_BOOKS_CHOICE = 2;
     private final int RETURN_BOOKS_CHOICE = 3;
+    private final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
 
     public Input(Library library, Menu menu) {
         this.library = library;
@@ -30,20 +31,20 @@ public class Input {
         Scanner scanner = new Scanner(System.in);
         int inputFromUser = getMenuOption(scanner);
         while (!menu.isQuit(inputFromUser)) {
-            if (inputFromUser == VIEW_BOOKS_CHOICE) {
-                library.view();
-            } else {
-                if (inputFromUser == CHECKOUT_BOOKS_CHOICE) {
-                    String bookName = getBookName(scanner, "Enter Book Name: ");
-                    library.checkout(bookName.trim());
-                } else {
-                    if (inputFromUser == RETURN_BOOKS_CHOICE) {
-                        String bookName = getBookName(scanner, "Enter name of the book you want to return: ");
-                        library.returnBook(bookName);
-                    } else {
-                        System.out.println("Please select a valid option!");
-                    }
-                }
+            switch (inputFromUser){
+                case VIEW_BOOKS_CHOICE:
+                    library.view();
+                    break;
+                case CHECKOUT_BOOKS_CHOICE:
+                    String checkOutBookName = getBookName(scanner, "Enter Book Name: ");
+                    library.checkout(checkOutBookName.trim());
+                    break;
+                case RETURN_BOOKS_CHOICE:
+                    String returnBookName = getBookName(scanner, "Enter name of the book you want to return: ");
+                    library.returnBook(returnBookName);
+                    break;
+                default:
+                    System.out.println(INVALID_OPTION_MESSAGE);
             }
             menu.display();
             inputFromUser = getMenuOption(scanner);
