@@ -65,4 +65,13 @@ class LibraryTest {
         String expected = "Thank you! Enjoy the book";
         assertEquals(expected, outContent.toString().trim());
     }
+
+    @Test
+    void testIfUserIsNotifiedWhenBookIsNotAvailableInTheLibrary() {
+
+        library.checkout("Pragmati Programmer");
+
+        String expected = "Sorry, that book is not available";
+        assertEquals(expected, outContent.toString().trim());
+    }
 }

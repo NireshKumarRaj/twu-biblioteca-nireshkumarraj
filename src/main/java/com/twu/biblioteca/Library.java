@@ -24,12 +24,15 @@ public class Library {
 
     public void checkout(String bookName) {
         Book toFindBook = new Book(bookName);
+        boolean isFound = false;
         for (Book book: books){
             if (toFindBook.equals(book)){
                 checkOutList.add(book);
                 System.out.println("Thank you! Enjoy the book");
+                isFound = true;
                 break;
             }
         }
+        if (!isFound)System.out.println("Sorry, that book is not available");
     }
 }
