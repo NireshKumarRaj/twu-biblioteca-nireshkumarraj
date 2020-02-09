@@ -5,6 +5,8 @@ import java.util.List;
 public class BibliotecaApp {
 
     private Library library;
+    private Menu menu;
+
 
     public BibliotecaApp() {
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
@@ -12,6 +14,7 @@ public class BibliotecaApp {
         Book book3 = new Book("Agile", "Andy", 1998);
         List<Book> books = List.of(book1, book2, book3);
         library = new Library(books);
+        menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
     }
 
     public static void main(String[] args) {
@@ -21,10 +24,9 @@ public class BibliotecaApp {
     public void start() {
         displayWelcomeMessage();
 
-        Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
         Input input = new Input(library, menu);
 
-        do{
+        do {
             menu.display();
             input.get();
         } while (!input.isQuit());
