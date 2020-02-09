@@ -7,7 +7,6 @@ public class BibliotecaApp {
     private Library library;
     private Menu menu;
 
-
     public BibliotecaApp() {
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
         Book book2 = new Book("Extreme Programming", "Kent Beck", 1998);
@@ -28,7 +27,7 @@ public class BibliotecaApp {
 
         do {
             menu.display();
-            input.get();
+            input.read();
         } while (!input.isQuit());
 
         input.close();

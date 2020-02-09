@@ -51,7 +51,7 @@ class InputTest {
         String out3 = "Agile | Andy | 1998";
         String expected = out1 + "\n" + out2 + "\n" + out3;
 
-        input.get();
+        input.read();
 
         String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit","").trim().replace("Enter input:", "").trim();
 
@@ -64,7 +64,7 @@ class InputTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Input input = new Input(library, new Menu(List.of("List Books", "Quit")));
 
-        input.get();
+        input.read();
 
         String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit","").trim().replace("Enter input:", "").trim();
         String expected = "Please select a valid option!";
@@ -78,7 +78,7 @@ class InputTest {
         Menu menu = new Menu(List.of("List Books", "Quit"));
         Input input = new Input(library, menu);
 
-        input.get();
+        input.read();
 
         String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit","").trim().replace("Enter input:", "").trim();
         assertEquals("", dataFromOut);
@@ -91,7 +91,7 @@ class InputTest {
         Menu menu = new Menu(List.of("List Books", "Checkout", "Quit"));
         Input input = new Input(library, menu);
 
-        input.get();
+        input.read();
 
         String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Checkout\n3. Quit\n","").trim().replaceAll("Enter input:", "").replaceAll("Thank you! Enjoy the book", "").trim();
         assertEquals("Enter Book Name:", dataFromOut);
@@ -107,7 +107,7 @@ class InputTest {
         String out3 = "Agile | Andy | 1998";
         String expected = out2 + "\n" + out3;
 
-        input.get();
+        input.read();
         library.view();
 
         String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Checkout\n3. Quit","").trim().replaceAll("Enter Book Name:", "").trim().replaceAll("Enter input: ", "").replaceAll("Thank you! Enjoy the book", "").trim();
@@ -126,7 +126,7 @@ class InputTest {
         String expected = out1 + "\n" + out2 + "\n" + out3;
 
         library.checkout("Pragmatic Programmer");
-        input.get();
+        input.read();
         library.view();
 
         String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Checkout\n3. Return Book\n4. Quit","").trim()
@@ -144,7 +144,7 @@ class InputTest {
         Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
         Input input = new Input(library, menu);
 
-        input.get();
+        input.read();
 
         assertTrue(input.isQuit());
     }

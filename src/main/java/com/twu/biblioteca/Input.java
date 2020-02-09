@@ -31,7 +31,7 @@ public class Input {
         return scanner.nextInt();
     }
 
-    public void get() {
+    public void read() {
         int inputFromUser = getMenuOption(scanner);
         if (menu.isQuit(inputFromUser)){
             this.isQuit = true;
