@@ -85,23 +85,6 @@ class InputTest {
     }
 
     @Test
-    void checkIfUserIsAbleToContinueUntilQuitIsChosen() {
-        String data = "1\n1\n2";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Menu menu = new Menu(List.of("List Books", "Quit"));
-        Input input = new Input(library, menu);
-        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
-        String out2 = "Extreme Programming | Kent Beck | 1998";
-        String out3 = "Agile | Andy | 1998";
-        String expected = out1 + "\n" + out2 + "\n" + out3;
-
-        input.get();
-
-        String dataFromOut = outContent.toString().replaceAll("1. List Books\n2. Quit\n","").trim().replaceAll("Enter input: \n","").trim().replaceAll("Enter input:","").trim();
-        assertEquals((expected +  "\n" + expected), dataFromOut);
-    }
-
-    @Test
     void checkIfUserIsAbleToSelectCheckOutOptionAndProceed() {
         String data = "2\nPragmatic Programmer\n3";
         System.setIn(new ByteArrayInputStream(data.getBytes()));

@@ -8,6 +8,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,7 +28,6 @@ public class BibliotecaTest {
         originalOut = System.out;
         System.setOut(new PrintStream(outContent));
         originalIn = System.in;
-        System.setIn(new ByteArrayInputStream("1\n4".getBytes()));
     }
 
     @AfterEach
@@ -44,6 +45,8 @@ public class BibliotecaTest {
 
     @Test
     public void testIfWelcomeMessageIsDisplayedWhenStartIsInvoked() {
+        System.setIn(new ByteArrayInputStream("1\n4".getBytes()));
+
         bibliotecaApp.start();
 
         assertTrue(outContent.toString().contains("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
@@ -51,7 +54,6 @@ public class BibliotecaTest {
 
     @Test
     public void testIfLibraryListIsDisplayedWhenStartIsInvoked() {
-        InputStream inputStream = System.in;
         System.setIn(new ByteArrayInputStream("1\n4".getBytes()));
         bibliotecaApp.start();
 
@@ -61,6 +63,5 @@ public class BibliotecaTest {
 
         String expected = out1 + "\n" + out2 + "\n" + out3;
         assertTrue(outContent.toString().contains(expected));
-        System.setIn(inputStream);
     }
 }

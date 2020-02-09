@@ -22,10 +22,14 @@ public class BibliotecaApp {
         displayWelcomeMessage();
 
         Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
-        menu.display();
-
         Input input = new Input(library, menu);
-        input.get();
+
+        do{
+            menu.display();
+            input.get();
+        } while (!input.isQuit());
+
+        input.close();
     }
 
     public void displayWelcomeMessage() {
