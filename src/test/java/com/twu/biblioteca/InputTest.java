@@ -154,4 +154,15 @@ class InputTest {
         assertEquals(expected, dataFromOut);
     }
 
+    @Test
+    void testIfIsQuitIsUpdatedUponSelectionOfOption() {
+        String data = "4";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Menu menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
+        Input input = new Input(library, menu);
+
+        input.get();
+
+        assertTrue(input.isQuit());
+    }
 }

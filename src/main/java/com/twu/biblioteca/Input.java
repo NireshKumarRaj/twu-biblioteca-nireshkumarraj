@@ -11,6 +11,7 @@ public class Input {
 
     private Library library;
     private Menu menu;
+    private boolean isQuit = false;
 
     public Input(Library library, Menu menu) {
         this.library = library;
@@ -31,7 +32,8 @@ public class Input {
     public void get() {
         Scanner scanner = new Scanner(System.in);
         int inputFromUser = getMenuOption(scanner);
-        while (!menu.isQuit(inputFromUser)) {
+        this.isQuit = menu.isQuit(inputFromUser);
+        while (!this.isQuit) {
             switch (inputFromUser) {
                 case VIEW_BOOKS_CHOICE:
                     library.view();
@@ -49,7 +51,12 @@ public class Input {
             }
             menu.display();
             inputFromUser = getMenuOption(scanner);
+            this.isQuit = menu.isQuit(inputFromUser);
         }
         scanner.close();
+    }
+
+    public boolean isQuit() {
+        return isQuit;
     }
 }
