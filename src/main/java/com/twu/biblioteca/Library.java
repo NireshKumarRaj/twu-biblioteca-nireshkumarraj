@@ -2,15 +2,16 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Library {
 
     private List<Book> books;
-    private List<Book> checkOutList;
+    private List<Book> checkedOutBooks;
 
     public Library(List<Book> books) {
         this.books = books;
-        this.checkOutList = new ArrayList<>();
+        this.checkedOutBooks = new ArrayList<>();
     }
 
     private Book getBook(List<Book> bookList, String bookName) {
@@ -24,11 +25,9 @@ public class Library {
     }
 
     public void view() {
-        this.books.forEach(book -> {
-            if (!this.checkOutList.contains(book)) {
-                book.viewInfo();
-            }
-        });
+        this.books.stream()
+                .filter(book -> !this.checkedOutBooks.contains(book))
+                .collect(Collectors.toList()).forEach(Book::viewInfo);
     }
 
     public void checkout(String bookName) {
@@ -38,7 +37,7 @@ public class Library {
         if (book == null) {
             System.out.println(BOOK_NOT_AVAILABLE_MESSAGE);
         } else {
-            checkOutList.add(book);
+            checkedOutBooks.add(book);
             System.out.println(CHECKOUT_SUCCESS_MESSAGE);
         }
     }
@@ -46,11 +45,11 @@ public class Library {
     public void returnBook(String bookName) {
         String BOOK_INVALID_MESSAGE = "That is not a valid book to return.";
         String BOOK_RETURN_SUCCESS_MESSAGE = "Thank you for returning the book";
-        Book book = getBook(checkOutList, bookName);
+        Book book = getBook(checkedOutBooks, bookName);
         if (book == null) {
             System.out.println(BOOK_INVALID_MESSAGE);
         } else {
-            checkOutList.remove(book);
+            checkedOutBooks.remove(book);
             System.out.println(BOOK_RETURN_SUCCESS_MESSAGE);
         }
     }
