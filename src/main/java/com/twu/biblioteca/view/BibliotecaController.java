@@ -3,13 +3,13 @@ package com.twu.biblioteca.view;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
 
-public class Input {
+public class BibliotecaController {
 
     private Library library;
     private Menu menu;
     private boolean isQuit = false;
 
-    public Input(Library library, Menu menu) {
+    public BibliotecaController(Library library, Menu menu) {
         this.library = library;
         this.menu = menu;
     }
@@ -29,5 +29,12 @@ public class Input {
 
     public boolean isQuit() {
         return isQuit;
+    }
+
+    public void start() {
+        do {
+            menu.display();
+            read();
+        } while (!isQuit());
     }
 }

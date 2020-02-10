@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 
-class InputTest {
+class BibliotecaControllerTest {
 
     private InputStream originalIn;
     private PrintStream originalOut;
@@ -51,9 +51,9 @@ class InputTest {
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
-        Input input = new Input(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
 
-        input.read();
+        bibliotecaController.read();
 
         verify(listBooks, times(1)).execute();
     }
@@ -64,9 +64,9 @@ class InputTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Quit quit = mock(Quit.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), quit));
-        Input input = new Input(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
 
-        input.read();
+        bibliotecaController.read();
 
         String expected = "Enter input: \n" + "Please select a valid option!\n";
         assertEquals(expected, outContent.toString());
@@ -79,9 +79,9 @@ class InputTest {
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
-        Input input = new Input(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
 
-        input.read();
+        bibliotecaController.read();
 
         verify(quit, times(1)).execute();
     }
@@ -92,9 +92,9 @@ class InputTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         CheckOutBook checkOutBook = mock(CheckOutBook.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
-        Input input = new Input(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
 
-        input.read();
+        bibliotecaController.read();
 
         verify(checkOutBook, times(1)).execute();
     }
@@ -105,9 +105,9 @@ class InputTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         ReturnBook returnBook = mock(ReturnBook.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
-        Input input = new Input(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
 
-        input.read();
+        bibliotecaController.read();
 
         verify(returnBook, times(1)).execute();
     }
@@ -117,11 +117,11 @@ class InputTest {
         String data = "4";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Menu menu = mock(Menu.class);
-        Input input = new Input(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
         when(menu.isQuit(4)).thenReturn(true);
 
-        input.read();
+        bibliotecaController.read();
 
-        assertTrue(input.isQuit());
+        assertTrue(bibliotecaController.isQuit());
     }
 }

@@ -7,7 +7,7 @@ import com.twu.biblioteca.menuitem.ReturnBook;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
-import com.twu.biblioteca.view.Input;
+import com.twu.biblioteca.view.BibliotecaController;
 
 import java.util.List;
 
@@ -37,12 +37,8 @@ public class BibliotecaApp {
     public void start() {
         displayWelcomeMessage();
 
-        Input input = new Input(library, menu);
-
-        do {
-            menu.display();
-            input.read();
-        } while (!input.isQuit());
+        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        bibliotecaController.start();
     }
 
     public void displayWelcomeMessage() {

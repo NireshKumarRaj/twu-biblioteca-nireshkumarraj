@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class InputReceiverTest {
+class BibliotecaControllerReceiverTest {
 
     @Test
     void testShouldCheckIfUserInputIsReceived() {
