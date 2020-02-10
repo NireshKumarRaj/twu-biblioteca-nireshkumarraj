@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuitem.CheckOutBook;
-import com.twu.biblioteca.menuitem.ListBooks;
-import com.twu.biblioteca.menuitem.MenuItem;
-import com.twu.biblioteca.menuitem.ReturnBook;
+import com.twu.biblioteca.menuitem.*;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -105,5 +102,17 @@ class MenuTest {
         menu.execute(inputFromUser);
 
         verify(returnBook, times(1)).execute();
+    }
+
+    @Test
+    void testShouldCheckIfInvalidInputIsHandled() {
+        List<MenuItem> menuOptions = List.of(mock(ListBooks.class), mock(CheckOutBook.class), mock(ReturnBook.class), mock(Quit.class));
+        Menu menu = Menu.createMenuWithMenuItems(menuOptions);
+        int inputFromUser = 7;
+
+        menu.execute(inputFromUser);
+
+        String expected = "Please select a valid option!\n";
+        assertEquals(expected, outContent.toString());
     }
 }

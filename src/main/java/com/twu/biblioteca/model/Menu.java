@@ -33,6 +33,11 @@ public class Menu {
     }
 
     public void execute(int inputFromUser) {
+        final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
+        if (inputFromUser > menuOptions.size()){
+            System.out.println(INVALID_OPTION_MESSAGE);
+            return;
+        }
         menuOptions.get(inputFromUser - 1).execute();
     }
 }

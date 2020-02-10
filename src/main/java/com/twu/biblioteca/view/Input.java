@@ -39,7 +39,6 @@ public class Input {
             this.isQuit = true;
             return;
         }
-
         switch (inputFromUser) {
             case VIEW_BOOKS_CHOICE:
                 library.view();
