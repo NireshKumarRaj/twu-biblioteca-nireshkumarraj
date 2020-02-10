@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -34,13 +33,6 @@ public class BibliotecaTest {
         System.setOut(originalOut);
         System.setIn(originalIn);
         InputReceiver.getInputReceiver().reset();
-    }
-
-    @Test
-    public void testShouldCheckIfWelcomeMessageIsPrinted() {
-        bibliotecaApp.displayWelcomeMessage();
-
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", outContent.toString().trim()); // TODO - long line code smell
     }
 
     @Test

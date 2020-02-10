@@ -4,7 +4,6 @@ import com.twu.biblioteca.menuitem.CheckOutBook;
 import com.twu.biblioteca.menuitem.ListBooks;
 import com.twu.biblioteca.menuitem.Quit;
 import com.twu.biblioteca.menuitem.ReturnBook;
-import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +16,6 @@ import java.io.PrintStream;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 
@@ -26,7 +24,6 @@ class BibliotecaControllerTest {
     private InputStream originalIn;
     private PrintStream originalOut;
     private ByteArrayOutputStream outContent;
-    private Library library;
 
     @BeforeEach
     void setUp() {
@@ -34,7 +31,6 @@ class BibliotecaControllerTest {
         outContent = new ByteArrayOutputStream();
         originalOut = System.out;
         System.setOut(new PrintStream(outContent));
-        library = mock(Library.class);
     }
 
     @AfterEach
@@ -53,7 +49,7 @@ class BibliotecaControllerTest {
         Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
-        bibliotecaController.read();
+        bibliotecaController.readUserInput();
 
         verify(listBooks, times(1)).execute();
     }
@@ -66,7 +62,7 @@ class BibliotecaControllerTest {
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
-        bibliotecaController.read();
+        bibliotecaController.readUserInput();
 
         String expected = "Enter input: \n" + "Please select a valid option!\n";
         assertEquals(expected, outContent.toString());
@@ -81,7 +77,7 @@ class BibliotecaControllerTest {
         Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
-        bibliotecaController.read();
+        bibliotecaController.readUserInput();
 
         verify(quit, times(1)).execute();
     }
@@ -94,7 +90,7 @@ class BibliotecaControllerTest {
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
         BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
-        bibliotecaController.read();
+        bibliotecaController.readUserInput();
 
         verify(checkOutBook, times(1)).execute();
     }
@@ -107,19 +103,18 @@ class BibliotecaControllerTest {
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
         BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
-        bibliotecaController.read();
+        bibliotecaController.readUserInput();
 
         verify(returnBook, times(1)).execute();
     }
 
     @Test
-    void testIfIsQuitIsUpdatedUponSelectionOfOption() {
-        String data = "4";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Menu menu = mock(Menu.class);
-        BibliotecaController bibliotecaController = new BibliotecaController(menu);
-        when(menu.isQuit(4)).thenReturn(true);
+    public void testShouldCheckIfWelcomeMessageIsPrinted() {
+        BibliotecaController bibliotecaController = new BibliotecaController(mock(Menu.class));
 
-        assertTrue(bibliotecaController.read());
+        bibliotecaController.displayWelcomeMessage();
+
+        String expected = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n\n";
+        assertEquals(expected, outContent.toString());
     }
 }

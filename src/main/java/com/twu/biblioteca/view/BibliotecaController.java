@@ -5,6 +5,7 @@ import com.twu.biblioteca.model.Menu;
 public class BibliotecaController {
 
     private Menu menu;
+    private boolean isQuit;
 
     public BibliotecaController(Menu menu) {
         this.menu = menu;
@@ -15,15 +16,22 @@ public class BibliotecaController {
         return Integer.parseInt(InputReceiver.getInputReceiver().readLine());
     }
 
-    public boolean read() {
+    void readUserInput() {
         int inputFromUser = getMenuOption();
         menu.execute(inputFromUser);
-        return menu.isQuit(inputFromUser);
+        isQuit = menu.isQuit(inputFromUser);
     }
 
     public void start() {
+        displayWelcomeMessage();
         do {
             menu.display();
-        } while (!read());
+            readUserInput();
+        } while (!isQuit);
+    }
+
+    void displayWelcomeMessage() {
+        String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
+        System.out.println(WELCOME_MESSAGE);
     }
 }
