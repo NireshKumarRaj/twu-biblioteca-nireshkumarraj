@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BibliotecaControllerReceiverTest {
+class InputReceiverTest {
 
     @Test
     void testShouldCheckIfUserInputIsReceived() {

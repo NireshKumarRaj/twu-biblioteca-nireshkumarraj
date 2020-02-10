@@ -15,19 +15,21 @@ public class UI {
         this.library = library;
     }
 
+    private void show(List<String> toDisplayList) {
+        for (int itemNumber = 1; itemNumber <= toDisplayList.size(); itemNumber++) {
+            final String SEPARATOR = ". ";
+            System.out.println((itemNumber) + SEPARATOR + toDisplayList.get(itemNumber - 1));
+        }
+    }
+
     public void showMenu() {
         List<String> menuOptions = menu.getMenuOptions();
-        for (int menuItemNumber = 1; menuItemNumber <= menuOptions.size(); menuItemNumber++) {
-            final String SEPARATOR = ". ";
-            System.out.println((menuItemNumber) + SEPARATOR + menuOptions.get(menuItemNumber - 1));
-        }
+        show(menuOptions);
     }
 
     public void showBooks() {
         List<String> books = library.getAvailableBooks();
-        for (int bookNumber = 1; bookNumber <= books.size(); bookNumber++) {
-            final String SEPARATOR = ". ";
-            System.out.println((bookNumber) + SEPARATOR + books.get(bookNumber - 1));
-        }
+        show(books);
     }
+
 }
