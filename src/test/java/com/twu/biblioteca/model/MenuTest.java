@@ -1,7 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
 import com.twu.biblioteca.menuitem.*;
-import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,12 +18,21 @@ class MenuTest {
 
     private PrintStream originalOut;
     private ByteArrayOutputStream outContent;
+    private ListBooks listBooksMenuItem;
+    private CheckOutBook checkOutBookMenuItem;
+    private Quit quitMenuItem;
 
     @BeforeEach
     void setUp() {
         outContent = new ByteArrayOutputStream();
         originalOut = System.out;
         System.setOut(new PrintStream(outContent));
+        listBooksMenuItem = mock(ListBooks.class);
+        when(listBooksMenuItem.getName()).thenReturn("List Books");
+        checkOutBookMenuItem = mock(CheckOutBook.class);
+        when(checkOutBookMenuItem.getName()).thenReturn("Checkout");
+        quitMenuItem = mock(Quit.class);
+        when(quitMenuItem.getName()).thenReturn("Quit");
     }
 
     @AfterEach
@@ -34,7 +42,7 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfMenuIsDisplayed() { // TODO - what's in command line?
-        Menu menu = new Menu(Collections.singletonList("List Books"));
+        Menu menu = Menu.createMenuWithMenuItems(Collections.singletonList(listBooksMenuItem));
 
         menu.getMenuOptions();
 
@@ -43,7 +51,7 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfMenuWithMultipleItemsIsDisplayed() {
-        Menu menu = new Menu(Arrays.asList("List Books", "Quit"));
+        Menu menu = Menu.createMenuWithMenuItems(Arrays.asList(listBooksMenuItem, quitMenuItem));
 
         menu.getMenuOptions();
 
@@ -52,7 +60,7 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
-        Menu menu = new Menu(Arrays.asList("List Books", "Checkout", "Quit"));
+        Menu menu = Menu.createMenuWithMenuItems(Arrays.asList(listBooksMenuItem, checkOutBookMenuItem, quitMenuItem));
 
         menu.getMenuOptions();
 
@@ -118,7 +126,7 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfMenuOptionsAreReturned() { // TODO - what's in command line?
-        Menu menu = new Menu(Collections.singletonList("List Books"));
+        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooksMenuItem));
 
         List<String> menuOptions = menu.getMenuOptions();
 

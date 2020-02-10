@@ -7,31 +7,27 @@ import java.util.stream.Collectors;
 
 public class Menu {
 
-    private List<String> menuList;
     private List<MenuItem> menuOptions;
 
-    @Deprecated
-    public Menu(List<String> menuList) {
-        this.menuList = menuList;
+    private Menu(List<MenuItem> menuOptions) {
+        this.menuOptions = menuOptions;
     }
 
     public static Menu createMenuWithMenuItems(List<MenuItem> menuOptions) {
-        Menu menu = new Menu(menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList()));
-        menu.menuOptions = menuOptions;
-        return menu;
+        return new Menu(menuOptions);
     }
 
     public List<String> getMenuOptions() {
-        for (int menuItemNumber = 1; menuItemNumber <= menuList.size(); menuItemNumber++) {
+        for (int menuItemNumber = 1; menuItemNumber <= menuOptions.size(); menuItemNumber++) {
             final String SEPARATOR = ". ";
-            System.out.println((menuItemNumber) + SEPARATOR + menuList.get(menuItemNumber - 1));
+            System.out.println((menuItemNumber) + SEPARATOR + menuOptions.get(menuItemNumber - 1).getName());
         }
         System.out.println();
-        return menuList;
+        return menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList());
     }
 
     public boolean isQuit(int input) {
-        return input == menuList.size();
+        return input == menuOptions.size();
     }
 
     public void execute(int inputFromUser) {
