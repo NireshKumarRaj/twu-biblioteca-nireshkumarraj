@@ -19,12 +19,10 @@ public class BibliotecaController {
         return Integer.parseInt(InputReceiver.getInputReceiver().readLine());
     }
 
-    public void read() {
+    public boolean read() {
         int inputFromUser = getMenuOption();
-        if (menu.isQuit(inputFromUser)) {
-            this.isQuit = true;
-        }
         menu.execute(inputFromUser);
+        return menu.isQuit(inputFromUser);
     }
 
     public boolean isQuit() {
@@ -34,7 +32,6 @@ public class BibliotecaController {
     public void start() {
         do {
             menu.display();
-            read();
-        } while (!isQuit());
+        } while (!read());
     }
 }

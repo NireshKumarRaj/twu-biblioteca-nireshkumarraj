@@ -120,8 +120,6 @@ class BibliotecaControllerTest {
         BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
         when(menu.isQuit(4)).thenReturn(true);
 
-        bibliotecaController.read();
-
-        assertTrue(bibliotecaController.isQuit());
+        assertTrue(bibliotecaController.read());
     }
 }
