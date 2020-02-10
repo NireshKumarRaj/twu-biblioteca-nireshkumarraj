@@ -4,11 +4,6 @@ import java.util.Scanner;
 
 public class Input {
 
-    private final int VIEW_BOOKS_CHOICE = 1;
-    private final int CHECKOUT_BOOKS_CHOICE = 2;
-    private final int RETURN_BOOKS_CHOICE = 3;
-    private final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
-
     private Library library;
     private Menu menu;
     private boolean isQuit = false;
@@ -32,6 +27,10 @@ public class Input {
     }
 
     public void read() {
+        final int VIEW_BOOKS_CHOICE = 1;
+        final int CHECKOUT_BOOKS_CHOICE = 2;
+        final int RETURN_BOOKS_CHOICE = 3;
+        final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
         int inputFromUser = getMenuOption(scanner);
         if (menu.isQuit(inputFromUser)){
             this.isQuit = true;
