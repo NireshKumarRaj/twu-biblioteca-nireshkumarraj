@@ -15,9 +15,8 @@ public class Library {
     }
 
     private Book getBook(List<Book> bookList, String bookName) {
-        Book toFindBook = new Book(bookName);
         for (Book book : bookList) {
-            if (toFindBook.equals(book)) {
+            if (book.compareByName(bookName)) {
                 return book;
             }
         }
