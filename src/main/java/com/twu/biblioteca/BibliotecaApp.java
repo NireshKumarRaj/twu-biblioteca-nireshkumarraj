@@ -28,7 +28,7 @@ public class BibliotecaApp {
         CheckOutBook checkOutBookMenuItem = new CheckOutBook(library);
         ReturnBook returnBookMenuItem = new ReturnBook(library);
         Quit quitMenuItem = new Quit();
-        menu = Menu.createMenuWithMenuItems(List.of(listBooksMenuItem,checkOutBookMenuItem, returnBookMenuItem, quitMenuItem));
+        menu = new Menu(List.of(listBooksMenuItem, checkOutBookMenuItem, returnBookMenuItem, quitMenuItem));
     }
 
     public static void main(String[] args) {

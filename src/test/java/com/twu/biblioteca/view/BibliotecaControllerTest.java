@@ -47,7 +47,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
-        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
+        Menu menu = new Menu(List.of(listBooks, quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
 
         bibliotecaController.readUserInput();
@@ -60,7 +60,7 @@ class BibliotecaControllerTest {
         String data = "6";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Quit quit = mock(Quit.class);
-        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), quit));
+        Menu menu = new Menu(List.of(mock(ListBooks.class), quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
 
         bibliotecaController.readUserInput();
@@ -75,7 +75,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
-        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
+        Menu menu = new Menu(List.of(listBooks, quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
 
         bibliotecaController.readUserInput();
@@ -88,7 +88,7 @@ class BibliotecaControllerTest {
         String data = "2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         CheckOutBook checkOutBook = mock(CheckOutBook.class);
-        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
+        Menu menu = new Menu(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
 
         bibliotecaController.readUserInput();
@@ -101,7 +101,7 @@ class BibliotecaControllerTest {
         String data = "3";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         ReturnBook returnBook = mock(ReturnBook.class);
-        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
+        Menu menu = new Menu(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
 
         bibliotecaController.readUserInput();

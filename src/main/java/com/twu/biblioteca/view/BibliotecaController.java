@@ -13,7 +13,6 @@ public class BibliotecaController {
         this.ui = ui;
     }
 
-
     private int getMenuOption() {
         System.out.println("Enter input: ");
         return Integer.parseInt(InputReceiver.getInputReceiver().readLine());

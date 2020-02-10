@@ -13,11 +13,6 @@ public class Menu {
         this.menuOptions = menuOptions;
     }
 
-    @Deprecated
-    public static Menu createMenuWithMenuItems(List<MenuItem> menuOptions) {
-        return new Menu(menuOptions);
-    }
-
     public List<String> getMenuOptions() {
         for (int menuItemNumber = 1; menuItemNumber <= menuOptions.size(); menuItemNumber++) {
             final String SEPARATOR = ". ";
