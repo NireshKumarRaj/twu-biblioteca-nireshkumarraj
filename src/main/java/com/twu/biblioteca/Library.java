@@ -8,7 +8,7 @@ public class Library {
     private List<Book> books;
     private List<Book> checkOutList;
 
-    Library(List<Book> books) {
+    public Library(List<Book> books) {
         this.books = books;
         this.checkOutList = new ArrayList<>();
     }

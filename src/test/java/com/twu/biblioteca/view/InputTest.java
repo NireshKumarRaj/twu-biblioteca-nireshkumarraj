@@ -1,5 +1,8 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.view;
 
+import com.twu.biblioteca.Book;
+import com.twu.biblioteca.Library;
+import com.twu.biblioteca.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
