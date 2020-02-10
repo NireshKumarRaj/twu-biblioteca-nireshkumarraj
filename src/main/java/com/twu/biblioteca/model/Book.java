@@ -12,9 +12,11 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
-    public void viewInfo() {
+    public String getDetails() {
         final String SEPARATOR = " | ";
-        System.out.println(name + SEPARATOR + author + SEPARATOR + yearPublished); // TODO - Global dependency code smell
+        String details = name + SEPARATOR + author + SEPARATOR + yearPublished;
+        System.out.println(details); // TODO - Global dependency code smell
+        return details;
     }
 
     public boolean is(String bookName) {

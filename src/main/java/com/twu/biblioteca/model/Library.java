@@ -3,7 +3,6 @@ package com.twu.biblioteca.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Library {
 
@@ -24,7 +23,7 @@ public class Library {
         System.out.println();
         this.books.stream()
                 .filter(book -> !this.checkedOutBooks.contains(book))
-                .forEach(Book::viewInfo);
+                .forEach(Book::getDetails);
         System.out.println();
     }
 

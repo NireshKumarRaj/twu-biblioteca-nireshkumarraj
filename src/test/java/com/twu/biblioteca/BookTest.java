@@ -31,9 +31,9 @@ class BookTest {
     void testShouldCheckIfBookDetailsAreDisplayed() { // TODO - names don't read like spec. WHat is info? Even information?
         Book book = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
 
-        book.viewInfo();
+        book.getDetails();
 
-        assertEquals("Pragmatic Programmer | Andy Hunt | 1999\n", outContent.toString()); // TODO - you can't change your actual. You can make your expectation correct.
+        assertEquals("Pragmatic Programmer | Andy Hunt | 1999\n", outContent.toString());
     }
 
     @Test
@@ -48,5 +48,14 @@ class BookTest {
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
 
         assertFalse(book1.is("Pragmati Programmer"));
+    }
+
+    @Test
+    void testShouldCheckIfBookReturnsDetails() {
+        Book book = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
+
+        String details = book.getDetails();
+
+        assertEquals("Pragmatic Programmer | Andy Hunt | 1999", details);
     }
 }
