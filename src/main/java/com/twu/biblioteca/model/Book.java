@@ -18,8 +18,8 @@ public class Book {
         System.out.println(name + SEPARATOR + author + SEPARATOR + yearPublished); // TODO - Global dependency code smell
     }
 
-    // TODO - breaking convention of using the word "compare" for not a very good reason
-    public boolean compareByName(String bookName) { // TODO - compare in java or in most languages will return -1,0,1. yous returns boolean. So very likely, you're not comparing.
+    // TODO - breaking convention of using the word "compare" for not a very good reason - done
+    public boolean is(String bookName) { // TODO - compare in java or in most languages will return -1,0,1. yous returns boolean. So very likely, you're not comparing. -done
         return this.name.equals(bookName);
     }
 }

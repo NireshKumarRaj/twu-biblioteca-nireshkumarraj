@@ -40,13 +40,13 @@ class BookTest {
     void testShouldCheckIfTwoBooksAreEqual() { // TODO - test name not updated.
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
 
-        assertTrue(book1.compareByName("Pragmatic Programmer"));
+        assertTrue(book1.is("Pragmatic Programmer"));
     }
 
     @Test
     void testShouldCheckIfTwoBooksAreNotEqualByName() {
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
 
-        assertFalse(book1.compareByName("Pragmati Programmer"));
+        assertFalse(book1.is("Pragmati Programmer"));
     }
 }

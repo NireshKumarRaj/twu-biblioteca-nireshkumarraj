@@ -17,7 +17,7 @@ public class Library {
 
     private Book getBook(List<Book> bookList, String bookName) { // TODO - Optional from Java. - low priority
         for (Book book : bookList) { // TODO - could you not use a lambda here? Try that.
-            if (book.compareByName(bookName)) {
+            if (book.is(bookName)) {
                 return book;
             }
         }
