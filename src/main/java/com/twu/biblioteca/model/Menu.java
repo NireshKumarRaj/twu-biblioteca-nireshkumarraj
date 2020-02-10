@@ -9,10 +9,11 @@ public class Menu {
 
     private List<MenuItem> menuOptions;
 
-    private Menu(List<MenuItem> menuOptions) {
+    public Menu(List<MenuItem> menuOptions) {
         this.menuOptions = menuOptions;
     }
 
+    @Deprecated
     public static Menu createMenuWithMenuItems(List<MenuItem> menuOptions) {
         return new Menu(menuOptions);
     }
