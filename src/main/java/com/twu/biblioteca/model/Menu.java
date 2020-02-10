@@ -31,4 +31,10 @@ public class Menu {
     public boolean isQuit(int input) {
         return input == menuList.size();
     }
+
+    public void execute(int inputFromUser) {
+        if (inputFromUser == 1){
+            menuOptions.get(0).execute();
+        }
+    }
 }

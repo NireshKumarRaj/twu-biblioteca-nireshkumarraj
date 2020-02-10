@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuitem.ListBooks;
 import com.twu.biblioteca.menuitem.MenuItem;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
@@ -13,8 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class MenuTest {
 
@@ -70,5 +70,16 @@ class MenuTest {
 
         String expected = "1. " + menuItem.getName() + "\n\n";
         assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    void testShouldCheckIfListBooksMenuItemIsInvoked() {
+        ListBooks listBooks = mock(ListBooks.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks));
+        int inputFromUser = 1;
+
+        menu.execute(inputFromUser);
+
+        verify(listBooks, times(1)).execute();
     }
 }
