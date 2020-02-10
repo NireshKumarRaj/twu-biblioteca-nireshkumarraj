@@ -1,6 +1,8 @@
 package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.view.InputReceiver;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,6 +11,12 @@ import java.io.InputStream;
 import static org.mockito.Mockito.*;
 
 class ReturnBookTest {
+
+    @AfterEach
+    public void reset(){
+        InputReceiver.getInputReceiver().reset();
+    }
+
     @Test
     void testShouldCheckIfReturnBookIsInvoked() {
         InputStream inputStream = System.in;

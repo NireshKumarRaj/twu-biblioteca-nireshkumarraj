@@ -1,5 +1,7 @@
 package com.twu.biblioteca.menuitem;
 
+import com.twu.biblioteca.view.InputReceiver;
+
 public class Quit implements MenuItem{
 
     private final String name;
@@ -10,7 +12,7 @@ public class Quit implements MenuItem{
 
     @Override
     public void execute() {
-
+        InputReceiver.getInputReceiver().reset();
     }
 
     @Override

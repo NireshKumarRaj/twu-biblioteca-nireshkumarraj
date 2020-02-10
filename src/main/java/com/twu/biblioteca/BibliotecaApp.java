@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuitem.CheckOutBook;
+import com.twu.biblioteca.menuitem.ListBooks;
+import com.twu.biblioteca.menuitem.Quit;
+import com.twu.biblioteca.menuitem.ReturnBook;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
@@ -18,7 +22,12 @@ public class BibliotecaApp {
         Book book3 = new Book("Agile", "Andy", 1998);
         List<Book> books = List.of(book1, book2, book3);
         library = new Library(books);
-        menu = new Menu(List.of("List Books", "Checkout", "Return Book", "Quit"));
+
+        ListBooks listBooksMenuItem = new ListBooks(library);
+        CheckOutBook checkOutBookMenuItem = new CheckOutBook(library);
+        ReturnBook returnBookMenuItem = new ReturnBook(library);
+        Quit quitMenuItem = new Quit();
+        menu = Menu.createMenuWithMenuItems(List.of(listBooksMenuItem,checkOutBookMenuItem, returnBookMenuItem, quitMenuItem));
     }
 
     public static void main(String[] args) {
@@ -34,8 +43,6 @@ public class BibliotecaApp {
             menu.display();
             input.read();
         } while (!input.isQuit());
-
-        input.close();
     }
 
     public void displayWelcomeMessage() {

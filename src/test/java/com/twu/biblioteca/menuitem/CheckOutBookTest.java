@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.view.InputReceiver;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -20,6 +21,7 @@ class CheckOutBookTest {
 
         verify(library,times(1)).checkout("Agile");
         System.setIn(inputStream);
+        InputReceiver.getInputReceiver().reset();
     }
 
     @Test
@@ -33,5 +35,6 @@ class CheckOutBookTest {
 
         verify(library,times(1)).checkout("Pragmatic Programmer");
         System.setIn(inputStream);
+        InputReceiver.getInputReceiver().reset();
     }
 }

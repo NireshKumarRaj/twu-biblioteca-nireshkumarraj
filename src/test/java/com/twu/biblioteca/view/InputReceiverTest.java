@@ -20,5 +20,6 @@ class InputReceiverTest {
 
         assertEquals("Agile", input);
         System.setIn(inputStream);
+        InputReceiver.getInputReceiver().reset();
     }
 }

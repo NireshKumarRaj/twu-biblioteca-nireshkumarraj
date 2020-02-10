@@ -1,21 +1,23 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.menuitem.CheckOutBook;
+import com.twu.biblioteca.menuitem.ListBooks;
+import com.twu.biblioteca.menuitem.Quit;
+import com.twu.biblioteca.menuitem.ReturnBook;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 
@@ -39,28 +41,34 @@ class InputTest {
     void afterEach() {
         System.setIn(originalIn);
         System.setOut(originalOut);
+        InputReceiver.getInputReceiver().reset();
     }
 
     @Test
     void checkIfUserInputIsReceived() {
-        String data = "1\n2";
+        String data = "1";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Input input = new Input(library, mock(Menu.class));
+        ListBooks listBooks = mock(ListBooks.class);
+        Quit quit = mock(Quit.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
+        Input input = new Input(library, menu);
 
         input.read();
 
-        verify(library, times(1)).view();
+        verify(listBooks, times(1)).execute();
     }
 
     @Test
     void checkIfUserEntersInvalidOption() {
-        String data = "6\n2";
+        String data = "6";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Input input = new Input(library, mock(Menu.class));
+        Quit quit = mock(Quit.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), quit));
+        Input input = new Input(library, menu);
 
         input.read();
 
-        String expected = "Enter input: \n"+"Please select a valid option!\n";
+        String expected = "Enter input: \n" + "Please select a valid option!\n";
         assertEquals(expected, outContent.toString());
     }
 
@@ -68,47 +76,40 @@ class InputTest {
     void checkIfUserIsAbleToQuit() {
         String data = "2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Menu menu = mock(Menu.class);
+        ListBooks listBooks = mock(ListBooks.class);
+        Quit quit = mock(Quit.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
         Input input = new Input(library, menu);
-        when(menu.isQuit(2)).thenReturn(true);
 
         input.read();
 
-        assertEquals("Enter input: \n", outContent.toString());
+        verify(quit, times(1)).execute();
     }
 
     @Test
     void checkIfUserIsAbleToSelectCheckOutOptionAndProceed() {
-        String data = "2\nPragmatic Programmer\n3";
+        String data = "2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Input input = new Input(library, mock(Menu.class));
+        CheckOutBook checkOutBook = mock(CheckOutBook.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
+        Input input = new Input(library, menu);
 
         input.read();
 
-        verify(library, times(1)).checkout("Pragmatic Programmer");
-    }
-
-    @Test
-    void checkIfUserIsAbleToSelectCheckOutABook() {
-        String data = "2\nPragmatic Programmer\n3";
-        System.setIn(new ByteArrayInputStream(data.getBytes()));
-        Input input = new Input(library, mock(Menu.class));
-
-        input.read();
-
-        verify(library, times(1)).checkout("Pragmatic Programmer");
+        verify(checkOutBook, times(1)).execute();
     }
 
     @Test
     void checkIfUserIsAbleToReturnABook() {
-        String data = "3\nPragmatic Programmer\n4";
+        String data = "3";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-
-        Input input = new Input(library, mock(Menu.class));
+        ReturnBook returnBook = mock(ReturnBook.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
+        Input input = new Input(library, menu);
 
         input.read();
 
-        verify(library, times(1)).returnBook("Pragmatic Programmer");
+        verify(returnBook, times(1)).execute();
     }
 
     @Test

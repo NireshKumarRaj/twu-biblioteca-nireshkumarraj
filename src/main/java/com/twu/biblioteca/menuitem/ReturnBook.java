@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.view.InputReceiver;
 
 import java.util.Scanner;
 
@@ -17,9 +18,8 @@ public class ReturnBook implements MenuItem {
     @Override
     public void execute() {
         System.out.println("Enter name of the book you want to return: ");
-        Scanner scanner = new Scanner(System.in);
-        library.returnBook(scanner.nextLine());
-        scanner.close();
+        String bookName = InputReceiver.getInputReceiver().readLine();
+        library.returnBook(bookName);
     }
 
     @Override

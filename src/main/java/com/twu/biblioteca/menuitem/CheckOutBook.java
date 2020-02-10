@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.view.InputReceiver;
 
 import java.util.Scanner;
 
@@ -17,9 +18,8 @@ public class CheckOutBook implements MenuItem{
     @Override
     public void execute() {
         System.out.println("Enter Book Name: ");
-        Scanner scanner = new Scanner(System.in);
-        library.checkout(scanner.nextLine());
-        scanner.close();
+        String bookName = InputReceiver.getInputReceiver().readLine();
+        library.checkout(bookName);
     }
 
     @Override

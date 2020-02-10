@@ -10,6 +10,7 @@ public class Menu {
     private List<String> menuList;
     private List<MenuItem> menuOptions;
 
+    @Deprecated
     public Menu(List<String> menuList) {
         this.menuList = menuList;
     }
