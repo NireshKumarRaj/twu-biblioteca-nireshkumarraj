@@ -8,6 +8,7 @@ import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
 import com.twu.biblioteca.view.BibliotecaController;
+import com.twu.biblioteca.view.UI;
 
 import java.util.List;
 
@@ -35,7 +36,8 @@ public class BibliotecaApp {
     }
 
     public void start() {
-        BibliotecaController bibliotecaController = new BibliotecaController(menu);
+        UI ui = new UI(menu, library);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
         bibliotecaController.start();
     }
 

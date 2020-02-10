@@ -32,4 +32,7 @@ public class UI {
         show(books);
     }
 
+    public void showMessage(String message) {
+        System.out.println(message);
+    }
 }
