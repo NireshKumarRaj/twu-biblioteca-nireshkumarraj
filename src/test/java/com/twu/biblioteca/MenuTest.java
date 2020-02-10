@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuitem.MenuItem;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,8 +10,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class MenuTest {
 
@@ -54,5 +58,17 @@ class MenuTest {
         menu.display();
 
         assertEquals("1. List Books\n2. Checkout\n3. Quit\n\n", outContent.toString());
+    }
+
+    @Test
+    void testShouldCheckIfMenuListWithMenuItemCanBeCreated() {
+        MenuItem menuItem = mock(MenuItem.class);
+        when(menuItem.getName()).thenReturn("List Books");
+        Menu menu = Menu.createMenuWithMenuItems(List.of(menuItem));
+
+        menu.display();
+
+        String expected = "1. " + menuItem.getName() + "\n\n";
+        assertEquals(expected, outContent.toString());
     }
 }
