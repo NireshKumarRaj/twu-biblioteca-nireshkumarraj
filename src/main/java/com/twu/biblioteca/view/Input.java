@@ -1,7 +1,7 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.Library;
-import com.twu.biblioteca.Menu;
+import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Menu;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class Input {
     public Input(Library library, Menu menu) {
         this.library = library;
         this.menu = menu;
-        scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in); // TODO - external dependency
     }
 
     private String getBookName(Scanner scanner, String message) {

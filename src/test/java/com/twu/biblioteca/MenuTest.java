@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ class MenuTest {
     }
 
     @Test
-    void testIfMenuIsDisplayedInCommandLine() {
+    void testIfMenuIsDisplayedInCommandLine() { // TODO - what's in command line?
         Menu menu = new Menu(Collections.singletonList("List Books"));
 
         menu.display();

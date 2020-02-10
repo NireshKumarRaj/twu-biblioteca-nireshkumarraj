@@ -1,5 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Menu;
 import com.twu.biblioteca.view.Input;
 
 import java.util.List;

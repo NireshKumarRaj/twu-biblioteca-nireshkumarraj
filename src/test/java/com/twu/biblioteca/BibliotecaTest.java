@@ -40,7 +40,7 @@ public class BibliotecaTest {
     public void testShouldCheckIfWelcomeMessageIsPrinted() {
         bibliotecaApp.displayWelcomeMessage();
 
-        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", outContent.toString().trim());
+        assertEquals("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!", outContent.toString().trim()); // TODO - long line code smell
     }
 
     @Test

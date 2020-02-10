@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,16 +6,17 @@ import java.util.stream.Collectors;
 
 public class Library {
 
+    // TODO - what can be an alternate implementation of this Libarary? Think about it and get back. Try to see if that's better - simplifies, complicates the implementation
     private List<Book> books;
     private List<Book> checkedOutBooks;
 
-    public Library(List<Book> books) {
+    public Library(List<Book> books) { // TODO - I do like you parameterized this
         this.books = books;
         this.checkedOutBooks = new ArrayList<>();
     }
 
-    private Book getBook(List<Book> bookList, String bookName) {
-        for (Book book : bookList) {
+    private Book getBook(List<Book> bookList, String bookName) { // TODO - Optional from Java. - low priority
+        for (Book book : bookList) { // TODO - could you not use a lambda here? Try that.
             if (book.compareByName(bookName)) {
                 return book;
             }
@@ -35,7 +36,7 @@ public class Library {
         final String BOOK_NOT_AVAILABLE_MESSAGE = "Sorry, that book is not available";
         final String CHECKOUT_SUCCESS_MESSAGE = "Thank you! Enjoy the book";
         Book book = getBook(books, bookName);
-        if (book == null) {
+        if (book == null) { // TODO - see if you can get rid of the if-else. Can we be polymorphic, over what? - low priority
             System.out.println(BOOK_NOT_AVAILABLE_MESSAGE);
         } else {
             checkedOutBooks.add(book);
