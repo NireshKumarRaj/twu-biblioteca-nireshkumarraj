@@ -30,29 +30,29 @@ class MenuTest {
     }
 
     @Test
-    void testIfMenuIsDisplayedInCommandLine() { // TODO - what's in command line?
+    void testShouldCheckIfMenuIsDisplayed() { // TODO - what's in command line?
         Menu menu = new Menu(Collections.singletonList("List Books"));
 
         menu.display();
 
-        assertEquals("1. List Books", outContent.toString().trim());
+        assertEquals("1. List Books\n\n", outContent.toString());
     }
 
     @Test
-    void testIfMenuWithMultipleItemsIsDisplayedInCommandLine() {
+    void testShouldCheckIfMenuWithMultipleItemsIsDisplayed() {
         Menu menu = new Menu(Arrays.asList("List Books", "Quit"));
 
         menu.display();
 
-        assertEquals("1. List Books\n2. Quit", outContent.toString().trim());
+        assertEquals("1. List Books\n2. Quit\n\n", outContent.toString());
     }
 
     @Test
-    void testIfMenuWithCheckoutOptionIsDisplayedInCommandLine() {
+    void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
         Menu menu = new Menu(Arrays.asList("List Books", "Checkout", "Quit"));
 
         menu.display();
 
-        assertEquals("1. List Books\n2. Checkout\n3. Quit", outContent.toString().trim());
+        assertEquals("1. List Books\n2. Checkout\n3. Quit\n\n", outContent.toString());
     }
 }

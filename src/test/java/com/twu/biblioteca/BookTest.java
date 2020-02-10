@@ -28,16 +28,16 @@ class BookTest {
     }
 
     @Test
-    void testShouldCheckIfBookInfoIsPrinted() { // TODO - names don't read like spec. WHat is info? Even information?
+    void testShouldCheckIfBookDetailsAreDisplayed() { // TODO - names don't read like spec. WHat is info? Even information?
         Book book = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
 
         book.viewInfo();
 
-        assertEquals("Pragmatic Programmer | Andy Hunt | 1999", outContent.toString().trim()); // TODO - you can't change your actual. You can make your expectation correct.
+        assertEquals("Pragmatic Programmer | Andy Hunt | 1999\n", outContent.toString()); // TODO - you can't change your actual. You can make your expectation correct.
     }
 
     @Test
-    void testShouldCheckIfTwoBooksAreEqual() { // TODO - test name not updated.
+    void testShouldCheckIfTwoBooksAreEqualByName() { // TODO - test name not updated.
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
 
         assertTrue(book1.is("Pragmatic Programmer"));
