@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class MenuTest {
@@ -36,7 +36,7 @@ class MenuTest {
     void testShouldCheckIfMenuIsDisplayed() { // TODO - what's in command line?
         Menu menu = new Menu(Collections.singletonList("List Books"));
 
-        menu.display();
+        menu.getMenuOptions();
 
         assertEquals("1. List Books\n\n", outContent.toString());
     }
@@ -45,7 +45,7 @@ class MenuTest {
     void testShouldCheckIfMenuWithMultipleItemsIsDisplayed() {
         Menu menu = new Menu(Arrays.asList("List Books", "Quit"));
 
-        menu.display();
+        menu.getMenuOptions();
 
         assertEquals("1. List Books\n2. Quit\n\n", outContent.toString());
     }
@@ -54,7 +54,7 @@ class MenuTest {
     void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
         Menu menu = new Menu(Arrays.asList("List Books", "Checkout", "Quit"));
 
-        menu.display();
+        menu.getMenuOptions();
 
         assertEquals("1. List Books\n2. Checkout\n3. Quit\n\n", outContent.toString());
     }
@@ -65,7 +65,7 @@ class MenuTest {
         when(menuItem.getName()).thenReturn("List Books");
         Menu menu = Menu.createMenuWithMenuItems(List.of(menuItem));
 
-        menu.display();
+        menu.getMenuOptions();
 
         String expected = "1. " + menuItem.getName() + "\n\n";
         assertEquals(expected, outContent.toString());
@@ -114,5 +114,14 @@ class MenuTest {
 
         String expected = "Please select a valid option!\n";
         assertEquals(expected, outContent.toString());
+    }
+
+    @Test
+    void testShouldCheckIfMenuOptionsAreReturned() { // TODO - what's in command line?
+        Menu menu = new Menu(Collections.singletonList("List Books"));
+
+        List<String> menuOptions = menu.getMenuOptions();
+
+        assertEquals(List.of("List Books"), menuOptions);
     }
 }

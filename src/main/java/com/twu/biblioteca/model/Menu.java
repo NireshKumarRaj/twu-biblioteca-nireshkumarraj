@@ -21,12 +21,13 @@ public class Menu {
         return menu;
     }
 
-    public void display() {
+    public List<String> getMenuOptions() {
         for (int menuItemNumber = 1; menuItemNumber <= menuList.size(); menuItemNumber++) {
             final String SEPARATOR = ". ";
             System.out.println((menuItemNumber) + SEPARATOR + menuList.get(menuItemNumber - 1));
         }
         System.out.println();
+        return menuList;
     }
 
     public boolean isQuit(int input) {

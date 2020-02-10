@@ -25,7 +25,7 @@ public class BibliotecaController {
     public void start() {
         displayWelcomeMessage();
         do {
-            menu.display();
+            menu.getMenuOptions();
             readUserInput();
         } while (!isQuit);
     }
