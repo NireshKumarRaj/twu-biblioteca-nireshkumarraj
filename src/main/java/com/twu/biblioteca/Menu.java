@@ -16,6 +16,7 @@ public class Menu {
             System.out.println(menuItemNumber + ". " + menuItem);
             menuItemNumber++;
         }
+        System.out.println();
     }
 
     public boolean isQuit(int input) {

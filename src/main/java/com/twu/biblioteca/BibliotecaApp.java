@@ -36,7 +36,7 @@ public class BibliotecaApp {
     }
 
     public void displayWelcomeMessage() {
-        String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+        String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
         System.out.println(WELCOME_MESSAGE);
     }
 }
