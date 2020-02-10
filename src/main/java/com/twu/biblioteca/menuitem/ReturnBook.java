@@ -2,6 +2,8 @@ package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
 
+import java.util.Scanner;
+
 public class ReturnBook implements MenuItem {
 
     private final String name;
@@ -14,7 +16,9 @@ public class ReturnBook implements MenuItem {
 
     @Override
     public void execute() {
-        library.returnBook("Agile");
+        Scanner scanner = new Scanner(System.in);
+        library.returnBook(scanner.nextLine());
+        scanner.close();
     }
 
     @Override
