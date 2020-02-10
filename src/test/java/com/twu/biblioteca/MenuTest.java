@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuitem.CheckOutBook;
 import com.twu.biblioteca.menuitem.ListBooks;
 import com.twu.biblioteca.menuitem.MenuItem;
 import com.twu.biblioteca.model.Menu;
@@ -81,5 +82,17 @@ class MenuTest {
         menu.execute(inputFromUser);
 
         verify(listBooks, times(1)).execute();
+    }
+
+    @Test
+    void testShouldCheckIfCheckOutMenuItemIsInvoked() {
+        ListBooks listBooks = mock(ListBooks.class);
+        CheckOutBook checkOutBook = mock(CheckOutBook.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, checkOutBook));
+        int inputFromUser = 2;
+
+        menu.execute(inputFromUser);
+
+        verify(checkOutBook, times(1)).execute();
     }
 }
