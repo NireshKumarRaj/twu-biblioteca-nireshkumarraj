@@ -37,7 +37,7 @@ public class BibliotecaApp {
     public void start() {
         displayWelcomeMessage();
 
-        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu);
         bibliotecaController.start();
     }
 

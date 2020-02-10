@@ -51,7 +51,7 @@ class BibliotecaControllerTest {
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
-        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
         bibliotecaController.read();
 
@@ -64,7 +64,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Quit quit = mock(Quit.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), quit));
-        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
         bibliotecaController.read();
 
@@ -79,7 +79,7 @@ class BibliotecaControllerTest {
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, quit));
-        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
         bibliotecaController.read();
 
@@ -92,7 +92,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         CheckOutBook checkOutBook = mock(CheckOutBook.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
-        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
         bibliotecaController.read();
 
@@ -105,7 +105,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         ReturnBook returnBook = mock(ReturnBook.class);
         Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
-        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu);
 
         bibliotecaController.read();
 
@@ -117,7 +117,7 @@ class BibliotecaControllerTest {
         String data = "4";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Menu menu = mock(Menu.class);
-        BibliotecaController bibliotecaController = new BibliotecaController(library, menu);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu);
         when(menu.isQuit(4)).thenReturn(true);
 
         assertTrue(bibliotecaController.read());
