@@ -27,7 +27,7 @@ public class BibliotecaController {
     public void start() {
         displayWelcomeMessage();
         do {
-            menu.getMenuOptions();
+            ui.showMenu();
             readUserInput();
         } while (!isQuit);
     }
@@ -35,6 +35,5 @@ public class BibliotecaController {
     void displayWelcomeMessage() {
         String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
         ui.showMessage(WELCOME_MESSAGE);
-        System.out.println(WELCOME_MESSAGE);
     }
 }

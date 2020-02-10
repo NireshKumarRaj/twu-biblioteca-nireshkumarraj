@@ -4,11 +4,11 @@ import com.twu.biblioteca.menuitem.CheckOutBook;
 import com.twu.biblioteca.menuitem.ListBooks;
 import com.twu.biblioteca.menuitem.Quit;
 import com.twu.biblioteca.menuitem.ReturnBook;
+import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -48,7 +48,7 @@ class BibliotecaControllerTest {
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
         Menu menu = new Menu(List.of(listBooks, quit));
-        BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
@@ -61,7 +61,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Quit quit = mock(Quit.class);
         Menu menu = new Menu(List.of(mock(ListBooks.class), quit));
-        BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
@@ -76,7 +76,7 @@ class BibliotecaControllerTest {
         ListBooks listBooks = mock(ListBooks.class);
         Quit quit = mock(Quit.class);
         Menu menu = new Menu(List.of(listBooks, quit));
-        BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
@@ -89,7 +89,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         CheckOutBook checkOutBook = mock(CheckOutBook.class);
         Menu menu = new Menu(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
-        BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
@@ -102,7 +102,7 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         ReturnBook returnBook = mock(ReturnBook.class);
         Menu menu = new Menu(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
-        BibliotecaController bibliotecaController = new BibliotecaController(menu, Mockito.mock(UI.class));
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
@@ -111,7 +111,9 @@ class BibliotecaControllerTest {
 
     @Test
     public void testShouldCheckIfWelcomeMessageIsPrinted() {
-        BibliotecaController bibliotecaController = new BibliotecaController(mock(Menu.class), Mockito.mock(UI.class));
+        Menu menu = mock(Menu.class);
+        UI ui = new UI(menu, mock(Library.class));
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
         bibliotecaController.displayWelcomeMessage();
 
