@@ -1,7 +1,5 @@
 package com.twu.biblioteca.model;
 
-import java.util.Objects;
-
 public class Book {
 
     private final String name;
@@ -14,9 +12,11 @@ public class Book {
         this.yearPublished = yearPublished;
     }
 
+    // TODO - magic literals - done
     public void viewInfo() {
-        System.out.println(name + " | " + author + " | " + yearPublished); // TODO - Global dependency code smell
-    } // TODO - magic literals
+        final String SEPARATOR = " | ";
+        System.out.println(name + SEPARATOR + author + SEPARATOR + yearPublished); // TODO - Global dependency code smell
+    }
 
     // TODO - breaking convention of using the word "compare" for not a very good reason
     public boolean compareByName(String bookName) { // TODO - compare in java or in most languages will return -1,0,1. yous returns boolean. So very likely, you're not comparing.
