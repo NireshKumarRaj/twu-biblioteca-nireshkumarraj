@@ -17,7 +17,7 @@ public class Library {
     }
 
     private Optional<Book> getBook(List<Book> bookList, String bookName) {
-        return bookList.stream().filter(book -> book.is(bookName)).filter(book -> !checkedOutBooks.contains(book)).findFirst();
+        return bookList.stream().filter(book -> book.is(bookName)).findFirst();
     }
 
     public void view() {
@@ -31,7 +31,7 @@ public class Library {
     public void checkout(String bookName) {
         final String BOOK_NOT_AVAILABLE_MESSAGE = "Sorry, that book is not available";
         final String CHECKOUT_SUCCESS_MESSAGE = "Thank you! Enjoy the book";
-        Optional<Book> book = getBook(books, bookName);
+        Optional<Book> book = getBook(books, bookName).filter(item -> !checkedOutBooks.contains(item));
         if (book.isPresent()) { // TODO - see if you can get rid of the if-else. Can we be polymorphic, over what? - low priority
             checkedOutBooks.add(book.get());
             System.out.println(CHECKOUT_SUCCESS_MESSAGE);
