@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.menuitem.CheckOutBook;
 import com.twu.biblioteca.menuitem.ListBooks;
 import com.twu.biblioteca.menuitem.MenuItem;
+import com.twu.biblioteca.menuitem.ReturnBook;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -86,13 +87,23 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfCheckOutMenuItemIsInvoked() {
-        ListBooks listBooks = mock(ListBooks.class);
         CheckOutBook checkOutBook = mock(CheckOutBook.class);
-        Menu menu = Menu.createMenuWithMenuItems(List.of(listBooks, checkOutBook));
+        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), checkOutBook));
         int inputFromUser = 2;
 
         menu.execute(inputFromUser);
 
         verify(checkOutBook, times(1)).execute();
+    }
+
+    @Test
+    void testShouldCheckIfReturnBookMenuItemIsInvoked() {
+        ReturnBook returnBook = mock(ReturnBook.class);
+        Menu menu = Menu.createMenuWithMenuItems(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook));
+        int inputFromUser = 3;
+
+        menu.execute(inputFromUser);
+
+        verify(returnBook, times(1)).execute();
     }
 }

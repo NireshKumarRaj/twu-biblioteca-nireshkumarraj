@@ -37,6 +37,8 @@ public class Menu {
             menuOptions.get(0).execute();
         } else if(inputFromUser == 2){
             menuOptions.get(1).execute();
+        } else if (inputFromUser == 3){
+            menuOptions.get(2).execute();
         }
     }
 }
