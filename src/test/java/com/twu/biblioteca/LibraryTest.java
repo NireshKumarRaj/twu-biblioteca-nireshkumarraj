@@ -42,7 +42,7 @@ class LibraryTest {
         String out3 = "Agile | Andy | 1998";
         String expected = out1 + "\n" + out2 + "\n" + out3;
 
-        library.view();
+        library.getAvailableBooks();
 
         assertEquals(expected, outContent.toString().trim());
     }
@@ -54,7 +54,7 @@ class LibraryTest {
         String expected = out2 + "\n" + out3;
 
         library.checkout("Pragmatic Programmer");
-        library.view();
+        library.getAvailableBooks();
 
         assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
     }
@@ -86,7 +86,7 @@ class LibraryTest {
 
         library.checkout("Pragmatic Programmer");
         library.returnBook("Pragmatic Programmer");
-        library.view();
+        library.getAvailableBooks();
 
         assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim().replaceAll("Thank you for returning the book", "").trim());
     }
@@ -109,5 +109,16 @@ class LibraryTest {
         library.returnBook("Pragmata Programmer");
 
         assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+    }
+
+    @Test
+    void testShouldCheckIfListOfBooksAreReturned() {
+        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
+        String out2 = "Extreme Programming | Kent Beck | 1998";
+        String out3 = "Agile | Andy | 1998";
+
+        List<String> availableBooks = library.getAvailableBooks();
+
+        assertEquals(List.of(out1, out2, out3), availableBooks);
     }
 }

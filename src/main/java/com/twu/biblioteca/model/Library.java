@@ -3,6 +3,7 @@ package com.twu.biblioteca.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Library {
 
@@ -19,12 +20,14 @@ public class Library {
         return bookList.stream().filter(book -> book.is(bookName)).findFirst();
     }
 
-    public void view() {
+    public List<String> getAvailableBooks() {
         System.out.println();
-        this.books.stream()
+        List<String> availableBooks = this.books.stream()
                 .filter(book -> !this.checkedOutBooks.contains(book))
-                .forEach(Book::getDetails);
+                .map(Book::getDetails)
+                .collect(Collectors.toList());
         System.out.println();
+        return availableBooks;
     }
 
     public void checkout(String bookName) {
