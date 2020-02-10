@@ -2,6 +2,8 @@ package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
 
+import java.util.Scanner;
+
 public class CheckOutBook implements MenuItem{
 
     private Library library;
@@ -14,7 +16,9 @@ public class CheckOutBook implements MenuItem{
 
     @Override
     public void execute() {
-        library.checkout("Pragmatic Programmer");
+        Scanner scanner = new Scanner(System.in);
+        library.checkout(scanner.nextLine());
+        scanner.close();
     }
 
     @Override
