@@ -16,6 +16,7 @@ public class ReturnBook implements MenuItem {
 
     @Override
     public void execute() {
+        System.out.println("Enter name of the book you want to return: ");
         Scanner scanner = new Scanner(System.in);
         library.returnBook(scanner.nextLine());
         scanner.close();

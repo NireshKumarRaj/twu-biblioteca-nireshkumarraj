@@ -16,6 +16,7 @@ public class CheckOutBook implements MenuItem{
 
     @Override
     public void execute() {
+        System.out.println("Enter Book Name: ");
         Scanner scanner = new Scanner(System.in);
         library.checkout(scanner.nextLine());
         scanner.close();
