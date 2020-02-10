@@ -24,7 +24,7 @@ public class Library {
         System.out.println();
         this.books.stream()
                 .filter(book -> !this.checkedOutBooks.contains(book))
-                .collect(Collectors.toList()).forEach(Book::viewInfo);
+                .forEach(Book::viewInfo);
         System.out.println();
     }
 
