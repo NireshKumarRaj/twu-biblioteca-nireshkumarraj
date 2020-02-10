@@ -11,10 +11,9 @@ public class Menu {
     }
 
     public void display() {
-        int menuItemNumber = 1; // TODO - inn't this maintained in a simple for loop?
-        for (String menuItem : menuList) { // TODO - why not use a simple for loop?
-            System.out.println(menuItemNumber + ". " + menuItem);
-            menuItemNumber++;
+        for (int menuItemNumber = 1; menuItemNumber <= menuList.size(); menuItemNumber++) {
+            final String SEPARATOR = ". ";
+            System.out.println((menuItemNumber) + SEPARATOR + menuList.get(menuItemNumber - 1));
         }
         System.out.println();
     }
