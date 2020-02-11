@@ -3,8 +3,6 @@ package com.twu.biblioteca.menuitem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.InputReceiver;
 
-import java.util.Scanner;
-
 public class ReturnBook implements MenuItem {
 
     private final String name;

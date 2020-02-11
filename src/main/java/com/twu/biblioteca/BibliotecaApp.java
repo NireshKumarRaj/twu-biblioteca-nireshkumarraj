@@ -12,6 +12,8 @@ import com.twu.biblioteca.view.UI;
 
 import java.util.List;
 
+import static java.util.List.of;
+
 public class BibliotecaApp {
 
     private Library library;
@@ -21,14 +23,14 @@ public class BibliotecaApp {
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
         Book book2 = new Book("Extreme Programming", "Kent Beck", 1998);
         Book book3 = new Book("Agile", "Andy", 1998);
-        List<Book> books = List.of(book1, book2, book3);
+        List<Book> books = of(book1, book2, book3);
         library = new Library(books);
 
         ListBooks listBooksMenuItem = new ListBooks(library);
         CheckOutBook checkOutBookMenuItem = new CheckOutBook(library);
         ReturnBook returnBookMenuItem = new ReturnBook(library);
         Quit quitMenuItem = new Quit();
-        menu = new Menu(List.of(listBooksMenuItem, checkOutBookMenuItem, returnBookMenuItem, quitMenuItem));
+        menu = new Menu(of(listBooksMenuItem, checkOutBookMenuItem, returnBookMenuItem, quitMenuItem));
     }
 
     public static void main(String[] args) {

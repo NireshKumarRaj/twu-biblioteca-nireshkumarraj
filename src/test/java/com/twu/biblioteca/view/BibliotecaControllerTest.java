@@ -65,7 +65,7 @@ class BibliotecaControllerTest {
 
         bibliotecaController.readUserInput();
 
-        String expected = "Enter input: \n" + "Please select a valid option!\n";
+        String expected = "Please select a valid option!\n";
         assertEquals(expected, outContent.toString());
     }
 

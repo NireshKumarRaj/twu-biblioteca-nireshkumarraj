@@ -37,4 +37,5 @@ class CheckOutBookTest {
         System.setIn(inputStream);
         InputReceiver.getInputReceiver().reset();
     }
+
 }
