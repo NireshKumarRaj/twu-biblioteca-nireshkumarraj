@@ -61,12 +61,14 @@ class BibliotecaControllerTest {
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Quit quit = mock(Quit.class);
         Menu menu = new Menu(List.of(mock(ListBooks.class), quit));
+        UI ui = mock(UI.class);
+        menu.setListener(ui);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
-        String expected = "Please select a valid option!\n";
-        assertEquals(expected, outContent.toString());
+        String expected = "Please select a valid option!";
+        verify(ui, times(1)).display(expected);
     }
 
     @Test

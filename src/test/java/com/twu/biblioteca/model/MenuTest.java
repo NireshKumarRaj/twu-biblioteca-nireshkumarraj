@@ -1,12 +1,10 @@
 package com.twu.biblioteca.model;
 
 import com.twu.biblioteca.menuitem.*;
-import org.junit.jupiter.api.AfterEach;
+import com.twu.biblioteca.view.UI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -16,28 +14,18 @@ import static org.mockito.Mockito.*;
 
 class MenuTest {
 
-    private PrintStream originalOut;
-    private ByteArrayOutputStream outContent;
     private ListBooks listBooksMenuItem;
     private CheckOutBook checkOutBookMenuItem;
     private Quit quitMenuItem;
 
     @BeforeEach
     void setUp() {
-        outContent = new ByteArrayOutputStream();
-        originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
         listBooksMenuItem = mock(ListBooks.class);
         when(listBooksMenuItem.getName()).thenReturn("List Books");
         checkOutBookMenuItem = mock(CheckOutBook.class);
         when(checkOutBookMenuItem.getName()).thenReturn("Checkout");
         quitMenuItem = mock(Quit.class);
         when(quitMenuItem.getName()).thenReturn("Quit");
-    }
-
-    @AfterEach
-    void afterEach() {
-        System.setOut(originalOut);
     }
 
     @Test
@@ -115,12 +103,14 @@ class MenuTest {
     void testShouldCheckIfInvalidInputIsHandled() {
         List<MenuItem> menuOptions = List.of(mock(ListBooks.class), mock(CheckOutBook.class), mock(ReturnBook.class), mock(Quit.class));
         Menu menu = new Menu(menuOptions);
+        UI ui = mock(UI.class);
+        menu.setListener(ui);
         int inputFromUser = 7;
 
         menu.execute(inputFromUser);
 
-        String expected = "Please select a valid option!\n";
-        assertEquals(expected, outContent.toString());
+        String expected = "Please select a valid option!";
+        verify(ui, times(1)).display(expected);
     }
 
     @Test

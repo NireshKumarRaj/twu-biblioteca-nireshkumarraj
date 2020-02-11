@@ -14,6 +14,7 @@ public class UI implements Customer {
         this.menu = menu;
         this.library = library;
         this.library.setListener(this);
+        this.menu.setListener(this);
     }
 
     private void show(List<String> toDisplayList) {
