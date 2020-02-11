@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class BookCheckOutTest {
@@ -33,9 +34,18 @@ class BookCheckOutTest {
 
         bookCheckOut.execute();
 
-        verify(library,times(1)).checkout("Pragmatic Programmer");
+        verify(library, times(1)).checkout("Pragmatic Programmer");
         System.setIn(inputStream);
         InputReceiver.getInputReceiver().reset();
     }
 
+    @Test
+    void testShouldBeAbleToReturnMenuItemName() {
+        Library library = mock(Library.class);
+        BookCheckOut bookCheckOut = new BookCheckOut(library);
+
+        String menuItemName = bookCheckOut.getName();
+
+        assertEquals("Checkout", menuItemName);
+    }
 }

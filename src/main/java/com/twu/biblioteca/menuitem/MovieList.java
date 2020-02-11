@@ -5,9 +5,11 @@ import com.twu.biblioteca.model.MovieLibrary;
 public class MovieList implements MenuItem {
 
     private MovieLibrary movieLibrary;
+    private final String name;
 
     public MovieList(MovieLibrary movieLibrary) {
         this.movieLibrary = movieLibrary;
+        name = "List Movies";
     }
 
     @Override
@@ -17,6 +19,6 @@ public class MovieList implements MenuItem {
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 }
