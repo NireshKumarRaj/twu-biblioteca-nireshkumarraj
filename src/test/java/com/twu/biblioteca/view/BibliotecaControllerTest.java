@@ -23,21 +23,15 @@ import static org.mockito.Mockito.*;
 class BibliotecaControllerTest {
 
     private InputStream originalIn;
-    private PrintStream originalOut;
-    private ByteArrayOutputStream outContent;
 
     @BeforeEach
     void setUp() {
         originalIn = System.in;
-        outContent = new ByteArrayOutputStream();
-        originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
     }
 
     @AfterEach
     void afterEach() {
         System.setIn(originalIn);
-        System.setOut(originalOut);
         InputReceiver.getInputReceiver().reset();
     }
 
@@ -114,7 +108,9 @@ class BibliotecaControllerTest {
     @Test
     public void testShouldCheckIfWelcomeMessageIsPrinted() {
         Menu menu = mock(Menu.class);
-        UI ui = new UI(menu, mock(Library.class), System.out);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream outputStream = new PrintStream(outContent);
+        UI ui = new UI(menu, mock(Library.class), outputStream);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
         bibliotecaController.displayWelcomeMessage();
