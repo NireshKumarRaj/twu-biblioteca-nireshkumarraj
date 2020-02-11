@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.util.List.of;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class LibraryTest {
@@ -32,9 +31,9 @@ class LibraryTest {
         String out2 = "Extreme Programming | Kent Beck | 1998";
         String out3 = "Agile | Andy | 1998";
 
-        List<String> availableBooks = library.getAvailableBooks();
+        library.listAvailableBooks();
 
-        assertEquals(of(out1, out2, out3), availableBooks);
+        verify(ui, times(1)).display(of(out1, out2, out3));
     }
 
     @Test
@@ -43,9 +42,10 @@ class LibraryTest {
         String out3 = "Agile | Andy | 1998";
 
         library.checkout("Pragmatic Programmer");
-        List<String> availableBooks = library.getAvailableBooks();
+        library.listAvailableBooks();
 
-        assertEquals(of(out2, out3), availableBooks);
+        verify(ui, times(1)).display(of(out2, out3));
+
     }
 
     @Test
@@ -76,9 +76,9 @@ class LibraryTest {
 
         library.checkout("Pragmatic Programmer");
         library.returnBook("Pragmatic Programmer");
-        List<String> availableBooks = library.getAvailableBooks();
+        library.listAvailableBooks();
 
-        assertEquals(of(out1, out2, out3), availableBooks);
+        verify(ui, times(1)).display(of(out1, out2, out3));
     }
 
     @Test
@@ -100,23 +100,5 @@ class LibraryTest {
         library.returnBook("Pragmata Programmer");
 
         verify(ui, times(1)).display(expected);
-    }
-
-    @Test
-    void testShouldCheckIfListOfBooksAreReturned() {
-        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
-        String out2 = "Extreme Programming | Kent Beck | 1998";
-        String out3 = "Agile | Andy | 1998";
-
-        List<String> availableBooks = library.getAvailableBooks();
-
-        assertEquals(of(out1, out2, out3), availableBooks);
-    }
-
-    @Test
-    void testShouldCheckIfSuccessMessageOnCheckoutIsDisplayedThroughUI() {
-        library.checkout("Pragmatic Programmer");
-
-
     }
 }

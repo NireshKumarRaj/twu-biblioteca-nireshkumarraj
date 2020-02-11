@@ -13,6 +13,6 @@ class ListBooksTest {
 
         listBooks.execute();
 
-        verify(library, times(1)).getAvailableBooks();
+        verify(library, times(1)).listAvailableBooks();
     }
 }

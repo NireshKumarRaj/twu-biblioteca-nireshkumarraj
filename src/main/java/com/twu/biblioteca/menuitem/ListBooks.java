@@ -14,7 +14,7 @@ public class ListBooks implements MenuItem {
 
     @Override
     public void execute() {
-        library.getAvailableBooks();
+        library.listAvailableBooks();
     }
 
     @Override
