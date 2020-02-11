@@ -28,5 +28,6 @@ public class UI implements Customer {
             final String SEPARATOR = ". ";
             outputWriter.println((itemNumber) + SEPARATOR + toDisplayList.get(itemNumber - 1));
         }
+        System.out.println();
     }
 }

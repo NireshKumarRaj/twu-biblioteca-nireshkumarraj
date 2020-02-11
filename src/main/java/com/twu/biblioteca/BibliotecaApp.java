@@ -1,12 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuitem.BookCheckOut;
-import com.twu.biblioteca.menuitem.BookList;
-import com.twu.biblioteca.menuitem.BookReturn;
-import com.twu.biblioteca.menuitem.Quit;
-import com.twu.biblioteca.model.Book;
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.Menu;
+import com.twu.biblioteca.menuitem.*;
+import com.twu.biblioteca.model.*;
 import com.twu.biblioteca.view.BibliotecaController;
 import com.twu.biblioteca.view.UI;
 
@@ -18,6 +13,7 @@ public class BibliotecaApp {
 
     private Library library;
     private Menu menu;
+    private MovieLibrary movieLibrary;
 
     public BibliotecaApp() {
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
@@ -26,11 +22,19 @@ public class BibliotecaApp {
         List<Book> books = of(book1, book2, book3);
         library = new Library(books);
 
+        Movie movie1 = new Movie("The Social Network", 2010, "Mark", 8);
+        Movie movie2 = new Movie("Apple", 2011, "Steve", 9);
+        Movie movie3 = new Movie("Theory of Everything", 2000, "Fleming", 8);
+        List<Movie> movies = of(movie1, movie2, movie3);
+        movieLibrary = new MovieLibrary(movies);
+
+
         BookList bookListMenuItem = new BookList(library);
         BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library);
         BookReturn bookReturnMenuItem = new BookReturn(library);
+        MovieList movieListMenuItem = new MovieList(movieLibrary);
         Quit quitMenuItem = new Quit();
-        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, quitMenuItem));
+        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, movieListMenuItem, quitMenuItem));
     }
 
     public static void main(String[] args) {
@@ -41,6 +45,7 @@ public class BibliotecaApp {
         UI ui = new UI(System.out);
         ui.addModel(menu);
         ui.addModel(library);
+        ui.addModel(movieLibrary);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
         bibliotecaController.start();
     }

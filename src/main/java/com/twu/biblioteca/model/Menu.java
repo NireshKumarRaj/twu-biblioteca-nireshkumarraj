@@ -16,6 +16,7 @@ public class Menu implements Model {
     }
 
     public void displayMenuOptions() {
+        this.customer.display("---- Menu -----");
         this.customer.display(menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList()));
     }
 
