@@ -15,7 +15,7 @@ public class CheckOutBook implements MenuItem{
 
     @Override
     public void execute() {
-        System.out.println("Enter Book Name: ");
+        library.notifyListener("Enter Book Name: ");
         String bookName = InputReceiver.getInputReceiver().readLine();
         library.checkout(bookName);
     }
