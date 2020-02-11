@@ -1,29 +1,22 @@
 package com.twu.biblioteca.model;
 
 import com.twu.biblioteca.view.UI;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.util.List.of;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class LibraryTest {
-    private PrintStream originalOut;
-    private ByteArrayOutputStream outContent;
     private Library library;
     private UI ui;
 
     @BeforeEach
     void setUp() {
-        outContent = new ByteArrayOutputStream();
-        originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
         Book book2 = new Book("Extreme Programming", "Kent Beck", 1998);
         Book book3 = new Book("Agile", "Andy", 1998);
@@ -33,33 +26,26 @@ class LibraryTest {
         library.setListener(ui);
     }
 
-    @AfterEach
-    void reset() {
-        System.setOut(originalOut);
-    }
-
     @Test
     void testShouldCheckIfOneBookIsViewed() {
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
         String out2 = "Extreme Programming | Kent Beck | 1998";
         String out3 = "Agile | Andy | 1998";
-        String expected = out1 + "\n" + out2 + "\n" + out3;
 
-        library.getAvailableBooks();
+        List<String> availableBooks = library.getAvailableBooks();
 
-        assertEquals(expected, outContent.toString().trim());
+        assertEquals(of(out1, out2, out3), availableBooks);
     }
 
     @Test
     void testIfBookCanBeAddedToCheckOutList() {
         String out2 = "Extreme Programming | Kent Beck | 1998";
         String out3 = "Agile | Andy | 1998";
-        String expected = out2 + "\n" + out3;
 
         library.checkout("Pragmatic Programmer");
-        library.getAvailableBooks();
+        List<String> availableBooks = library.getAvailableBooks();
 
-        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+        assertEquals(of(out2, out3), availableBooks);
     }
 
     @Test
@@ -87,13 +73,12 @@ class LibraryTest {
         String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
         String out2 = "Extreme Programming | Kent Beck | 1998";
         String out3 = "Agile | Andy | 1998";
-        String expected = out1 + "\n" + out2 + "\n" + out3;
 
         library.checkout("Pragmatic Programmer");
         library.returnBook("Pragmatic Programmer");
-        library.getAvailableBooks();
+        List<String> availableBooks = library.getAvailableBooks();
 
-        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim().replaceAll("Thank you for returning the book", "").trim());
+        assertEquals(of(out1, out2, out3), availableBooks);
     }
 
     @Test
@@ -125,7 +110,7 @@ class LibraryTest {
 
         List<String> availableBooks = library.getAvailableBooks();
 
-        assertEquals(List.of(out1, out2, out3), availableBooks);
+        assertEquals(of(out1, out2, out3), availableBooks);
     }
 
     @Test

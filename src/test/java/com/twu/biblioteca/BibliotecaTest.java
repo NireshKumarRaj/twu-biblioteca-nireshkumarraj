@@ -43,17 +43,4 @@ public class BibliotecaTest {
 
         assertTrue(outContent.toString().contains("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
     }
-
-    @Test
-    public void testIfLibraryListIsDisplayedWhenStartIsInvoked() {
-        System.setIn(new ByteArrayInputStream("1\n4".getBytes()));
-        bibliotecaApp.start();
-
-        String out1 = "Pragmatic Programmer | Andy Hunt | 1998";
-        String out2 = "Extreme Programming | Kent Beck | 1998";
-        String out3 = "Agile | Andy | 1998";
-
-        String expected = out1 + "\n" + out2 + "\n" + out3;
-        assertTrue(outContent.toString().contains(expected));
-    }
 }

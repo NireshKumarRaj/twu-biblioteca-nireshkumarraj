@@ -14,11 +14,6 @@ public class Menu {
     }
 
     public List<String> getMenuOptions() {
-        for (int menuItemNumber = 1; menuItemNumber <= menuOptions.size(); menuItemNumber++) {
-            final String SEPARATOR = ". ";
-            System.out.println((menuItemNumber) + SEPARATOR + menuOptions.get(menuItemNumber - 1).getName());
-        }
-        System.out.println();
         return menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList());
     }
 

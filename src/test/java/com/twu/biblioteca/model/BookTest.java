@@ -1,38 +1,18 @@
 package com.twu.biblioteca.model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookTest {
 
-    private PrintStream originalOut;
-    private ByteArrayOutputStream outContent;
-
-    @BeforeEach
-    void setUp() {
-        outContent = new ByteArrayOutputStream();
-        originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @AfterEach
-    void afterEach() {
-        System.setOut(originalOut);
-    }
-
     @Test
     void testShouldCheckIfBookDetailsAreDisplayed() { // TODO - names don't read like spec. WHat is info? Even information?
         Book book = new Book("Pragmatic Programmer", "Andy Hunt", 1999);
 
-        book.getDetails();
+        String details = book.getDetails();
 
-        assertEquals("Pragmatic Programmer | Andy Hunt | 1999\n", outContent.toString());
+        assertEquals("Pragmatic Programmer | Andy Hunt | 1999", details);
     }
 
     @Test

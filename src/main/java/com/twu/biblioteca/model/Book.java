@@ -14,9 +14,7 @@ public class Book {
 
     public String getDetails() {
         final String SEPARATOR = " | ";
-        String details = name + SEPARATOR + author + SEPARATOR + yearPublished;
-        System.out.println(details); // TODO - Global dependency code smell
-        return details;
+        return name + SEPARATOR + author + SEPARATOR + yearPublished;
     }
 
     public boolean is(String bookName) {

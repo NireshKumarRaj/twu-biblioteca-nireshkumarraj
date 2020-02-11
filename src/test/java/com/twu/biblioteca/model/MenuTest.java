@@ -44,27 +44,27 @@ class MenuTest {
     void testShouldCheckIfMenuIsDisplayed() { // TODO - what's in command line?
         Menu menu = new Menu(Collections.singletonList(listBooksMenuItem));
 
-        menu.getMenuOptions();
+        List<String> menuOptions = menu.getMenuOptions();
 
-        assertEquals("1. List Books\n\n", outContent.toString());
+        assertEquals(List.of("List Books"), menuOptions);
     }
 
     @Test
     void testShouldCheckIfMenuWithMultipleItemsIsDisplayed() {
         Menu menu = new Menu(Arrays.asList(listBooksMenuItem, quitMenuItem));
 
-        menu.getMenuOptions();
+        List<String> menuOptions = menu.getMenuOptions();
 
-        assertEquals("1. List Books\n2. Quit\n\n", outContent.toString());
+        assertEquals(List.of("List Books", "Quit"), menuOptions);
     }
 
     @Test
     void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
         Menu menu = new Menu(Arrays.asList(listBooksMenuItem, checkOutBookMenuItem, quitMenuItem));
 
-        menu.getMenuOptions();
+        List<String> menuOptions = menu.getMenuOptions();
 
-        assertEquals("1. List Books\n2. Checkout\n3. Quit\n\n", outContent.toString());
+        assertEquals(List.of("List Books", "Checkout", "Quit"), menuOptions);
     }
 
     @Test
@@ -73,10 +73,9 @@ class MenuTest {
         when(menuItem.getName()).thenReturn("List Books");
         Menu menu = new Menu(List.of(menuItem));
 
-        menu.getMenuOptions();
+        List<String> menuOptions = menu.getMenuOptions();
 
-        String expected = "1. " + menuItem.getName() + "\n\n";
-        assertEquals(expected, outContent.toString());
+        assertEquals(List.of("List Books"), menuOptions);
     }
 
     @Test
