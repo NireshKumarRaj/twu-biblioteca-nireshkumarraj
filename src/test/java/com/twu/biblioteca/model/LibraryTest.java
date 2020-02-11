@@ -1,5 +1,6 @@
 package com.twu.biblioteca.model;
 
+import com.twu.biblioteca.view.UI;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 
 class LibraryTest {
     private PrintStream originalOut;
@@ -26,6 +28,7 @@ class LibraryTest {
         Book book3 = new Book("Agile", "Andy", 1998);
         List<Book> books = Arrays.asList(book1, book2, book3);
         library = new Library(books);
+        library.setListener(mock(UI.class));
     }
 
     @AfterEach
@@ -118,5 +121,12 @@ class LibraryTest {
         List<String> availableBooks = library.getAvailableBooks();
 
         assertEquals(List.of(out1, out2, out3), availableBooks);
+    }
+
+    @Test
+    void testShouldCheckIfSuccessMessageOnCheckoutIsDisplayedThroughUI() {
+        library.checkout("Pragmatic Programmer");
+
+
     }
 }

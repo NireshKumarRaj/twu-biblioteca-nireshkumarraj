@@ -1,5 +1,7 @@
 package com.twu.biblioteca.model;
 
+import com.twu.biblioteca.view.Customer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +12,7 @@ public class Library {
     // TODO - what can be an alternate implementation of this Libarary? Think about it and get back. Try to see if that's better - simplifies, complicates the implementation
     private List<Book> books;
     private List<Book> checkedOutBooks;
+    private Customer customer;
 
     public Library(List<Book> books) {
         this.books = books;
@@ -36,8 +39,10 @@ public class Library {
         Optional<Book> book = getBook(books, bookName).filter(item -> !checkedOutBooks.contains(item));
         if (book.isPresent()) { // TODO - see if you can get rid of the if-else. Can we be polymorphic, over what? - low priority
             checkedOutBooks.add(book.get());
+            customer.display(CHECKOUT_SUCCESS_MESSAGE);
             System.out.println(CHECKOUT_SUCCESS_MESSAGE);
         } else {
+            customer.display(BOOK_NOT_AVAILABLE_MESSAGE);
             System.out.println(BOOK_NOT_AVAILABLE_MESSAGE);
         }
     }
@@ -48,9 +53,15 @@ public class Library {
         Optional<Book> book = getBook(checkedOutBooks, bookName);
         if (book.isPresent()) {
             checkedOutBooks.remove(book.get());
+            customer.display(BOOK_RETURN_SUCCESS_MESSAGE);
             System.out.println(BOOK_RETURN_SUCCESS_MESSAGE);
         } else {
+            customer.display(BOOK_INVALID_MESSAGE);
             System.out.println(BOOK_INVALID_MESSAGE);
         }
+    }
+
+    public void setListener(Customer customer) {
+        this.customer = customer;
     }
 }

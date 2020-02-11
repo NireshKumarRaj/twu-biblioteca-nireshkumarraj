@@ -5,7 +5,7 @@ import com.twu.biblioteca.model.Menu;
 
 import java.util.List;
 
-public class UI {
+public class UI implements Customer {
 
     private Menu menu;
     private Library library;
@@ -13,6 +13,7 @@ public class UI {
     public UI(Menu menu, Library library) {
         this.menu = menu;
         this.library = library;
+        this.library.setListener(this);
     }
 
     private void show(List<String> toDisplayList) {
@@ -33,6 +34,11 @@ public class UI {
     }
 
     public void showMessage(String message) {
+        System.out.println(message);
+    }
+
+    @Override
+    public void display(String message) {
         System.out.println(message);
     }
 }
