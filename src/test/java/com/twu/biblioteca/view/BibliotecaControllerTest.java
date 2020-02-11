@@ -110,7 +110,9 @@ class BibliotecaControllerTest {
         Menu menu = mock(Menu.class);
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         PrintStream outputStream = new PrintStream(outContent);
-        UI ui = new UI(menu, mock(Library.class), outputStream);
+        UI ui = new UI(outputStream);
+        ui.addModel(menu);
+        ui.addModel(mock(Library.class));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
         bibliotecaController.displayWelcomeMessage();

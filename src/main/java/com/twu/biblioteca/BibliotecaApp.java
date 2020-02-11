@@ -38,7 +38,9 @@ public class BibliotecaApp {
     }
 
     public void start() {
-        UI ui = new UI(menu, library, System.out);
+        UI ui = new UI(System.out);
+        ui.addModel(menu);
+        ui.addModel(library);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
         bibliotecaController.start();
     }

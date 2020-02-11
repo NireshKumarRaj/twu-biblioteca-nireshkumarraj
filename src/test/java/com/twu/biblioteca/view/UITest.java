@@ -20,7 +20,9 @@ class UITest {
     @BeforeEach
     void setUp() {
         outContent = new ByteArrayOutputStream();
-        ui = new UI(mock(Menu.class), mock(Library.class), new PrintStream(outContent));
+        ui = new UI(new PrintStream(outContent));
+        ui.addModel(mock(Menu.class));
+        ui.addModel(mock(Library.class));
     }
 
     @Test

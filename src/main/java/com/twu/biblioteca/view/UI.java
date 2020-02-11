@@ -1,7 +1,6 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.Menu;
+import com.twu.biblioteca.model.Model;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -10,10 +9,12 @@ public class UI implements Customer {
 
     private final PrintStream outputWriter;
 
-    public UI(Menu menu, Library library, PrintStream outputWriter) {
+    public UI(PrintStream outputWriter) {
         this.outputWriter = outputWriter;
-        library.setListener(this);
-        menu.setListener(this);
+    }
+
+    public void addModel(Model model) {
+        model.setListener(this);
     }
 
     @Override
