@@ -11,12 +11,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 class LibraryTest {
     private PrintStream originalOut;
     private ByteArrayOutputStream outContent;
     private Library library;
+    private UI ui;
 
     @BeforeEach
     void setUp() {
@@ -28,7 +29,8 @@ class LibraryTest {
         Book book3 = new Book("Agile", "Andy", 1998);
         List<Book> books = Arrays.asList(book1, book2, book3);
         library = new Library(books);
-        library.setListener(mock(UI.class));
+        ui = mock(UI.class);
+        library.setListener(ui);
     }
 
     @AfterEach
@@ -66,7 +68,8 @@ class LibraryTest {
         library.checkout("Pragmatic Programmer");
 
         String expected = "Thank you! Enjoy the book";
-        assertEquals(expected, outContent.toString().trim());
+
+        verify(ui, times(1)).display(expected);
     }
 
     @Test
@@ -75,7 +78,8 @@ class LibraryTest {
         library.checkout("Pragmati Programmer");
 
         String expected = "Sorry, that book is not available";
-        assertEquals(expected, outContent.toString().trim());
+
+        verify(ui, times(1)).display(expected);
     }
 
     @Test
@@ -99,7 +103,8 @@ class LibraryTest {
         library.returnBook("Pragmatic Programmer");
 
         String expected = "Thank you for returning the book";
-        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+
+        verify(ui, times(1)).display(expected);
     }
 
     @Test
@@ -109,7 +114,7 @@ class LibraryTest {
         library.checkout("Pragmatic Programmer");
         library.returnBook("Pragmata Programmer");
 
-        assertEquals(expected, outContent.toString().replaceAll("Thank you! Enjoy the book", "").trim());
+        verify(ui, times(1)).display(expected);
     }
 
     @Test

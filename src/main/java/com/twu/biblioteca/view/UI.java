@@ -29,8 +29,10 @@ public class UI implements Customer {
     }
 
     public void showBooks() {
+        System.out.println();
         List<String> books = library.getAvailableBooks();
         show(books);
+        System.out.println();
     }
 
     public void showMessage(String message) {

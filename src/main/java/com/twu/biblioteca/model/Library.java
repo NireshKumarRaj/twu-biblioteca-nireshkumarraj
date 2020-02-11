@@ -24,13 +24,10 @@ public class Library {
     }
 
     public List<String> getAvailableBooks() {
-        System.out.println();
-        List<String> availableBooks = this.books.stream()
+        return this.books.stream()
                 .filter(book -> !this.checkedOutBooks.contains(book))
                 .map(Book::getDetails)
                 .collect(Collectors.toList());
-        System.out.println();
-        return availableBooks;
     }
 
     public void checkout(String bookName) {
@@ -40,10 +37,8 @@ public class Library {
         if (book.isPresent()) { // TODO - see if you can get rid of the if-else. Can we be polymorphic, over what? - low priority
             checkedOutBooks.add(book.get());
             customer.display(CHECKOUT_SUCCESS_MESSAGE);
-            System.out.println(CHECKOUT_SUCCESS_MESSAGE);
         } else {
             customer.display(BOOK_NOT_AVAILABLE_MESSAGE);
-            System.out.println(BOOK_NOT_AVAILABLE_MESSAGE);
         }
     }
 
@@ -54,10 +49,8 @@ public class Library {
         if (book.isPresent()) {
             checkedOutBooks.remove(book.get());
             customer.display(BOOK_RETURN_SUCCESS_MESSAGE);
-            System.out.println(BOOK_RETURN_SUCCESS_MESSAGE);
         } else {
             customer.display(BOOK_INVALID_MESSAGE);
-            System.out.println(BOOK_INVALID_MESSAGE);
         }
     }
 
