@@ -1,8 +1,10 @@
 package com.twu.biblioteca.menuitem;
 
+import com.twu.biblioteca.view.InputReceiver;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class QuitTest {
@@ -14,5 +16,15 @@ class QuitTest {
         String menuItemName = quitMenuItem.getName();
 
         assertEquals("Quit", menuItemName);
+    }
+
+    @Test
+    void testShouldBeAbleToCheckIfInputReceiverIsReset() {
+        InputReceiver inputReceiver = InputReceiver.getInputReceiver();
+        Quit quitMenuItem = new Quit();
+
+        quitMenuItem.execute();
+
+        assertTrue(inputReceiver.isClosed());
     }
 }

@@ -21,8 +21,12 @@ public class InputReceiver {
         return scanner.nextLine();
     }
 
-    public void reset(){
+    public void reset() {
         scanner.close();
         scanner = null;
+    }
+
+    public boolean isClosed() {
+        return scanner == null;
     }
 }
