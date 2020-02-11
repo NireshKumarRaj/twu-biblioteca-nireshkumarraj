@@ -2,6 +2,7 @@ package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.InputReceiver;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,33 +10,36 @@ import java.io.InputStream;
 
 import static org.mockito.Mockito.*;
 
-class CheckOutBookTest {
+class BookReturnTest {
+
+    @AfterEach
+    public void reset() {
+        InputReceiver.getInputReceiver().reset();
+    }
+
     @Test
-    void testShouldCheckIfCheckOutIsInvoked() {
+    void testShouldCheckIfReturnBookIsInvoked() {
         InputStream inputStream = System.in;
         System.setIn(new ByteArrayInputStream("Agile".getBytes()));
         Library library = mock(Library.class);
-        CheckOutBook checkOutBook = new CheckOutBook(library);
+        BookReturn bookReturn = new BookReturn(library);
 
-        checkOutBook.execute();
+        bookReturn.execute();
 
-        verify(library,times(1)).checkout("Agile");
+        verify(library, times(1)).returnBook("Agile");
         System.setIn(inputStream);
-        InputReceiver.getInputReceiver().reset();
     }
 
     @Test
-    void testShouldCheckIfBookNameIsReceivedFromUser() {
+    void testShouldCheckIfReturnBookNameIsReceivedFromUser() {
         InputStream inputStream = System.in;
         System.setIn(new ByteArrayInputStream("Pragmatic Programmer".getBytes()));
         Library library = mock(Library.class);
-        CheckOutBook checkOutBook = new CheckOutBook(library);
+        BookReturn bookReturn = new BookReturn(library);
 
-        checkOutBook.execute();
+        bookReturn.execute();
 
-        verify(library,times(1)).checkout("Pragmatic Programmer");
+        verify(library, times(1)).returnBook("Pragmatic Programmer");
         System.setIn(inputStream);
-        InputReceiver.getInputReceiver().reset();
     }
-
 }

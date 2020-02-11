@@ -3,21 +3,21 @@ package com.twu.biblioteca.menuitem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.InputReceiver;
 
-public class CheckOutBook implements MenuItem{
+public class BookReturn implements MenuItem {
 
-    private Library library;
     private final String name;
+    private Library library;
 
-    public CheckOutBook(Library library) {
-        name = "Checkout";
+    public BookReturn(Library library) {
         this.library = library;
+        name = "Return Book";
     }
 
     @Override
     public void execute() {
-        library.notifyListener("Enter Book Name: ");
+        library.notifyListener("Enter name of the book you want to return: ");
         String bookName = InputReceiver.getInputReceiver().readLine();
-        library.checkout(bookName);
+        library.returnBook(bookName);
     }
 
     @Override

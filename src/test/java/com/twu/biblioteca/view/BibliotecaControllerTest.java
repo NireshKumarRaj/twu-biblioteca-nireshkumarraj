@@ -1,9 +1,9 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.menuitem.CheckOutBook;
-import com.twu.biblioteca.menuitem.ListBooks;
+import com.twu.biblioteca.menuitem.BookCheckOut;
+import com.twu.biblioteca.menuitem.BookList;
+import com.twu.biblioteca.menuitem.BookReturn;
 import com.twu.biblioteca.menuitem.Quit;
-import com.twu.biblioteca.menuitem.ReturnBook;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
 import org.junit.jupiter.api.AfterEach;
@@ -45,14 +45,14 @@ class BibliotecaControllerTest {
     void checkIfUserInputIsReceived() {
         String data = "1";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        ListBooks listBooks = mock(ListBooks.class);
+        BookList bookList = mock(BookList.class);
         Quit quit = mock(Quit.class);
-        Menu menu = new Menu(List.of(listBooks, quit));
+        Menu menu = new Menu(List.of(bookList, quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
-        verify(listBooks, times(1)).execute();
+        verify(bookList, times(1)).execute();
     }
 
     @Test
@@ -60,7 +60,7 @@ class BibliotecaControllerTest {
         String data = "6";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Quit quit = mock(Quit.class);
-        Menu menu = new Menu(List.of(mock(ListBooks.class), quit));
+        Menu menu = new Menu(List.of(mock(BookList.class), quit));
         UI ui = mock(UI.class);
         menu.setListener(ui);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
@@ -75,9 +75,9 @@ class BibliotecaControllerTest {
     void checkIfUserIsAbleToQuit() {
         String data = "2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        ListBooks listBooks = mock(ListBooks.class);
+        BookList bookList = mock(BookList.class);
         Quit quit = mock(Quit.class);
-        Menu menu = new Menu(List.of(listBooks, quit));
+        Menu menu = new Menu(List.of(bookList, quit));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
@@ -89,26 +89,26 @@ class BibliotecaControllerTest {
     void checkIfUserIsAbleToSelectCheckOutOptionAndProceed() {
         String data = "2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        CheckOutBook checkOutBook = mock(CheckOutBook.class);
-        Menu menu = new Menu(List.of(mock(ListBooks.class), checkOutBook, mock(Quit.class)));
+        BookCheckOut bookCheckOut = mock(BookCheckOut.class);
+        Menu menu = new Menu(List.of(mock(BookList.class), bookCheckOut, mock(Quit.class)));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
-        verify(checkOutBook, times(1)).execute();
+        verify(bookCheckOut, times(1)).execute();
     }
 
     @Test
     void checkIfUserIsAbleToReturnABook() {
         String data = "3";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
-        ReturnBook returnBook = mock(ReturnBook.class);
-        Menu menu = new Menu(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook, mock(Quit.class)));
+        BookReturn bookReturn = mock(BookReturn.class);
+        Menu menu = new Menu(List.of(mock(BookList.class), mock(BookCheckOut.class), bookReturn, mock(Quit.class)));
         BibliotecaController bibliotecaController = new BibliotecaController(menu, mock(UI.class));
 
         bibliotecaController.readUserInput();
 
-        verify(returnBook, times(1)).execute();
+        verify(bookReturn, times(1)).execute();
     }
 
     @Test

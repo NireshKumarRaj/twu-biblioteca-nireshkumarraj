@@ -2,12 +2,12 @@ package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
 
-public class ListBooks implements MenuItem {
+public class BookList implements MenuItem {
 
     private Library library;
     private final String name;
 
-    public ListBooks(Library library) {
+    public BookList(Library library) {
         this.library = library;
         name = "List Books";
     }

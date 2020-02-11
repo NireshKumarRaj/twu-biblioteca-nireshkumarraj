@@ -2,7 +2,6 @@ package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.InputReceiver;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -10,36 +9,33 @@ import java.io.InputStream;
 
 import static org.mockito.Mockito.*;
 
-class ReturnBookTest {
+class BookCheckOutTest {
+    @Test
+    void testShouldCheckIfCheckOutIsInvoked() {
+        InputStream inputStream = System.in;
+        System.setIn(new ByteArrayInputStream("Agile".getBytes()));
+        Library library = mock(Library.class);
+        BookCheckOut bookCheckOut = new BookCheckOut(library);
 
-    @AfterEach
-    public void reset(){
+        bookCheckOut.execute();
+
+        verify(library, times(1)).checkout("Agile");
+        System.setIn(inputStream);
         InputReceiver.getInputReceiver().reset();
     }
 
     @Test
-    void testShouldCheckIfReturnBookIsInvoked() {
-        InputStream inputStream = System.in;
-        System.setIn(new ByteArrayInputStream("Agile".getBytes()));
-        Library library = mock(Library.class);
-        ReturnBook returnBook = new ReturnBook(library);
-
-        returnBook.execute();
-
-        verify(library, times(1)).returnBook("Agile");
-        System.setIn(inputStream);
-    }
-
-    @Test
-    void testShouldCheckIfReturnBookNameIsReceivedFromUser() {
+    void testShouldCheckIfBookNameIsReceivedFromUser() {
         InputStream inputStream = System.in;
         System.setIn(new ByteArrayInputStream("Pragmatic Programmer".getBytes()));
         Library library = mock(Library.class);
-        ReturnBook returnBook = new ReturnBook(library);
+        BookCheckOut bookCheckOut = new BookCheckOut(library);
 
-        returnBook.execute();
+        bookCheckOut.execute();
 
-        verify(library, times(1)).returnBook("Pragmatic Programmer");
+        verify(library,times(1)).checkout("Pragmatic Programmer");
         System.setIn(inputStream);
+        InputReceiver.getInputReceiver().reset();
     }
+
 }

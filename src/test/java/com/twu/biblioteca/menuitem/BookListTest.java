@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-class ListBooksTest {
+class BookListTest {
     @Test
     void testShouldCheckIfBooksAreListed() {
         Library library = mock(Library.class);
-        ListBooks listBooks = new ListBooks(library);
+        BookList bookList = new BookList(library);
 
-        listBooks.execute();
+        bookList.execute();
 
         verify(library, times(1)).listAvailableBooks();
     }

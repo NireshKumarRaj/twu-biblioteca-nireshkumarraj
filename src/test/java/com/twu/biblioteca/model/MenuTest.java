@@ -13,17 +13,17 @@ import static org.mockito.Mockito.*;
 
 class MenuTest {
 
-    private ListBooks listBooksMenuItem;
-    private CheckOutBook checkOutBookMenuItem;
+    private BookList bookListMenuItem;
+    private BookCheckOut bookCheckOutMenuItem;
     private Quit quitMenuItem;
     private UI ui;
 
     @BeforeEach
     void setUp() {
-        listBooksMenuItem = mock(ListBooks.class);
-        when(listBooksMenuItem.getName()).thenReturn("List Books");
-        checkOutBookMenuItem = mock(CheckOutBook.class);
-        when(checkOutBookMenuItem.getName()).thenReturn("Checkout");
+        bookListMenuItem = mock(BookList.class);
+        when(bookListMenuItem.getName()).thenReturn("List Books");
+        bookCheckOutMenuItem = mock(BookCheckOut.class);
+        when(bookCheckOutMenuItem.getName()).thenReturn("Checkout");
         quitMenuItem = mock(Quit.class);
         when(quitMenuItem.getName()).thenReturn("Quit");
         ui = mock(UI.class);
@@ -31,7 +31,7 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfMenuIsDisplayed() { // TODO - what's in command line?
-        Menu menu = new Menu(Collections.singletonList(listBooksMenuItem));
+        Menu menu = new Menu(Collections.singletonList(bookListMenuItem));
         menu.setListener(ui);
 
         menu.displayMenuOptions();
@@ -41,7 +41,7 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfMenuWithMultipleItemsIsDisplayed() {
-        Menu menu = new Menu(Arrays.asList(listBooksMenuItem, quitMenuItem));
+        Menu menu = new Menu(Arrays.asList(bookListMenuItem, quitMenuItem));
         menu.setListener(ui);
 
         menu.displayMenuOptions();
@@ -51,7 +51,7 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
-        Menu menu = new Menu(Arrays.asList(listBooksMenuItem, checkOutBookMenuItem, quitMenuItem));
+        Menu menu = new Menu(Arrays.asList(bookListMenuItem, bookCheckOutMenuItem, quitMenuItem));
         menu.setListener(ui);
 
         menu.displayMenuOptions();
@@ -74,40 +74,40 @@ class MenuTest {
 
     @Test
     void testShouldCheckIfListBooksMenuItemIsInvoked() {
-        ListBooks listBooks = mock(ListBooks.class);
-        Menu menu = new Menu(List.of(listBooks));
+        BookList bookList = mock(BookList.class);
+        Menu menu = new Menu(List.of(bookList));
         int inputFromUser = 1;
 
         menu.execute(inputFromUser);
 
-        verify(listBooks, times(1)).execute();
+        verify(bookList, times(1)).execute();
     }
 
     @Test
     void testShouldCheckIfCheckOutMenuItemIsInvoked() {
-        CheckOutBook checkOutBook = mock(CheckOutBook.class);
-        Menu menu = new Menu(List.of(mock(ListBooks.class), checkOutBook));
+        BookCheckOut bookCheckOut = mock(BookCheckOut.class);
+        Menu menu = new Menu(List.of(mock(BookList.class), bookCheckOut));
         int inputFromUser = 2;
 
         menu.execute(inputFromUser);
 
-        verify(checkOutBook, times(1)).execute();
+        verify(bookCheckOut, times(1)).execute();
     }
 
     @Test
     void testShouldCheckIfReturnBookMenuItemIsInvoked() {
-        ReturnBook returnBook = mock(ReturnBook.class);
-        Menu menu = new Menu(List.of(mock(ListBooks.class), mock(CheckOutBook.class), returnBook));
+        BookReturn bookReturn = mock(BookReturn.class);
+        Menu menu = new Menu(List.of(mock(BookList.class), mock(BookCheckOut.class), bookReturn));
         int inputFromUser = 3;
 
         menu.execute(inputFromUser);
 
-        verify(returnBook, times(1)).execute();
+        verify(bookReturn, times(1)).execute();
     }
 
     @Test
     void testShouldCheckIfInvalidInputIsHandled() {
-        List<MenuItem> menuOptions = List.of(mock(ListBooks.class), mock(CheckOutBook.class), mock(ReturnBook.class), mock(Quit.class));
+        List<MenuItem> menuOptions = List.of(mock(BookList.class), mock(BookCheckOut.class), mock(BookReturn.class), mock(Quit.class));
         Menu menu = new Menu(menuOptions);
         UI ui = mock(UI.class);
         menu.setListener(ui);

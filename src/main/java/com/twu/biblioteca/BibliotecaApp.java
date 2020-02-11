@@ -1,9 +1,9 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.menuitem.CheckOutBook;
-import com.twu.biblioteca.menuitem.ListBooks;
+import com.twu.biblioteca.menuitem.BookCheckOut;
+import com.twu.biblioteca.menuitem.BookList;
+import com.twu.biblioteca.menuitem.BookReturn;
 import com.twu.biblioteca.menuitem.Quit;
-import com.twu.biblioteca.menuitem.ReturnBook;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
@@ -26,11 +26,11 @@ public class BibliotecaApp {
         List<Book> books = of(book1, book2, book3);
         library = new Library(books);
 
-        ListBooks listBooksMenuItem = new ListBooks(library);
-        CheckOutBook checkOutBookMenuItem = new CheckOutBook(library);
-        ReturnBook returnBookMenuItem = new ReturnBook(library);
+        BookList bookListMenuItem = new BookList(library);
+        BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library);
+        BookReturn bookReturnMenuItem = new BookReturn(library);
         Quit quitMenuItem = new Quit();
-        menu = new Menu(of(listBooksMenuItem, checkOutBookMenuItem, returnBookMenuItem, quitMenuItem));
+        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, quitMenuItem));
     }
 
     public static void main(String[] args) {
