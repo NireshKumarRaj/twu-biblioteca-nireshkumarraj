@@ -5,7 +5,7 @@ import com.twu.biblioteca.view.Customer;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MovieLibrary {
+public class MovieLibrary implements Model {
 
     private List<Movie> movies;
     private Customer customer;
