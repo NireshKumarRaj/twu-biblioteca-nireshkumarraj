@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 class UITest {
 
@@ -32,24 +31,20 @@ class UITest {
     }
 
     @Test
-    void testShouldCheckIfMenuIsDisplayed() {
-        Menu menu = mock(Menu.class);
-        UI ui = new UI(menu, mock(Library.class));
-        when(menu.getMenuOptions()).thenReturn(List.of("List Books", "Quit"));
+    void testShouldCheckIfGivenMessageIsPrinted() {
+        UI ui = new UI(mock(Menu.class), mock(Library.class));
 
-        ui.showMenu();
+        ui.display("Thank you and Enjoy the book");
 
-        assertEquals("1. List Books\n2. Quit\n", outContent.toString());
+        assertEquals("Thank you and Enjoy the book\n", outContent.toString());
     }
 
     @Test
-    void testShouldCheckIfListOfBooksAreDisplayed() {
-        Library library = mock(Library.class);
-        when(library.getAvailableBooks()).thenReturn(List.of("Pragmatic Programmer | Andy Hunt | 1999"));
-        UI ui = new UI(mock(Menu.class), library);
+    void testShouldCheckIfGivenListIsPrinted() {
+        UI ui = new UI(mock(Menu.class), mock(Library.class));
 
-        ui.showBooks();
+        ui.display(List.of("List Books", "Quit"));
 
-        assertEquals("1. Pragmatic Programmer | Andy Hunt | 1999", outContent.toString().trim());
+        assertEquals("1. List Books\n2. Quit\n", outContent.toString());
     }
 }

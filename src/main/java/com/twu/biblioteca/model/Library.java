@@ -57,4 +57,8 @@ public class Library {
     public void setListener(Customer customer) {
         this.customer = customer;
     }
+
+    public void notifyListener(String message) {
+        this.customer.display(message);
+    }
 }

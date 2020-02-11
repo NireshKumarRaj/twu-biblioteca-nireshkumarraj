@@ -15,8 +15,8 @@ public class Menu {
         this.menuOptions = menuOptions;
     }
 
-    public List<String> getMenuOptions() {
-        return menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList());
+    public void displayMenuOptions() {
+        this.customer.display(menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList()));
     }
 
     public boolean isQuit(int input) {

@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class MenuTest {
@@ -17,6 +16,7 @@ class MenuTest {
     private ListBooks listBooksMenuItem;
     private CheckOutBook checkOutBookMenuItem;
     private Quit quitMenuItem;
+    private UI ui;
 
     @BeforeEach
     void setUp() {
@@ -26,33 +26,37 @@ class MenuTest {
         when(checkOutBookMenuItem.getName()).thenReturn("Checkout");
         quitMenuItem = mock(Quit.class);
         when(quitMenuItem.getName()).thenReturn("Quit");
+        ui = mock(UI.class);
     }
 
     @Test
     void testShouldCheckIfMenuIsDisplayed() { // TODO - what's in command line?
         Menu menu = new Menu(Collections.singletonList(listBooksMenuItem));
+        menu.setListener(ui);
 
-        List<String> menuOptions = menu.getMenuOptions();
+        menu.displayMenuOptions();
 
-        assertEquals(List.of("List Books"), menuOptions);
+        verify(ui, times(1)).display(List.of("List Books"));
     }
 
     @Test
     void testShouldCheckIfMenuWithMultipleItemsIsDisplayed() {
         Menu menu = new Menu(Arrays.asList(listBooksMenuItem, quitMenuItem));
+        menu.setListener(ui);
 
-        List<String> menuOptions = menu.getMenuOptions();
+        menu.displayMenuOptions();
 
-        assertEquals(List.of("List Books", "Quit"), menuOptions);
+        verify(ui, times(1)).display(List.of("List Books", "Quit"));
     }
 
     @Test
     void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
         Menu menu = new Menu(Arrays.asList(listBooksMenuItem, checkOutBookMenuItem, quitMenuItem));
+        menu.setListener(ui);
 
-        List<String> menuOptions = menu.getMenuOptions();
+        menu.displayMenuOptions();
 
-        assertEquals(List.of("List Books", "Checkout", "Quit"), menuOptions);
+        verify(ui, times(1)).display(List.of("List Books", "Checkout", "Quit"));
     }
 
     @Test
@@ -60,10 +64,12 @@ class MenuTest {
         MenuItem menuItem = mock(MenuItem.class);
         when(menuItem.getName()).thenReturn("List Books");
         Menu menu = new Menu(List.of(menuItem));
+        menu.setListener(ui);
 
-        List<String> menuOptions = menu.getMenuOptions();
+        menu.displayMenuOptions();
 
-        assertEquals(List.of("List Books"), menuOptions);
+        verify(ui, times(1)).display(List.of("List Books"));
+
     }
 
     @Test
@@ -111,14 +117,5 @@ class MenuTest {
 
         String expected = "Please select a valid option!";
         verify(ui, times(1)).display(expected);
-    }
-
-    @Test
-    void testShouldCheckIfMenuOptionsAreReturned() { // TODO - what's in command line?
-        Menu menu = new Menu(List.of(listBooksMenuItem));
-
-        List<String> menuOptions = menu.getMenuOptions();
-
-        assertEquals(List.of("List Books"), menuOptions);
     }
 }

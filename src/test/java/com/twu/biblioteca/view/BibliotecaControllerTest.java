@@ -131,6 +131,6 @@ class BibliotecaControllerTest {
         bibliotecaController.displayWelcomeMessage();
 
         String expected = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
-        verify(ui, times(1)).showMessage(expected);
+        verify(ui, times(1)).display(expected);
     }
 }

@@ -14,7 +14,7 @@ public class BibliotecaController {
     }
 
     private int getMenuOption() {
-        ui.showMessage("Enter input: ");
+        ui.display("Enter input: ");
         return Integer.parseInt(InputReceiver.getInputReceiver().readLine());
     }
 
@@ -27,13 +27,13 @@ public class BibliotecaController {
     public void start() {
         displayWelcomeMessage();
         do {
-            ui.showMenu();
+            menu.displayMenuOptions();
             readUserInput();
         } while (!isQuit);
     }
 
     void displayWelcomeMessage() {
         String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
-        ui.showMessage(WELCOME_MESSAGE);
+        ui.display(WELCOME_MESSAGE);
     }
 }
