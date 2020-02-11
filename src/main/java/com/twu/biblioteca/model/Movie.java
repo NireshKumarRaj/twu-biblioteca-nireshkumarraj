@@ -18,4 +18,8 @@ public class Movie {
         final String SEPARATOR = " | ";
         return name + SEPARATOR + yearPublished + SEPARATOR + director + SEPARATOR + rating;
     }
+
+    public boolean is(String movie) {
+        return movie.equals(name);
+    }
 }
