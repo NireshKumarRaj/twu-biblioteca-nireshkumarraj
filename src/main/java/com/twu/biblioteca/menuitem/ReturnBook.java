@@ -15,7 +15,7 @@ public class ReturnBook implements MenuItem {
 
     @Override
     public void execute() {
-        System.out.println("Enter name of the book you want to return: ");
+        library.notifyListener("Enter name of the book you want to return: ");
         String bookName = InputReceiver.getInputReceiver().readLine();
         library.returnBook(bookName);
     }
