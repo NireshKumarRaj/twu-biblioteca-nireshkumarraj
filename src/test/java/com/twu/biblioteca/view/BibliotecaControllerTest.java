@@ -114,7 +114,7 @@ class BibliotecaControllerTest {
     @Test
     public void testShouldCheckIfWelcomeMessageIsPrinted() {
         Menu menu = mock(Menu.class);
-        UI ui = new UI(menu, mock(Library.class));
+        UI ui = new UI(menu, mock(Library.class), System.out);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
         bibliotecaController.displayWelcomeMessage();

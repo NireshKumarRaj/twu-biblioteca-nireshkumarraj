@@ -32,7 +32,7 @@ class UITest {
 
     @Test
     void testShouldCheckIfGivenMessageIsPrinted() {
-        UI ui = new UI(mock(Menu.class), mock(Library.class));
+        UI ui = new UI(mock(Menu.class), mock(Library.class), System.out);
 
         ui.display("Thank you and Enjoy the book");
 
@@ -41,7 +41,7 @@ class UITest {
 
     @Test
     void testShouldCheckIfGivenListIsPrinted() {
-        UI ui = new UI(mock(Menu.class), mock(Library.class));
+        UI ui = new UI(mock(Menu.class), mock(Library.class), System.out);
 
         ui.display(List.of("List Books", "Quit"));
 
