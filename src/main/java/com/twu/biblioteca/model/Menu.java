@@ -1,5 +1,6 @@
 package com.twu.biblioteca.model;
 
+import com.twu.biblioteca.menuitem.Auth;
 import com.twu.biblioteca.menuitem.MenuItem;
 import com.twu.biblioteca.view.View;
 
@@ -18,6 +19,7 @@ public class Menu implements Model {
     public void displayMenuOptions() {
         this.view.display("---- Menu -----");
         this.view.display(menuOptions.stream()
+                .filter(menuItem -> view.isLoggedIn() || !(menuItem instanceof Auth))
                 .map(MenuItem::getName)
                 .collect(Collectors.toList()));
     }

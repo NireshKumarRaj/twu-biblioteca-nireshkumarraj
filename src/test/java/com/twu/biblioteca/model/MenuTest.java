@@ -52,6 +52,7 @@ class MenuTest {
     @Test
     void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
         Menu menu = new Menu(Arrays.asList(bookListMenuItem, bookCheckOutMenuItem, quitMenuItem));
+        ui.setLoggedIn(true);
         menu.setListener(ui);
 
         menu.displayMenuOptions();
@@ -117,5 +118,22 @@ class MenuTest {
 
         String expected = "Please select a valid option!";
         verify(ui, times(1)).display(expected);
+    }
+
+    @Test
+    void testShouldCheckIfAuthMenuIsNotDisplayed() {
+        BookList bookListMenuItem = mock(BookList.class);
+        Quit quitMenuItem = mock(Quit.class);
+        when(bookListMenuItem.getName()).thenReturn("List Books");
+        when(quitMenuItem.getName()).thenReturn("Quit");
+        List<MenuItem> menuOptions = List.of(bookListMenuItem, mock(BookCheckOut.class), mock(BookReturn.class), quitMenuItem);
+        Menu menu = new Menu(menuOptions);
+        UI ui = mock(UI.class);
+        when(ui.isLoggedIn()).thenReturn(false);
+        menu.setListener(ui);
+
+        menu.displayMenuOptions();
+
+        verify(ui, times(1)).display(List.of("List Books", "Quit"));
     }
 }
