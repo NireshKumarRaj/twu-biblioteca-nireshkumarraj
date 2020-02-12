@@ -14,6 +14,7 @@ public class BibliotecaApp {
     private Library library;
     private Menu menu;
     private MovieLibrary movieLibrary;
+    private Authenticator authenticator;
 
     public BibliotecaApp() {
         Book book1 = new Book("Pragmatic Programmer", "Andy Hunt", 1998);
@@ -33,7 +34,8 @@ public class BibliotecaApp {
         BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library);
         BookReturn bookReturnMenuItem = new BookReturn(library);
         MovieList movieListMenuItem = new MovieList(movieLibrary);
-        LoginMenuItem loginMenuItem = new LoginMenuItem(new Authenticator());
+        authenticator = new Authenticator();
+        LoginMenuItem loginMenuItem = new LoginMenuItem(authenticator);
         Quit quitMenuItem = new Quit();
         menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, movieListMenuItem, loginMenuItem, quitMenuItem));
     }
@@ -47,6 +49,7 @@ public class BibliotecaApp {
         ui.addModel(menu);
         ui.addModel(library);
         ui.addModel(movieLibrary);
+        ui.addModel(authenticator);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
         bibliotecaController.start();
     }

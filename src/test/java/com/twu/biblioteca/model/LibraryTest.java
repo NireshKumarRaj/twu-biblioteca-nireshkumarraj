@@ -101,11 +101,4 @@ class LibraryTest {
 
         verify(ui, times(1)).display(expected);
     }
-
-    @Test
-    void test() {
-
-        library.checkout("Agile");
-
-    }
 }

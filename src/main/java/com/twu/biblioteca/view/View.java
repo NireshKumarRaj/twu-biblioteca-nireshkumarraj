@@ -10,4 +10,8 @@ public interface View {
     boolean isLoggedIn();
 
     void setLoggedIn(boolean isLoggedIn);
+
+    void setLoggedInUser(String user);
+
+    String getLoggedInUser();
 }

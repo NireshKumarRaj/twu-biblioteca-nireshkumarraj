@@ -8,6 +8,7 @@ import java.util.List;
 public class UI implements View {
 
     private final PrintStream outputWriter;
+    private String loggedInUser;
     private boolean isLoggedIn;
 
     public UI(PrintStream outputWriter) {
@@ -35,6 +36,16 @@ public class UI implements View {
     @Override
     public boolean isLoggedIn() {
         return isLoggedIn;
+    }
+
+    @Override
+    public void setLoggedInUser(String loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
+
+    @Override
+    public String getLoggedInUser() {
+        return loggedInUser;
     }
 
     @Override

@@ -29,4 +29,8 @@ public class Authenticator implements Model {
     public void setUserLogin(boolean isLoggedIn) {
         view.setLoggedIn(isLoggedIn);
     }
+
+    public void setLoggedInUser(String userName) {
+        view.setLoggedInUser(userName);
+    }
 }

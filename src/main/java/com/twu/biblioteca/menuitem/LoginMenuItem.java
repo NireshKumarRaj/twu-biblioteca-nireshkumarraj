@@ -22,6 +22,7 @@ public class LoginMenuItem implements MenuItem {
         boolean authResult = authenticator.authenticate(userName, password);
         if (authResult) {
             authenticator.setUserLogin(true);
+            authenticator.setLoggedInUser(userName);
             authenticator.notifyListener("Your login is successful");
         } else {
             authenticator.notifyListener("Sorry! Invalid credentials.");
