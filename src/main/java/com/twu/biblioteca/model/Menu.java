@@ -17,7 +17,9 @@ public class Menu implements Model {
 
     public void displayMenuOptions() {
         this.view.display("---- Menu -----");
-        this.view.display(menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList()));
+        this.view.display(menuOptions.stream()
+                .map(MenuItem::getName)
+                .collect(Collectors.toList()));
     }
 
     public boolean isQuit(int input) {

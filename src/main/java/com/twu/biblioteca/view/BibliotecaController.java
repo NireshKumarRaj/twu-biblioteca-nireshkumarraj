@@ -1,6 +1,5 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.model.Authenticator;
 import com.twu.biblioteca.model.Menu;
 
 public class BibliotecaController {
@@ -31,15 +30,6 @@ public class BibliotecaController {
             menu.displayMenuOptions();
             readUserInput();
         } while (!isQuit);
-    }
-
-    public void login() {
-        ui.display("Please Login to continue:");
-        ui.display("Enter username: ");
-        String userName = InputReceiver.getInputReceiver().readLine();
-        ui.display("Enter password: ");
-        String password = InputReceiver.getInputReceiver().readLine();
-        new Authenticator().authenticate(userName, password);
     }
 
     void displayWelcomeMessage() {

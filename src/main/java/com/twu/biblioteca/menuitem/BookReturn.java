@@ -3,7 +3,7 @@ package com.twu.biblioteca.menuitem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.InputReceiver;
 
-public class BookReturn implements MenuItem {
+public class BookReturn implements MenuItem, Auth {
 
     private final String name;
     private Library library;

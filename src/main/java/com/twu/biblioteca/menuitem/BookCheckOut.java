@@ -3,7 +3,7 @@ package com.twu.biblioteca.menuitem;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.InputReceiver;
 
-public class BookCheckOut implements MenuItem {
+public class BookCheckOut implements MenuItem, Auth {
 
     private Library library;
     private final String name;
