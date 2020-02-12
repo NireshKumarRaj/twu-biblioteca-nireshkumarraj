@@ -11,14 +11,11 @@ import java.io.PrintStream;
 
 public class BibliotecaTest {
     private PrintStream originalOut;
-    private BibliotecaApp bibliotecaApp;
-    private ByteArrayOutputStream outContent;
     private InputStream originalIn;
 
     @BeforeEach
     void setUp() {
-        bibliotecaApp = new BibliotecaApp();
-        outContent = new ByteArrayOutputStream();
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         originalOut = System.out;
         System.setOut(new PrintStream(outContent));
         originalIn = System.in;

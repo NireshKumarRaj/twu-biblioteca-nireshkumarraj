@@ -1,13 +1,12 @@
-package com.twu.biblioteca.view;
+package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.controller.BibliotecaController;
-import com.twu.biblioteca.controller.InputReceiver;
 import com.twu.biblioteca.menuitem.BookCheckOut;
 import com.twu.biblioteca.menuitem.BookList;
 import com.twu.biblioteca.menuitem.BookReturn;
 import com.twu.biblioteca.menuitem.Quit;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Menu;
+import com.twu.biblioteca.view.UI;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

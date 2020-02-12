@@ -1,7 +1,5 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.model.Authenticator;
-import com.twu.biblioteca.model.User;
 import com.twu.biblioteca.view.UI;
 import org.junit.jupiter.api.Test;
 

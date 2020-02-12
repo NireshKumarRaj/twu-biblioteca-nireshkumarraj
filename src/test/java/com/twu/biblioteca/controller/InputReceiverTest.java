@@ -1,6 +1,5 @@
-package com.twu.biblioteca.view;
+package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.controller.InputReceiver;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
