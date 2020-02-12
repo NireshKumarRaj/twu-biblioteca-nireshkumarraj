@@ -9,7 +9,7 @@ public class BookCheckOut implements MenuItem, Auth {
     private final String name;
 
     public BookCheckOut(Library library) {
-        name = "Checkout";
+        name = "Checkout Book";
         this.library = library;
     }
 
