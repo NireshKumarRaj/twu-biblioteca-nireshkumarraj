@@ -52,7 +52,7 @@ class MenuTest {
     @Test
     void testShouldCheckIfMenuWithCheckoutOptionIsDisplayed() {
         Menu menu = new Menu(Arrays.asList(bookListMenuItem, bookCheckOutMenuItem, quitMenuItem));
-        ui.setLoggedIn(true);
+        when(ui.isLoggedIn()).thenReturn(true);
         menu.setListener(ui);
 
         menu.displayMenuOptions();
@@ -77,6 +77,7 @@ class MenuTest {
     void testShouldCheckIfListBooksMenuItemIsInvoked() {
         BookList bookList = mock(BookList.class);
         Menu menu = new Menu(List.of(bookList));
+        menu.setListener(ui);
         int inputFromUser = 1;
 
         menu.execute(inputFromUser);
@@ -88,6 +89,8 @@ class MenuTest {
     void testShouldCheckIfCheckOutMenuItemIsInvoked() {
         BookCheckOut bookCheckOut = mock(BookCheckOut.class);
         Menu menu = new Menu(List.of(mock(BookList.class), bookCheckOut));
+        menu.setListener(ui);
+        when(ui.isLoggedIn()).thenReturn(true);
         int inputFromUser = 2;
 
         menu.execute(inputFromUser);
@@ -99,6 +102,8 @@ class MenuTest {
     void testShouldCheckIfReturnBookMenuItemIsInvoked() {
         BookReturn bookReturn = mock(BookReturn.class);
         Menu menu = new Menu(List.of(mock(BookList.class), mock(BookCheckOut.class), bookReturn));
+        when(ui.isLoggedIn()).thenReturn(true);
+        menu.setListener(ui);
         int inputFromUser = 3;
 
         menu.execute(inputFromUser);
@@ -135,5 +140,21 @@ class MenuTest {
         menu.displayMenuOptions();
 
         verify(ui, times(1)).display(List.of("List Books", "Quit"));
+    }
+
+    @Test
+    void testShouldExecuteCorrectMenuItemWhenNotLoggedIn() {
+        LoginMenuItem loginMenuItem = mock(LoginMenuItem.class);
+        BookCheckOut bookCheckOutMenuItem = mock(BookCheckOut.class);
+        List<MenuItem> menuOptions = List.of(mock(BookList.class), bookCheckOutMenuItem, mock(BookReturn.class), loginMenuItem, mock(Quit.class));
+        Menu menu = new Menu(menuOptions);
+        UI ui = mock(UI.class);
+        when(ui.isLoggedIn()).thenReturn(false);
+        menu.setListener(ui);
+
+        menu.execute(2);
+
+        verify(bookCheckOutMenuItem, times(0)).execute();
+        verify(loginMenuItem, times(1)).execute();
     }
 }

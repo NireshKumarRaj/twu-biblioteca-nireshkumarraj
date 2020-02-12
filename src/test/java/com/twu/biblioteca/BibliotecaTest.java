@@ -3,14 +3,10 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.view.InputReceiver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class BibliotecaTest {
@@ -35,12 +31,4 @@ public class BibliotecaTest {
         InputReceiver.getInputReceiver().reset();
     }
 
-    @Test
-    public void testIfWelcomeMessageIsDisplayedWhenStartIsInvoked() {
-        System.setIn(new ByteArrayInputStream("1\n5".getBytes()));
-
-        bibliotecaApp.start();
-
-        assertTrue(outContent.toString().contains("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!"));
-    }
 }

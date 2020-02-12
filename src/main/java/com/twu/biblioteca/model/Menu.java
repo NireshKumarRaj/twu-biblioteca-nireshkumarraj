@@ -34,7 +34,12 @@ public class Menu implements Model {
             view.display(INVALID_OPTION_MESSAGE);
             return;
         }
-        menuOptions.get(inputFromUser - 1).execute();
+        if (view.isLoggedIn())
+            menuOptions.get(inputFromUser - 1).execute();
+        else {
+            List<MenuItem> unAuthMenuItems = menuOptions.stream().filter(menuItem -> !(menuItem instanceof Auth)).collect(Collectors.toList());
+            unAuthMenuItems.get(inputFromUser - 1).execute();
+        }
     }
 
     public void setListener(View view) {

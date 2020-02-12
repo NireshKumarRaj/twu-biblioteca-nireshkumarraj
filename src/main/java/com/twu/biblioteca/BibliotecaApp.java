@@ -33,8 +33,9 @@ public class BibliotecaApp {
         BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library);
         BookReturn bookReturnMenuItem = new BookReturn(library);
         MovieList movieListMenuItem = new MovieList(movieLibrary);
+        LoginMenuItem loginMenuItem = new LoginMenuItem(new Authenticator());
         Quit quitMenuItem = new Quit();
-        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, movieListMenuItem, quitMenuItem));
+        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, movieListMenuItem, loginMenuItem, quitMenuItem));
     }
 
     public static void main(String[] args) {
