@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menuitem;
 
-import com.twu.biblioteca.Authenticator;
+import com.twu.biblioteca.model.Authenticator;
+import com.twu.biblioteca.view.InputReceiver;
 
 public class LoginMenuItem implements MenuItem {
 
@@ -14,7 +15,11 @@ public class LoginMenuItem implements MenuItem {
 
     @Override
     public void execute() {
-        authenticator.authenticate("123-4567", "test1");
+        authenticator.notifyListener("Enter username:");
+        String userName = InputReceiver.getInputReceiver().readLine();
+        authenticator.notifyListener("Enter password: ");
+        String password = InputReceiver.getInputReceiver().readLine();
+        authenticator.authenticate(userName, password);
     }
 
     @Override

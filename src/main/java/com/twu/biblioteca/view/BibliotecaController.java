@@ -1,6 +1,6 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.Authenticator;
+import com.twu.biblioteca.model.Authenticator;
 import com.twu.biblioteca.model.Menu;
 
 public class BibliotecaController {
