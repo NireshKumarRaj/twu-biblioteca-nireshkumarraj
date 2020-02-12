@@ -18,7 +18,9 @@ public class BookCheckOut implements MenuItem {
 
     @Override
     public void execute() {
-        authenticator.authenticate("123-4567", "test1");
+        String userName = InputReceiver.getInputReceiver().readLine();
+        String password = InputReceiver.getInputReceiver().readLine();
+        authenticator.authenticate(userName, password);
         library.notifyListener("Enter Book Name: ");
         String bookName = InputReceiver.getInputReceiver().readLine();
         library.checkout(bookName);
