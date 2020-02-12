@@ -29,12 +29,16 @@ public class BibliotecaApp {
         List<Movie> movies = of(movie1, movie2, movie3);
         movieLibrary = new MovieLibrary(movies);
 
+        User user1 = new User("name", "email", "+919941980802", "123-4567", "test1");
+        User user2 = new User("name", "email", "+919941980802", "123-4568", "test1");
+        User user3 = new User("name", "email", "+919941980802", "123-4569", "test1");
+
 
         BookList bookListMenuItem = new BookList(library);
         BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library);
         BookReturn bookReturnMenuItem = new BookReturn(library);
         MovieList movieListMenuItem = new MovieList(movieLibrary);
-        authenticator = new Authenticator();
+        authenticator = new Authenticator(of(user1, user2, user3));
         LoginMenuItem loginMenuItem = new LoginMenuItem(authenticator);
         Quit quitMenuItem = new Quit();
         menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, movieListMenuItem, loginMenuItem, quitMenuItem));

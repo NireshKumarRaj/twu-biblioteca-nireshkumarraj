@@ -9,11 +9,8 @@ public class Authenticator implements Model {
     private List<User> users;
     private View view;
 
-    public Authenticator() {
-        User user1 = new User("name", "email", "+919941980802", "123-4567", "test1");
-        User user2 = new User("name", "email", "+919941980802", "123-4568", "test1");
-        User user3 = new User("name", "email", "+919941980802", "123-4569", "test1");
-        users = List.of(user1, user2, user3);
+    public Authenticator(List<User> users) {
+        this.users = users;
     }
 
     public boolean authenticate(String libraryNumber, String password) {
