@@ -44,4 +44,17 @@ class MovieLibraryTest {
 
         verify(ui, times(1)).display("Sorry, that movie is not available");
     }
+
+    @Test
+    void testShouldNotBeAbleToCheckOutAnAlreadyCheckedOutMovie() {
+        Movie movie = new Movie("The Social Network", 2010, "Mark", 8);
+        MovieLibrary movieLibrary = new MovieLibrary(List.of(movie));
+        UI ui = mock(UI.class);
+        movieLibrary.setListener(ui);
+
+        movieLibrary.checkout("The Social Network");
+        movieLibrary.checkout("The Social Network");
+
+        verify(ui, times(1)).display("Sorry, that movie is not available");
+    }
 }

@@ -28,7 +28,10 @@ public class MovieLibrary implements Model {
     }
 
     public void checkout(String movieName) {
-        Optional<Movie> movie = movies.stream().filter(movieItem -> movieItem.is(movieName)).findFirst();
+        Optional<Movie> movie = movies.stream()
+                .filter(movieItem -> movieItem.is(movieName))
+                .filter(movieItem -> !checkedOutMovies.contains(movieItem))
+                .findFirst();
         if (movie.isPresent()) {
             checkedOutMovies.add(movie.get());
             view.display("Thank you! Enjoy the movie");
