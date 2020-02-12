@@ -31,4 +31,17 @@ class LoginMenuItemTest {
         verify(authenticator, times(1)).authenticate("156-6578", "test1");
         System.setIn(inputStream);
     }
+
+    @Test
+    void testShouldBeAbleToNotifyUponSuccessfulLogin() {
+        InputStream inputStream = System.in;
+        System.setIn(new ByteArrayInputStream("156-6578\ntest1".getBytes()));
+        Authenticator authenticator = mock(Authenticator.class);
+        LoginMenuItem loginMenuItem = new LoginMenuItem(authenticator);
+
+        loginMenuItem.execute();
+
+        verify(authenticator, times(1)).notifyListener("Your login is successful");
+        System.setIn(inputStream);
+    }
 }

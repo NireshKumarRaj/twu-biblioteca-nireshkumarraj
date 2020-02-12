@@ -20,6 +20,7 @@ public class LoginMenuItem implements MenuItem {
         authenticator.notifyListener("Enter password: ");
         String password = InputReceiver.getInputReceiver().readLine();
         authenticator.authenticate(userName, password);
+        authenticator.notifyListener("Your login is successful");
     }
 
     @Override
