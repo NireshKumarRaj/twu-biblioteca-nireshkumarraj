@@ -1,6 +1,7 @@
-package com.twu.biblioteca.view;
+package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.model.Menu;
+import com.twu.biblioteca.view.UI;
 
 public class BibliotecaController {
 
@@ -32,7 +33,7 @@ public class BibliotecaController {
         } while (!isQuit);
     }
 
-    void displayWelcomeMessage() {
+    public void displayWelcomeMessage() {
         String WELCOME_MESSAGE = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
         ui.display(WELCOME_MESSAGE);
     }

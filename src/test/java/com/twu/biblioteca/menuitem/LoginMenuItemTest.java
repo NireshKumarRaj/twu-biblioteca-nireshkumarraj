@@ -1,8 +1,8 @@
 package com.twu.biblioteca.menuitem;
 
+import com.twu.biblioteca.controller.InputReceiver;
 import com.twu.biblioteca.model.Authenticator;
 import com.twu.biblioteca.model.User;
-import com.twu.biblioteca.view.InputReceiver;
 import com.twu.biblioteca.view.UI;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

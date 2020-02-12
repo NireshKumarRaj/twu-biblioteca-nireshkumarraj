@@ -1,5 +1,7 @@
 package com.twu.biblioteca.view;
 
+import com.twu.biblioteca.controller.BibliotecaController;
+import com.twu.biblioteca.controller.InputReceiver;
 import com.twu.biblioteca.menuitem.BookCheckOut;
 import com.twu.biblioteca.menuitem.BookList;
 import com.twu.biblioteca.menuitem.BookReturn;

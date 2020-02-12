@@ -1,6 +1,6 @@
 package com.twu.biblioteca.menuitem;
 
-import com.twu.biblioteca.view.InputReceiver;
+import com.twu.biblioteca.controller.InputReceiver;
 
 public class Quit implements MenuItem{
 

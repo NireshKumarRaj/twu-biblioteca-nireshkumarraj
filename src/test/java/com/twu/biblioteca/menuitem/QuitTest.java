@@ -1,6 +1,6 @@
 package com.twu.biblioteca.menuitem;
 
-import com.twu.biblioteca.view.InputReceiver;
+import com.twu.biblioteca.controller.InputReceiver;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

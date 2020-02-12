@@ -1,7 +1,7 @@
 package com.twu.biblioteca.menuitem;
 
+import com.twu.biblioteca.controller.InputReceiver;
 import com.twu.biblioteca.model.MovieLibrary;
-import com.twu.biblioteca.view.InputReceiver;
 
 public class MovieCheckOut implements MenuItem, Auth {
 

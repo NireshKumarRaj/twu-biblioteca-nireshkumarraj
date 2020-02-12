@@ -56,7 +56,6 @@ public class Library implements Model {
         }
     }
 
-
     public void setListener(View view) {
         this.view = view;
     }

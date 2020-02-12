@@ -1,8 +1,8 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.controller.BibliotecaController;
 import com.twu.biblioteca.menuitem.*;
 import com.twu.biblioteca.model.*;
-import com.twu.biblioteca.view.BibliotecaController;
 import com.twu.biblioteca.view.UI;
 
 import java.util.List;
