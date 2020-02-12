@@ -27,6 +27,11 @@ public class MovieLibrary implements Model {
         this.view = view;
     }
 
+    @Override
+    public void notifyListener(String message) {
+        view.display(message);
+    }
+
     public void checkout(String movieName) {
         Optional<Movie> movie = movies.stream()
                 .filter(movieItem -> movieItem.is(movieName))
@@ -34,9 +39,9 @@ public class MovieLibrary implements Model {
                 .findFirst();
         if (movie.isPresent()) {
             checkedOutMovies.add(movie.get());
-            view.display("Thank you! Enjoy the movie");
+            notifyListener("Thank you! Enjoy the movie");
         } else {
-            view.display("Sorry, that movie is not available");
+            notifyListener("Sorry, that movie is not available");
         }
     }
 }

@@ -4,4 +4,6 @@ import com.twu.biblioteca.view.View;
 
 public interface Model {
     void setListener(View view);
+
+    void notifyListener(String message);
 }

@@ -40,8 +40,9 @@ public class BibliotecaApp {
         MovieList movieListMenuItem = new MovieList(movieLibrary);
         authenticator = new Authenticator(of(user1, user2, user3));
         LoginMenuItem loginMenuItem = new LoginMenuItem(authenticator);
+        ViewUser viewUserMenuItem = new ViewUser();
         Quit quitMenuItem = new Quit();
-        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, movieListMenuItem, loginMenuItem, quitMenuItem));
+        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, bookReturnMenuItem, movieListMenuItem, loginMenuItem, viewUserMenuItem, quitMenuItem));
     }
 
     public static void main(String[] args) {

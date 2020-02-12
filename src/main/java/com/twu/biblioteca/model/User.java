@@ -22,12 +22,17 @@ public class User implements Model {
 
     public void getDetails() {
         String details = String.format("Name : %s\nEmail : %s\nMobile : %s", name, email, mobileNumber);
-        view.display(details);
+        notifyListener(details);
     }
 
     @Override
     public void setListener(View view) {
         this.view = view;
+    }
+
+    @Override
+    public void notifyListener(String message) {
+        view.display(message);
     }
 
     public boolean is(String libraryNumber, String password) {

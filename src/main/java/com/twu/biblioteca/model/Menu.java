@@ -31,7 +31,7 @@ public class Menu implements Model {
     public void execute(int inputFromUser) {
         final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
         if (inputFromUser > menuOptions.size()) {
-            view.display(INVALID_OPTION_MESSAGE);
+            notifyListener(INVALID_OPTION_MESSAGE);
             return;
         }
         if (view.isLoggedIn())
@@ -44,5 +44,10 @@ public class Menu implements Model {
 
     public void setListener(View view) {
         this.view = view;
+    }
+
+    @Override
+    public void notifyListener(String message) {
+        view.display(message);
     }
 }
