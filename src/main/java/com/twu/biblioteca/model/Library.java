@@ -56,11 +56,23 @@ public class Library implements Model {
         }
     }
 
+
     public void setListener(View view) {
         this.view = view;
     }
 
     public void notifyListener(String message) {
         this.view.display(message);
+    }
+
+    public void listCheckOutBooks() {
+        User loggedInUser = view.getLoggedInUser();
+        List<String> userCheckedOutBooks = checkedOutBooks
+                .entrySet()
+                .stream()
+                .filter(bookUserEntry -> bookUserEntry.getValue().equals(loggedInUser))
+                .map(bookUserEntry -> bookUserEntry.getKey().getDetails())
+                .collect(Collectors.toList());
+        view.display(userCheckedOutBooks);
     }
 }

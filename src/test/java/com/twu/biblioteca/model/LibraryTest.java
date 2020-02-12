@@ -101,4 +101,15 @@ class LibraryTest {
 
         verify(ui, times(1)).display(expected);
     }
+
+    @Test
+    void testShouldDisplayListOfCheckedOutBooks() {
+        User user = mock(User.class);
+        when(ui.getLoggedInUser()).thenReturn(user);
+        library.checkout("Agile");
+
+        library.listCheckOutBooks();
+
+        verify(ui, times(1)).display(List.of("Agile | Andy | 1998"));
+    }
 }

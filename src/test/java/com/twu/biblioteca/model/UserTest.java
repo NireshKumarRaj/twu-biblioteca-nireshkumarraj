@@ -27,4 +27,14 @@ class UserTest {
 
         assertTrue(result);
     }
+
+    @Test
+    void testShouldCheckIfTwoUsersAreSame() {
+        User user1 = new User("name", "email", "+919941980802", "123-4567", "test1");
+        User user2 = new User("name", "email", "+919941980802", "123-4567", "test1");
+
+        boolean result = user1.equals(user2);
+
+        assertTrue(result);
+    }
 }
