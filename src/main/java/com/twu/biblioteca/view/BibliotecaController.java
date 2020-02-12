@@ -18,7 +18,7 @@ public class BibliotecaController {
         return Integer.parseInt(InputReceiver.getInputReceiver().readLine());
     }
 
-    void readUserInput() {
+    private void readUserInput() {
         int inputFromUser = getMenuOption();
         menu.execute(inputFromUser);
         isQuit = menu.isQuit(inputFromUser);

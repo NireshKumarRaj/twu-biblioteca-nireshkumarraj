@@ -40,7 +40,7 @@ class BibliotecaControllerTest {
 
     @Test
     void checkIfUserInputIsReceived() {
-        String data = "1";
+        String data = "1\n2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         BookList bookList = mock(BookList.class);
         Quit quit = mock(Quit.class);
@@ -48,21 +48,21 @@ class BibliotecaControllerTest {
         menu.setListener(ui);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
-        bibliotecaController.readUserInput();
+        bibliotecaController.start();
 
         verify(bookList, times(1)).execute();
     }
 
     @Test
     void checkIfUserEntersInvalidOption() {
-        String data = "6";
+        String data = "6\n2";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         Quit quit = mock(Quit.class);
         Menu menu = new Menu(List.of(mock(BookList.class), quit));
         menu.setListener(ui);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
-        bibliotecaController.readUserInput();
+        bibliotecaController.start();
 
         String expected = "Please select a valid option!";
         verify(ui, times(1)).display(expected);
@@ -78,35 +78,35 @@ class BibliotecaControllerTest {
         menu.setListener(ui);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
-        bibliotecaController.readUserInput();
+        bibliotecaController.start();
 
         verify(quit, times(1)).execute();
     }
 
     @Test
     void checkIfUserIsAbleToSelectCheckOutOptionAndProceed() {
-        String data = "2";
+        String data = "2\n3";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         BookCheckOut bookCheckOut = mock(BookCheckOut.class);
         Menu menu = new Menu(List.of(mock(BookList.class), bookCheckOut, mock(Quit.class)));
         menu.setListener(ui);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
-        bibliotecaController.readUserInput();
+        bibliotecaController.start();
 
         verify(bookCheckOut, times(1)).execute();
     }
 
     @Test
     void checkIfUserIsAbleToReturnABook() {
-        String data = "3";
+        String data = "3\n4";
         System.setIn(new ByteArrayInputStream(data.getBytes()));
         BookReturn bookReturn = mock(BookReturn.class);
         Menu menu = new Menu(List.of(mock(BookList.class), mock(BookCheckOut.class), bookReturn, mock(Quit.class)));
         menu.setListener(ui);
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
 
-        bibliotecaController.readUserInput();
+        bibliotecaController.start();
 
         verify(bookReturn, times(1)).execute();
     }
