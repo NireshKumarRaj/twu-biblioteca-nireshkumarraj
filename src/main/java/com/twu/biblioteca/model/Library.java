@@ -73,6 +73,10 @@ public class Library implements Model {
                 .filter(bookUserEntry -> bookUserEntry.getValue().equals(loggedInUser))
                 .map(bookUserEntry -> bookUserEntry.getKey().getDetails())
                 .collect(Collectors.toList());
+        if (userCheckedOutBooks.size() == 0) {
+            view.display("Sorry! No books checked out yet");
+            return;
+        }
         view.display(userCheckedOutBooks);
     }
 }

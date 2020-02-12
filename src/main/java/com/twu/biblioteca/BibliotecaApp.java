@@ -32,18 +32,29 @@ public class BibliotecaApp {
         User user1 = new User("name", "email", "+919941980802", "123-4567", "test1");
         User user2 = new User("name", "email", "+919941980802", "123-4568", "test1");
         User user3 = new User("name", "email", "+919941980802", "123-4569", "test1");
-
+        authenticator = new Authenticator(of(user1, user2, user3));
 
         BookList bookListMenuItem = new BookList(library);
         BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library);
+        MovieCheckOut movieCheckOutMenuItem = new MovieCheckOut(movieLibrary);
         BookReturn bookReturnMenuItem = new BookReturn(library);
         MovieList movieListMenuItem = new MovieList(movieLibrary);
-        authenticator = new Authenticator(of(user1, user2, user3));
         LoginMenuItem loginMenuItem = new LoginMenuItem(authenticator);
         ViewUser viewUserMenuItem = new ViewUser();
         CheckedOutBooks checkedOutBooksMenuItem = new CheckedOutBooks(library);
         Quit quitMenuItem = new Quit();
-        menu = new Menu(of(bookListMenuItem, bookCheckOutMenuItem, checkedOutBooksMenuItem, bookReturnMenuItem, movieListMenuItem, loginMenuItem, viewUserMenuItem, quitMenuItem));
+        List<MenuItem> menuItems = of(
+                bookListMenuItem,
+                bookCheckOutMenuItem,
+                checkedOutBooksMenuItem,
+                bookReturnMenuItem,
+                movieListMenuItem,
+                movieCheckOutMenuItem,
+                loginMenuItem,
+                viewUserMenuItem,
+                quitMenuItem
+        );
+        menu = new Menu(menuItems);
     }
 
     public static void main(String[] args) {
@@ -59,6 +70,4 @@ public class BibliotecaApp {
         BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
         bibliotecaController.start();
     }
-
-
 }

@@ -112,4 +112,14 @@ class LibraryTest {
 
         verify(ui, times(1)).display(List.of("Agile | Andy | 1998"));
     }
+
+    @Test
+    void testShouldNotifyIfThereAreNoCheckedOutBooks() {
+        User user = mock(User.class);
+        when(ui.getLoggedInUser()).thenReturn(user);
+
+        library.listCheckOutBooks();
+
+        verify(ui, times(1)).display("Sorry! No books checked out yet");
+    }
 }
