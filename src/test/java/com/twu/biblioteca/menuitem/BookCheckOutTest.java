@@ -2,6 +2,7 @@ package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.view.InputReceiver;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -11,6 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 class BookCheckOutTest {
+
+    @AfterEach
+    public void reset() {
+        InputReceiver.getInputReceiver().reset();
+    }
+
     @Test
     void testShouldCheckIfCheckOutIsInvoked() {
         InputStream inputStream = System.in;
@@ -46,6 +53,6 @@ class BookCheckOutTest {
 
         String menuItemName = bookCheckOut.getName();
 
-        assertEquals("Checkout", menuItemName);
+        assertEquals("Checkout Book", menuItemName);
     }
 }

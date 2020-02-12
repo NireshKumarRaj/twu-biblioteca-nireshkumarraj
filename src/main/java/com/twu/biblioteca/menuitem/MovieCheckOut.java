@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.MovieLibrary;
+import com.twu.biblioteca.view.InputReceiver;
 
 public class MovieCheckOut implements MenuItem {
 
@@ -14,7 +15,9 @@ public class MovieCheckOut implements MenuItem {
 
     @Override
     public void execute() {
-        movieLibrary.checkout("The Social Network");
+        movieLibrary.notifyListener("Enter movie name: ");
+        String movieName = InputReceiver.getInputReceiver().readLine();
+        movieLibrary.checkout(movieName);
     }
 
     @Override
