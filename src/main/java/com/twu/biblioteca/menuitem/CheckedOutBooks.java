@@ -2,7 +2,7 @@ package com.twu.biblioteca.menuitem;
 
 import com.twu.biblioteca.model.Library;
 
-public class CheckedOutBooks implements MenuItem {
+public class CheckedOutBooks implements MenuItem, Auth {
 
     private final String name;
     private Library library;

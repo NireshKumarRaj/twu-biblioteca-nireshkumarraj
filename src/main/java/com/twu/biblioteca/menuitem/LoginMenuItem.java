@@ -15,7 +15,7 @@ public class LoginMenuItem implements MenuItem {
 
     @Override
     public void execute() {
-        authenticator.notifyListener("Enter username:");
+        authenticator.notifyListener("Enter Library Number:");
         String userName = InputReceiver.getInputReceiver().readLine();
         authenticator.notifyListener("Enter password: ");
         String password = InputReceiver.getInputReceiver().readLine();
