@@ -30,7 +30,7 @@ public class BibliotecaApp {
 
 
         BookList bookListMenuItem = new BookList(library);
-        BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library, new Authenticator());
+        BookCheckOut bookCheckOutMenuItem = new BookCheckOut(library);
         BookReturn bookReturnMenuItem = new BookReturn(library);
         MovieList movieListMenuItem = new MovieList(movieLibrary);
         Quit quitMenuItem = new Quit();
