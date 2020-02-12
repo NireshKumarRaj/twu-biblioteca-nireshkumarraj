@@ -1,6 +1,7 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.model.Model;
+import com.twu.biblioteca.model.User;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public class UI implements View {
 
     private final PrintStream outputWriter;
-    private String loggedInUser;
+    private User loggedInUser;
     private boolean isLoggedIn;
 
     public UI(PrintStream outputWriter) {
@@ -39,12 +40,12 @@ public class UI implements View {
     }
 
     @Override
-    public void setLoggedInUser(String loggedInUser) {
+    public void setLoggedInUser(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
 
     @Override
-    public String getLoggedInUser() {
+    public User getLoggedInUser() {
         return loggedInUser;
     }
 

@@ -3,6 +3,7 @@ package com.twu.biblioteca.model;
 import com.twu.biblioteca.view.View;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Authenticator implements Model {
 
@@ -13,8 +14,15 @@ public class Authenticator implements Model {
         this.users = users;
     }
 
-    public boolean authenticate(String libraryNumber, String password) {
-        return users.stream().anyMatch(user -> user.is(libraryNumber, password));
+    public void authenticate(String libraryNumber, String password) {
+        Optional<User> authUser = users.stream().filter(user -> user.is(libraryNumber, password)).findFirst();
+        if (authUser.isPresent()) {
+            view.setLoggedIn(true);
+            view.setLoggedInUser(authUser.get());
+            notifyListener("Your login is successful");
+            return;
+        }
+        notifyListener("Sorry! Invalid credentials.");
     }
 
     @Override
@@ -25,13 +33,5 @@ public class Authenticator implements Model {
 
     public void notifyListener(String message) {
         this.view.display(message);
-    }
-
-    public void setUserLogin(boolean isLoggedIn) {
-        view.setLoggedIn(isLoggedIn);
-    }
-
-    public void setLoggedInUser(String userName) {
-        view.setLoggedInUser(userName);
     }
 }

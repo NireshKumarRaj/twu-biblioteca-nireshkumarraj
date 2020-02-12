@@ -1,5 +1,7 @@
 package com.twu.biblioteca.view;
 
+import com.twu.biblioteca.model.User;
+
 import java.util.List;
 
 public interface View {
@@ -11,7 +13,7 @@ public interface View {
 
     void setLoggedIn(boolean isLoggedIn);
 
-    void setLoggedInUser(String user);
+    void setLoggedInUser(User user);
 
-    String getLoggedInUser();
+    User getLoggedInUser();
 }

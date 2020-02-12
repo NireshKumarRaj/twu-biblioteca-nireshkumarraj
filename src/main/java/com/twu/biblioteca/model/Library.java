@@ -13,7 +13,7 @@ public class Library implements Model {
 
     // TODO - what can be an alternate implementation of this Libarary? Think about it and get back. Try to see if that's better - simplifies, complicates the implementation
     private List<Book> books;
-    private Map<Book, String> checkedOutBooks;
+    private Map<Book, User> checkedOutBooks;
     private View view;
 
     public Library(List<Book> books) {
