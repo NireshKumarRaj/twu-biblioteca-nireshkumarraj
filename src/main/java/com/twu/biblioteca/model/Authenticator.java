@@ -25,4 +25,8 @@ public class Authenticator implements Model {
     public void notifyListener(String message) {
         this.view.display(message);
     }
+
+    public void setUserLogin(boolean isLoggedIn) {
+        view.setLoggedIn(isLoggedIn);
+    }
 }

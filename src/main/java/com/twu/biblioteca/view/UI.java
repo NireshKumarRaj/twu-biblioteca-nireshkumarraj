@@ -8,6 +8,7 @@ import java.util.List;
 public class UI implements View {
 
     private final PrintStream outputWriter;
+    private boolean isLoggedIn;
 
     public UI(PrintStream outputWriter) {
         this.outputWriter = outputWriter;
@@ -29,5 +30,15 @@ public class UI implements View {
             outputWriter.println((itemNumber) + SEPARATOR + toDisplayList.get(itemNumber - 1));
         }
         System.out.println();
+    }
+
+    @Override
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    @Override
+    public void setLoggedIn(boolean isLoggedIn) {
+        this.isLoggedIn = true;
     }
 }

@@ -67,4 +67,19 @@ class LoginMenuItemTest {
         verify(authenticator, times(1)).notifyListener("Sorry! Invalid credentials.");
         System.setIn(inputStream);
     }
+
+    @Test
+    void testShouldCheckIfUserLoginIsUpdated() {
+        InputStream inputStream = System.in;
+        System.setIn(new ByteArrayInputStream("123-4567\ntest1".getBytes()));
+        Authenticator authenticator = mock(Authenticator.class);
+        LoginMenuItem loginMenuItem = new LoginMenuItem(authenticator);
+        when(authenticator.authenticate("123-4567", "test1")).thenReturn(true);
+
+        loginMenuItem.execute();
+
+        verify(authenticator, times(1)).notifyListener("Your login is successful");
+        verify(authenticator, timeout(1)).setUserLogin(true);
+        System.setIn(inputStream);
+    }
 }
