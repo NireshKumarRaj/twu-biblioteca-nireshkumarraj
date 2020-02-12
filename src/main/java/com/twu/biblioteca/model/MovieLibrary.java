@@ -1,6 +1,6 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.view.Customer;
+import com.twu.biblioteca.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class MovieLibrary implements Model {
 
     private List<Movie> movies;
     private List<Movie> checkedOutMovies;
-    private Customer customer;
+    private View view;
 
     public MovieLibrary(List<Movie> movies) {
         this.movies = movies;
@@ -20,18 +20,20 @@ public class MovieLibrary implements Model {
 
 
     public void listAvailableMovies() {
-        customer.display(movies.stream().map(Movie::displayDetails).collect(Collectors.toList()));
+        view.display(movies.stream().map(Movie::displayDetails).collect(Collectors.toList()));
     }
 
-    public void setListener(Customer customer) {
-        this.customer = customer;
+    public void setListener(View view) {
+        this.view = view;
     }
 
     public void checkout(String movieName) {
         Optional<Movie> movie = movies.stream().filter(movieItem -> movieItem.is(movieName)).findFirst();
         if (movie.isPresent()) {
             checkedOutMovies.add(movie.get());
-            customer.display("Thank you! Enjoy the movie");
+            view.display("Thank you! Enjoy the movie");
+        } else {
+            view.display("Sorry, that movie is not available");
         }
     }
 }

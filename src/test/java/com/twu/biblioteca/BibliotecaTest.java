@@ -37,7 +37,7 @@ public class BibliotecaTest {
 
     @Test
     public void testIfWelcomeMessageIsDisplayedWhenStartIsInvoked() {
-        System.setIn(new ByteArrayInputStream("1\n4".getBytes()));
+        System.setIn(new ByteArrayInputStream("1\n5".getBytes()));
 
         bibliotecaApp.start();
 

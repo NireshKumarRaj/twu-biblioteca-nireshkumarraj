@@ -1,6 +1,6 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.view.Customer;
+import com.twu.biblioteca.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Library implements Model {
     // TODO - what can be an alternate implementation of this Libarary? Think about it and get back. Try to see if that's better - simplifies, complicates the implementation
     private List<Book> books;
     private List<Book> checkedOutBooks;
-    private Customer customer;
+    private View view;
 
     public Library(List<Book> books) {
         this.books = books;
@@ -24,7 +24,7 @@ public class Library implements Model {
     }
 
     public void listAvailableBooks() {
-        this.customer.display(this.books.stream()
+        this.view.display(this.books.stream()
                 .filter(book -> !this.checkedOutBooks.contains(book))
                 .map(Book::getDetails)
                 .collect(Collectors.toList()));
@@ -54,11 +54,11 @@ public class Library implements Model {
         }
     }
 
-    public void setListener(Customer customer) {
-        this.customer = customer;
+    public void setListener(View view) {
+        this.view = view;
     }
 
     public void notifyListener(String message) {
-        this.customer.display(message);
+        this.view.display(message);
     }
 }

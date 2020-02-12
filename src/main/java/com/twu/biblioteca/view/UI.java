@@ -5,7 +5,7 @@ import com.twu.biblioteca.model.Model;
 import java.io.PrintStream;
 import java.util.List;
 
-public class UI implements Customer {
+public class UI implements View {
 
     private final PrintStream outputWriter;
 

@@ -1,7 +1,7 @@
 package com.twu.biblioteca.model;
 
 import com.twu.biblioteca.menuitem.MenuItem;
-import com.twu.biblioteca.view.Customer;
+import com.twu.biblioteca.view.View;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 public class Menu implements Model {
 
     private List<MenuItem> menuOptions;
-    private Customer customer;
+    private View view;
 
     public Menu(List<MenuItem> menuOptions) {
         this.menuOptions = menuOptions;
     }
 
     public void displayMenuOptions() {
-        this.customer.display("---- Menu -----");
-        this.customer.display(menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList()));
+        this.view.display("---- Menu -----");
+        this.view.display(menuOptions.stream().map(MenuItem::getName).collect(Collectors.toList()));
     }
 
     public boolean isQuit(int input) {
@@ -27,13 +27,13 @@ public class Menu implements Model {
     public void execute(int inputFromUser) {
         final String INVALID_OPTION_MESSAGE = "Please select a valid option!";
         if (inputFromUser > menuOptions.size()) {
-            customer.display(INVALID_OPTION_MESSAGE);
+            view.display(INVALID_OPTION_MESSAGE);
             return;
         }
         menuOptions.get(inputFromUser - 1).execute();
     }
 
-    public void setListener(Customer customer) {
-        this.customer = customer;
+    public void setListener(View view) {
+        this.view = view;
     }
 }
