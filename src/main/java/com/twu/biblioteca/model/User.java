@@ -29,4 +29,8 @@ public class User implements Model {
     public void setListener(View view) {
         this.view = view;
     }
+
+    public boolean is(String libraryNumber, String password) {
+        return this.libraryNumber.equals(libraryNumber) && this.password.equals(password);
+    }
 }

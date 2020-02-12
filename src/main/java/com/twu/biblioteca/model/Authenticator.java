@@ -2,23 +2,27 @@ package com.twu.biblioteca.model;
 
 import com.twu.biblioteca.view.View;
 
-import java.util.Map;
+import java.util.List;
 
 public class Authenticator implements Model {
 
-    private Map<String, String> userCredentials;
+    private List<User> users;
     private View view;
 
     public Authenticator() {
-        userCredentials = Map.of("123-4567", "test1", "234-5678", "test2");
+        User user1 = new User("name", "email", "+919941980802", "123-4567", "test1");
+        User user2 = new User("name", "email", "+919941980802", "123-4568", "test1");
+        User user3 = new User("name", "email", "+919941980802", "123-4569", "test1");
+        users = List.of(user1, user2, user3);
     }
 
-    public boolean authenticate(String username, String password) {
-        return password.equals(userCredentials.get(username));
+    public boolean authenticate(String libraryNumber, String password) {
+        return users.stream().anyMatch(user -> user.is(libraryNumber, password));
     }
 
     @Override
     public void setListener(View view) {
+        users.forEach(user -> user.setListener(view));
         this.view = view;
     }
 
