@@ -19,8 +19,12 @@ public class LoginMenuItem implements MenuItem {
         String userName = InputReceiver.getInputReceiver().readLine();
         authenticator.notifyListener("Enter password: ");
         String password = InputReceiver.getInputReceiver().readLine();
-        authenticator.authenticate(userName, password);
-        authenticator.notifyListener("Your login is successful");
+        boolean authResult = authenticator.authenticate(userName, password);
+        if (authResult) {
+            authenticator.notifyListener("Your login is successful");
+        } else {
+            authenticator.notifyListener("Sorry! Invalid credentials.");
+        }
     }
 
     @Override

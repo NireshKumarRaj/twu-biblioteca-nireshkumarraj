@@ -14,7 +14,6 @@ public class Authenticator implements Model {
     }
 
     public boolean authenticate(String username, String password) {
-        System.out.println(userCredentials);
         return password.equals(userCredentials.get(username));
     }
 
