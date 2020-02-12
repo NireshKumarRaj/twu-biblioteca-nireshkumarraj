@@ -25,7 +25,14 @@ public class Menu implements Model {
     }
 
     public boolean isQuit(int input) {
-        return input == menuOptions.size();
+        if (view.isLoggedIn()) {
+            return input == menuOptions.size();
+        }
+        List<MenuItem> unAuthMenuItems = menuOptions
+                .stream()
+                .filter(menuItem -> !(menuItem instanceof Auth))
+                .collect(Collectors.toList());
+        return input == unAuthMenuItems.size();
     }
 
     public void execute(int inputFromUser) {

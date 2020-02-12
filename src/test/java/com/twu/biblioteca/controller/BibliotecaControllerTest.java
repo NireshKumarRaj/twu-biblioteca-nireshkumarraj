@@ -138,4 +138,19 @@ class BibliotecaControllerTest {
         String expected = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!\n";
         verify(ui, times(1)).display(expected);
     }
+
+    @Test
+    void testShouldCheckIfQuitsProperlyWhileUnAuthenticated() {
+        String data = "2";
+        System.setIn(new ByteArrayInputStream(data.getBytes()));
+        Quit quit = mock(Quit.class);
+        Menu menu = new Menu(List.of(mock(BookList.class), mock(BookCheckOut.class), mock(BookReturn.class), quit));
+        menu.setListener(ui);
+        when(ui.isLoggedIn()).thenReturn(false);
+        BibliotecaController bibliotecaController = new BibliotecaController(menu, ui);
+
+        bibliotecaController.start();
+
+        verify(quit, times(1)).execute();
+    }
 }
